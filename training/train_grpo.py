@@ -5,6 +5,12 @@ from pathlib import Path
 from typing import List, Tuple
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from role_drift_env.models import AgentAction, Observation, State
+
+try:
+    import bitsandbytes as bnb
+    HAS_BITSANDBYTES = True
+except ImportError:
+    HAS_BITSANDBYTES = False
 from role_drift_env.server.environment import RoleDriftEnvironment
 from role_drift_env.server.customer_sim import CustomerSimulator
 from training.rollout import rollout_episode
@@ -46,12 +52,15 @@ class GRPOTrainer:
         if getattr(self.tokenizer, "chat_template", None) is None:
             self.tokenizer.chat_template = "{% for message in messages %}{% if message['role'] == 'system' %}{% set system_message = message['content'] %}{% endif %}{% endfor %}{% if system_message is defined %}{{ system_message }}{% endif %}{% for message in messages %}{% if message['role'] != 'system' %}{% if message['role'] == 'user' %}{{ '\nUser: ' + message['content'] }}{% elif message['role'] == 'assistant' %}{{ '\nAssistant: ' + message['content'] }}{% endif %}{% endif %}{% endfor %}\nAssistant:"
 
-        dtype = torch.float16 if device == "cuda" else torch.float32
+        dtype = torch.bfloat16 if device == "cuda" else torch.float32
         self.model = AutoModelForCausalLM.from_pretrained(
             ckpt,
             trust_remote_code=True,
             dtype=dtype,
         ).to(device)
+
+        self.model.gradient_checkpointing_enable()
+        self.model.config.use_cache = False
 
         self.ref_model = AutoModelForCausalLM.from_pretrained(
             ckpt,
@@ -67,7 +76,10 @@ class GRPOTrainer:
         if model_config_max and hasattr(self.tokenizer, "model_max_length"):
             self.tokenizer.model_max_length = model_config_max
 
-        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=lr)
+        if device == "cuda" and HAS_BITSANDBYTES:
+            self.optimizer = bnb.optim.AdamW8bit(self.model.parameters(), lr=lr)
+        else:
+            self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=lr)
         self.group_size = group_size
         self.kl_coef = kl_coef
         self.output_dir = Path(output_dir)
@@ -128,15 +140,17 @@ class GRPOTrainer:
         return prompt
 
     def _compute_token_logprobs(self, model, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
-        """Compute log-probabilities for each token position under the given model."""
+        """Memory-efficient: avoids materializing full [batch, seq, vocab] log_softmax tensor."""
         outputs = model(input_ids=input_ids, attention_mask=attention_mask)
         logits = outputs.logits
-        log_probs = F.log_softmax(logits, dim=-1)
-        # Gather log-prob of the actual token at each position
-        # We want log_probs[:, :-1, :] aligned with input_ids[:, 1:]
-        log_probs_shifted = log_probs[:, :-1, :]
+        logits_shifted = logits[:, :-1, :]
         target_ids = input_ids[:, 1:]
-        token_log_probs = torch.gather(log_probs_shifted, dim=2, index=target_ids.unsqueeze(-1)).squeeze(-1)
+        gathered_logits = torch.gather(
+            logits_shifted, dim=2, index=target_ids.unsqueeze(-1)
+        ).squeeze(-1)
+        logsumexp = torch.logsumexp(logits_shifted, dim=-1)
+        token_log_probs = gathered_logits - logsumexp
+        del logits, logits_shifted, gathered_logits, logsumexp, outputs
         return token_log_probs
 
     def _update_policy(self, agent_turns: List[Tuple[str, str]], advantage: float) -> dict:
@@ -358,6 +372,8 @@ if __name__ == "__main__":
     parser.add_argument("--sft-checkpoint", default="checkpoints/sft")
     parser.add_argument("--output-dir", default="checkpoints/grpo")
     parser.add_argument("--model-name", default="Qwen/Qwen2.5-1.5B-Instruct")
+    parser.add_argument("--kl-coef", type=float, default=0.05, help="KL penalty coefficient")
+    parser.add_argument("--lr", type=float, default=5e-6, help="Learning rate")
     parser.add_argument("--use-wandb", action="store_true", help="Enable wandb logging")
     parser.add_argument("--wandb-project", default="role-drift-env")
     parser.add_argument("--log-every", type=int, default=1, help="Print metrics every N episodes")
@@ -377,6 +393,8 @@ if __name__ == "__main__":
         sft_checkpoint=args.sft_checkpoint,
         output_dir=args.output_dir,
         group_size=args.group_size,
+        kl_coef=args.kl_coef,
+        lr=args.lr,
     )
     if args.use_wandb:
         trainer.init_wandb(project=args.wandb_project, config={

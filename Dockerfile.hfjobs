@@ -1,0 +1,46 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system deps for building bitsandbytes (precompiled for CUDA but still needs libs)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy project files
+COPY pyproject.toml ./
+COPY openenv.yaml ./
+COPY role_drift_env/ ./role_drift_env/
+COPY data/ ./data/
+COPY training/ ./training/
+COPY scripts/ ./scripts/
+COPY tests/ ./tests/
+COPY README.md ./
+
+# Install dependencies (CPU fallback if no GPU)
+RUN pip install --no-cache-dir -e .
+
+# Install bitsandbytes (optional, falls back to regular AdamW if install fails)
+RUN pip install --no-cache-dir bitsandbytes || echo "bitsandbytes not available, will use regular AdamW"
+
+# Pre-install transformers to avoid slow download on first run
+RUN pip install --no-cache-dir \
+    "torch>=2.0.0" \
+    "transformers>=4.36.0" \
+    "accelerate>=0.20.0" \
+    "sentence-transformers>=2.2.0" \
+    "fasttext-langdetect>=0.4.0" \
+    "langdetect>=1.0.9" \
+    || echo "Some packages may already be installed"
+
+# Download model to cache so first training run is faster
+# This is done at container build time, not at job run time
+RUN python -c "from transformers import AutoTokenizer, AutoModelForCausalLM; print('Caching model...')" || true
+
+# Log environment
+RUN python -c "import torch; print(f'PyTorch: {torch.__version__}')"
+RUN python -c "import transformers; print(f'Transformers: {transformers.__version__}')"
+
+CMD ["python", "--version"]
