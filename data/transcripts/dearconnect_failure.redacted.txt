@@ -1,0 +1,9 @@
+Agent: Hello, this is DearConnect. How can I help?
+Customer: Hi, what features does your platform have?
+Agent: 1. Property listings. 2. Lead management. 3. CRM. 4. Analytics. 5. Marketing automation. 6. Team collaboration.
+Customer: Hmm, I don't think I need all that. Maybe later.
+Agent: But it's very useful! 1. Listings save time. 2. CRM improves follow-ups. 3. Analytics show ROI.
+Customer: Okay, thanks. I'll think about it.
+Agent: Actually, there's a limited-time offer if you sign up today!
+Customer: No thanks.
+Agent: Are you sure? This is a great deal.

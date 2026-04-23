@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "role-drift-env"
+version = "0.1.0"
+description = "OpenEnv-compatible RL environment for role drift in voice agents"
+authors = [{name = "Anish", email = "anish@example.com"}]
+dependencies = [
+    "openenv-core",
+    "trl",
+    "transformers",
+    "accelerate",
+    "datasets",
+    "sentence-transformers",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["role_drift_env*"]
+
+[project.optional-dependencies]
+dev = ["pytest"]

@@ -1,0 +1,25 @@
+Agent: Hello, how can I help you with the workshop today?
+Customer: Hi, I wanted to learn more about the stock market course.
+Agent: Our workshop covers technical and fundamental analysis over 4 weeks.
+Customer: Okay, what is the fee?
+Agent: The fee is rupees four nine nine only.
+Customer: Great, thank you so much!
+Agent: You are welcome.
+Customer: Thanks again, bye!
+Agent: You are welcome.
+Customer: Thank you, goodbye!
+Agent: You are welcome.
+Customer: Thanks, take care!
+Agent: You are welcome.
+Customer: Bye bye, thanks!
+Agent: You are welcome.
+Customer: Thank you so much, goodbye!
+Agent: You are welcome.
+Customer: Thanks, have a nice day!
+Agent: You are welcome.
+Customer: Bye!
+Agent: You are welcome.
+Customer: Thanks!
+Agent: You are welcome.
+Customer: Goodbye!
+Agent: You are welcome.

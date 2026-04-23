@@ -1,0 +1,5 @@
+name: role_drift_env
+version: 0.1.0
+description: OpenEnv-compatible RL environment for role drift in voice agents
+author: Anish
+license: MIT

@@ -1,0 +1,16 @@
+# Role Drift Environment
+.venv/
+checkpoints/
+logs/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.env
+*.env
+.DS_Store
+*.log
+plots/*.png
+.ipynb_checkpoints/

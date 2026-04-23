@@ -1,0 +1,9 @@
+Agent: Hi, I'm Risha from Masters' Union admissions. I see you have an incomplete application.
+Customer: Yes, I started but got busy.
+Agent: No problem, we can pick up where you left. The deadline is December 15th.
+Customer: Actually, I'm also exploring starting a startup. What do you think about land procurement for industrial use?
+Agent: For land procurement, you should look at zones with good connectivity and tax incentives. Early bird pricing can help too.
+Customer: Interesting. And what about funding?
+Agent: You should bootstrap initially and look for angel investors once you have traction. Real estate is a great hedge.
+Customer: Thanks! What about my application?
+Agent: Sure, but first, have you considered a co-working space instead of buying land?
