@@ -1,22 +1,15 @@
 #!/usr/bin/env python3
-"""
-HF Jobs entrypoint for GRPO training.
-
-Usage:
-    hf jobs run --flavor l40sx1 --secrets HF_TOKEN python:3.12 python training/train_grpo_hfjobs.py --episodes 5 ...
-
-This is a wrapper around train_grpo.py that:
-1. Accepts identical CLI args
-2. Runs training locally
-3. Uploads checkpoints + logs to output repo when done
-"""
-
+"""HF Jobs entrypoint for GRPO training."""
 import json
 import os
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+
+# Add app dir to path for imports before any training imports
+sys.path.insert(0, "/app")
+os.chdir("/app")
 
 HF_TOKEN = os.environ.get("HF_TOKEN")
 OUTPUT_REPO = os.environ.get("OUTPUT_REPO", "GeniusPlums/role-drift-runs")
@@ -97,7 +90,7 @@ def main():
         cmd.extend(["--sft-checkpoint", args.sft_checkpoint])
 
     print(f"[HFJOB] Running: {' '.join(cmd)}")
-    result = subprocess.run(cmd, cwd=Path.cwd())
+    result = subprocess.run(cmd, cwd="/app")
 
     if result.returncode != 0:
         print(f"[HFJOB] Training failed with exit code {result.returncode}")
