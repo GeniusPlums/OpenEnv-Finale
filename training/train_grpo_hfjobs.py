@@ -90,7 +90,10 @@ def main():
         cmd.extend(["--sft-checkpoint", args.sft_checkpoint])
 
     print(f"[HFJOB] Running: {' '.join(cmd)}")
-    result = subprocess.run(cmd, cwd="/app")
+    # Ensure path is available in subprocess
+    env = os.environ.copy()
+    env["PYTHONPATH"] = "/app"
+    result = subprocess.run(cmd, cwd="/app", env=env)
 
     if result.returncode != 0:
         print(f"[HFJOB] Training failed with exit code {result.returncode}")

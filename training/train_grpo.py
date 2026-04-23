@@ -1,4 +1,13 @@
+#!/usr/bin/env python3
+"""GRPO trainer for role-drift environment."""
 import json
+import os
+import sys
+
+# Add app directory to path for imports
+if "/app" not in sys.path:
+    sys.path.insert(0, "/app")
+
 import torch
 import torch.nn.functional as F
 from pathlib import Path
