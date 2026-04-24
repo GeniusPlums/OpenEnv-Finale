@@ -1,16 +1,84 @@
-# Role Drift Environment
+# Virtual environments
 .venv/
-checkpoints/
-logs/
+venv/
+env/
+ENV/
+
+# Python cache
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 *.pyo
+*.pyd
+.Python
 *.egg-info/
+*.egg
 dist/
 build/
-.env
-*.env
-.DS_Store
+eggs/
+parts/
+sdist/
+wheel/
+pip-wheel/
+pip-wheel-metadata/
+share/python-wheel/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Checkpoints & model weights
+checkpoints/
+*.safetensors
+*.bin
+*.pt
+*.pth
+model-*.pt
+
+# Logs
+logs/
 *.log
+wandb/
+tensorboard/
+mlruns/
+
+# Data files
+data/scenarios/*.jsonl.lock
+*.jsonl
+!data/scenarios/*.jsonl
+
+# Plots & outputs
 plots/*.png
+plots/*.pdf
+plots/*.svg
+
+# Jupyter
 .ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+*.env
+
+# Kaggle
+kaggle.json
+
+# Zip artifacts
+*.zip
+role_drift_env.zip
+
+# Git
+.git/

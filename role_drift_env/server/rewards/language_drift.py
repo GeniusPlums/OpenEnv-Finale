@@ -4,58 +4,104 @@ from role_drift_env.models import State, AgentAction
 class LanguageDriftDetector:
     def __init__(self):
         self._classifier = None
-        self._use_fasttext = False
+        self._baseline_language = None
 
     def _get_classifier(self):
         if self._classifier is None:
             try:
-                import fasttext
-                self._classifier = fasttext.load_model("lid.176.bin")
-                self._use_fasttext = True
+                from langdetect import detect, detect_langs
+                self._classifier = detect
+                self._detect_langs = detect_langs
             except Exception:
-                try:
-                    from langdetect import detect
-                    self._classifier = detect
-                    self._use_fasttext = False
-                except Exception:
-                    self._classifier = None
+                self._classifier = None
+                self._detect_langs = None
         return self._classifier
 
     def score(self, state: State, action: AgentAction) -> float:
-        """Return penalty magnitude in [0,1] if agent switches language unprompted."""
-        allowed = state.scenario.allowed_language
-        if allowed == "any":
-            return 0.0
+        """Return penalty magnitude in [0,1] if agent switches language unprompted.
+        
+        Compares agent's response language to the baseline language established
+        by the customer's opening message. This allows for scenarios where the
+        customer starts in a non-English language - the agent should match.
+        """
         text = action.utterance.strip()
         if not text:
             return 0.0
-
-        # Strip loanwords before classification
+        
+        # Too short to detect reliably
+        if len(text.split()) < 3:
+            return 0.0
+        
+        # Strip loanwords before classification (common code-switching)
         loanwords = self._load_loanwords()
         for lw in loanwords:
             text = text.replace(lw, "")
         text = text.strip()
-        if not text:
+        
+        if len(text.split()) < 3:
             return 0.0
-
+        
         clf = self._get_classifier()
         if clf is None:
             return 0.0
-
-        if self._use_fasttext:
-            pred = clf.predict(text.replace("\n", " "), k=1)
-            label = pred[0][0].replace("__label__", "")
-            conf = pred[1][0]
-            if conf > 0.85 and label != allowed:
-                return round(min(conf, 1.0), 4)
-        else:
-            try:
-                detected = clf(text)
-                if detected != allowed:
-                    return 0.5
-            except Exception:
+        
+        try:
+            # Get baseline language from customer's first message
+            baseline_lang = self._get_baseline_language(state)
+            if baseline_lang is None:
                 return 0.0
-        return 0.0
+            
+            # Detect agent's language
+            agent_lang = clf(text)
+            
+            # Same language as baseline - no penalty
+            if agent_lang == baseline_lang:
+                return 0.0
+            
+            # Different language - compute confidence-based penalty
+            try:
+                lang_probs = self._detect_langs(text)
+                if lang_probs:
+                    # Use probability of detected language as confidence
+                    conf = lang_probs[0].prob
+                    return round(min(conf, 1.0), 4)
+            except Exception:
+                pass
+            
+            # Fallback: if we know it's different but can't get confidence
+            return 0.5
+            
+        except Exception:
+            return 0.0
+
+    def _get_baseline_language(self, state: State) -> str:
+        """Detect language from customer's first message in the conversation.
+        
+        Checks: history (if customer has spoken), then scenario opening message.
+        """
+        clf = self._get_classifier()
+        if clf is None:
+            return None
+        
+        # First, try to get from conversation history
+        for turn in state.history:
+            if turn.get("role") == "customer":
+                text = turn.get("text", "").strip()
+                if text and len(text.split()) >= 2:
+                    try:
+                        return clf(text)
+                    except Exception:
+                        pass
+        
+        # Fallback: check scenario opening message
+        opening = state.scenario.opening_message
+        if opening and len(opening.split()) >= 2:
+            try:
+                return clf(opening)
+            except Exception:
+                pass
+        
+        return None
 
     def _load_loanwords(self):
         import json

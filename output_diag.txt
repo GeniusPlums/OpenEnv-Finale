@@ -1,0 +1,792 @@
+STDOUT: [GRPO] Loading model from: Qwen/Qwen2.5-1.5B-Instruct  (device=cuda)
+Ep 000 | scenario=goal_kk_01 | mean_ret=-6.579 | std=1.829 | loss=0.0139 | kl=0.0187
+  -> Saved transcripts to logs/transcripts
+  -> New best! Saved to checkpoints/grpo/best
+Ep 001 | scenario=term_mu_04 | mean_ret=-1.350 | std=0.925 | loss=0.0044 | kl=0.2838
+  -> New best! Saved to checkpoints/grpo/best
+Ep 002 | scenario=term_kk_05 | mean_ret=-1.632 | std=1.108 | loss=0.0999 | kl=0.2597
+Ep 003 | scenario=coop_mu_04 | mean_ret=-1.325 | std=0.335 | loss=0.0151 | kl=0.1076
+  -> New best! Saved to checkpoints/grpo/best
+Ep 004 | scenario=coop_kk_05 | mean_ret=-0.818 | std=0.754 | loss=-0.0547 | kl=0.1780
+  -> New best! Saved to checkpoints/grpo/best
+Ep 005 | scenario=lang_kk_01 | mean_ret=-1.562 | std=0.816 | loss=0.2026 | kl=0.6582
+  -> Saved transcripts to logs/transcripts
+Ep 006 | scenario=goal_kk_02 | mean_ret=-3.170 | std=1.396 | loss=0.0925 | kl=0.3705
+Ep 007 | scenario=coop_mu_02 | mean_ret=-0.437 | std=0.379 | loss=0.1959 | kl=4.4022
+WARNING: KL > 1.0 (4.402). Consider lowering LR or raising KL coef.
+  -> New best! Saved to checkpoints/grpo/best
+Ep 008 | scenario=goal_kk_05 | mean_ret=-3.233 | std=1.339 | loss=0.1064 | kl=0.5290
+Ep 009 | scenario=term_kk_02 | mean_ret=-1.459 | std=0.738 | loss=0.4980 | kl=1.2217
+WARNING: KL > 1.0 (1.222). Consider lowering LR or raising KL coef.
+Ep 010 | scenario=goal_mu_02 | mean_ret=-13.966 | std=0.201 | loss=0.0417 | kl=0.1595
+  -> Saved transcripts to logs/transcripts
+Ep 011 | scenario=term_mu_02 | mean_ret=-2.110 | std=1.047 | loss=0.8770 | kl=1.1398
+WARNING: KL > 1.0 (1.140). Consider lowering LR or raising KL coef.
+Ep 012 | scenario=coop_mu_05 | mean_ret=-0.438 | std=0.355 | loss=0.0142 | kl=0.0827
+Ep 013 | scenario=coop_kk_04 | mean_ret=-1.153 | std=0.241 | loss=0.0532 | kl=0.3353
+Ep 014 | scenario=instr_kk_05 | mean_ret=-6.129 | std=2.533 | loss=0.0363 | kl=0.0755
+Ep 015 | scenario=instr_kk_04 | mean_ret=-11.470 | std=3.050 | loss=-0.0076 | kl=0.0171
+  -> Saved transcripts to logs/transcripts
+Ep 016 | scenario=coop_mu_03 | mean_ret=-0.949 | std=1.039 | loss=0.0117 | kl=0.2819
+Ep 017 | scenario=term_mu_05 | mean_ret=-0.582 | std=0.399 | loss=0.1201 | kl=0.2612
+Ep 018 | scenario=instr_kk_01 | mean_ret=-9.205 | std=2.495 | loss=-0.0024 | kl=0.0217
+Ep 019 | scenario=coop_kk_01 | mean_ret=-6.801 | std=12.755 | loss=-0.2148 | kl=0.4860
+  -> Saved transcripts to logs/transcripts
+Saved episode log to checkpoints/grpo/episode_log.jsonl
+Training complete. Best mean return: -0.437
+[HFJOB] Starting GRPO training on HF Jobs
+[HFJOB] Episodes: 20
+[HFJOB] Group size: 4
+[HFJOB] Model: Qwen/Qwen2.5-1.5B-Instruct
+[HFJOB] KL coef: 0.05
+[HFJOB] LR: 1e-05
+[HFJOB] Output repo: GeniusPlums/role-drift-runs-diag
+[HFJOB] Running: /usr/local/bin/python training/train_grpo.py --episodes 20 --group-size 4 --kl-coef 0.05 --lr 1e-05 --model-name Qwen/Qwen2.5-1.5B-Instruct --scenario-file data/scenarios/train.jsonl --output-dir checkpoints/grpo --log-every 1 --save-transcripts-every 5 --transcript-dir logs/transcripts
+[HFJOB] Training complete. Exit code: 0
+[HFJOBS] Uploading checkpoints from checkpoints/grpo to GeniusPlums/role-drift-runs-diag
+[HFJOBS] Upload complete: https://huggingface.co/GeniusPlums/role-drift-runs-diag
+[HFJOB] Done.
+
+STDERR: 
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5786.57it/s]
+
+Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 338/338 [00:00<00:00, 5796.03it/s]
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6069.65it/s]
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:03<00:00,  3.72s/it]
+Writing model shards: 100%|██████████| 1/1 [00:03<00:00,  3.73s/it]
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.89s/it]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.89s/it]
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.87s/it]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.87s/it]
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.88s/it]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.88s/it]
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.85s/it]
+Writing model shards: 100%|██████████| 1/1 [00:17<00:00, 17.85s/it]
+
+Processing Files (0 / 0)      : |          |  0.00B /  0.00B            
+
+New Data Upload               : |          |  0.00B /  0.00B            [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+Processing Files (1 / 1)      :   0%|          | 11.4MB / 3.10GB,   ???B/s  
+
+
+
+  ...po/best/model.safetensors:   0%|          | 9.00MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   0%|          | 9.00MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   1%|          | 20.4MB / 3.10GB, 44.9MB/s  
+
+New Data Upload               :   7%|▋         | 9.00MB /  134MB, 44.9MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   2%|▏         | 66.6MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   3%|▎         | 78.0MB / 3.10GB,  166MB/s  
+
+New Data Upload               :  50%|████▉     | 66.6MB /  134MB,  166MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   2%|▏         | 66.6MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   2%|▏         | 66.6MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   2%|▏         | 66.6MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   3%|▎         | 97.1MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   4%|▎         |  109MB / 3.10GB, 80.9MB/s  
+
+New Data Upload               :  48%|████▊     | 97.1MB /  201MB, 80.9MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   4%|▍         |  134MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   5%|▍         |  145MB / 3.10GB, 95.5MB/s  
+
+New Data Upload               :  67%|██████▋   |  134MB /  201MB, 95.5MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   6%|▋         |  201MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   7%|▋         |  212MB / 3.10GB,  125MB/s  
+
+New Data Upload               :  75%|███████▍  |  201MB /  268MB,  125MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   6%|▋         |  201MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   6%|▋         |  201MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:   8%|▊         |  259MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :   9%|▊         |  271MB / 3.10GB,  118MB/s  
+
+New Data Upload               :  77%|███████▋  |  259MB /  335MB,  118MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  10%|▉         |  301MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  10%|█         |  313MB / 3.10GB,  126MB/s  
+
+New Data Upload               :  75%|███████▍  |  301MB /  402MB,  126MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  11%|█         |  334MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  11%|█         |  346MB / 3.10GB,  129MB/s  
+
+New Data Upload               :  83%|████████▎ |  334MB /  402MB,  129MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  11%|█         |  334MB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  12%|█▏        |  362MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  12%|█▏        |  373MB / 3.10GB,  121MB/s  
+
+New Data Upload               :  77%|███████▋  |  362MB /  469MB,  121MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  13%|█▎        |  414MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  14%|█▎        |  425MB / 3.10GB,  129MB/s  
+
+New Data Upload               :  77%|███████▋  |  414MB /  536MB,  129MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  15%|█▌        |  468MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  15%|█▌        |  479MB / 3.10GB,  138MB/s  
+
+New Data Upload               :  87%|████████▋ |  468MB /  536MB,  138MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  17%|█▋        |  535MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  18%|█▊        |  547MB / 3.10GB,  149MB/s  
+
+New Data Upload               :  89%|████████▊ |  535MB /  604MB,  149MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  19%|█▉        |  582MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  19%|█▉        |  594MB / 3.10GB,  153MB/s  
+
+New Data Upload               :  87%|████████▋ |  582MB /  671MB,  153MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  20%|██        |  625MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  21%|██        |  636MB / 3.10GB,  156MB/s  
+
+New Data Upload               :  85%|████████▍ |  625MB /  738MB,  156MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  22%|██▏       |  669MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  22%|██▏       |  680MB / 3.10GB,  159MB/s  
+
+New Data Upload               :  91%|█████████ |  669MB /  738MB,  159MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  24%|██▎       |  733MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  24%|██▍       |  744MB / 3.10GB,  167MB/s  
+
+New Data Upload               :  91%|█████████ |  733MB /  805MB,  167MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  26%|██▌       |  801MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  26%|██▌       |  812MB / 3.10GB,  174MB/s  
+
+New Data Upload               :  92%|█████████▏|  801MB /  872MB,  174MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  28%|██▊       |  854MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  28%|██▊       |  865MB / 3.10GB,  178MB/s  
+
+New Data Upload               :  91%|█████████ |  854MB /  939MB,  178MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  30%|██▉       |  912MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  30%|██▉       |  924MB / 3.10GB,  182MB/s  
+
+New Data Upload               :  91%|█████████ |  912MB / 1.01GB,  182MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  31%|███       |  952MB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  31%|███       |  963MB / 3.10GB,  183MB/s  
+
+New Data Upload               :  89%|████████▊ |  952MB / 1.07GB,  183MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  33%|███▎      | 1.00GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  33%|███▎      | 1.02GB / 3.10GB,  186MB/s  
+
+New Data Upload               :  88%|████████▊ | 1.00GB / 1.14GB,  186MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  35%|███▍      | 1.07GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  35%|███▍      | 1.08GB / 3.10GB,  191MB/s  
+
+New Data Upload               :  94%|█████████▍| 1.07GB / 1.14GB,  191MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  37%|███▋      | 1.13GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  37%|███▋      | 1.15GB / 3.10GB,  196MB/s  
+
+New Data Upload               :  94%|█████████▍| 1.13GB / 1.21GB,  196MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  39%|███▊      | 1.19GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  39%|███▊      | 1.20GB / 3.10GB,  198MB/s  
+
+New Data Upload               :  93%|█████████▎| 1.19GB / 1.27GB,  198MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  40%|████      | 1.24GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  40%|████      | 1.25GB / 3.10GB,  200MB/s  
+
+New Data Upload               :  92%|█████████▏| 1.24GB / 1.34GB,  200MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  42%|████▏     | 1.30GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  42%|████▏     | 1.31GB / 3.10GB,  203MB/s  
+
+New Data Upload               :  92%|█████████▏| 1.30GB / 1.41GB,  203MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  44%|████▍     | 1.35GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  44%|████▍     | 1.36GB / 3.10GB,  205MB/s  
+
+New Data Upload               :  92%|█████████▏| 1.35GB / 1.48GB,  205MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  46%|████▌     | 1.41GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  46%|████▌     | 1.42GB / 3.10GB,  207MB/s  
+
+New Data Upload               :  95%|█████████▌| 1.41GB / 1.48GB,  207MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  48%|████▊     | 1.47GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  48%|████▊     | 1.48GB / 3.10GB,  210MB/s  
+
+New Data Upload               :  96%|█████████▌| 1.47GB / 1.54GB,  210MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  49%|████▉     | 1.52GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  50%|████▉     | 1.53GB / 3.10GB,  211MB/s  
+
+New Data Upload               :  95%|█████████▍| 1.52GB / 1.61GB,  211MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  52%|█████▏    | 1.59GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  52%|█████▏    | 1.60GB / 3.10GB,  215MB/s  
+
+New Data Upload               :  95%|█████████▍| 1.59GB / 1.68GB,  215MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  53%|█████▎    | 1.63GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  53%|█████▎    | 1.64GB / 3.10GB,  215MB/s  
+
+New Data Upload               :  94%|█████████▎| 1.63GB / 1.74GB,  215MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  54%|█████▍    | 1.68GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  54%|█████▍    | 1.69GB / 3.10GB,  215MB/s  
+
+New Data Upload               :  93%|█████████▎| 1.68GB / 1.81GB,  215MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  56%|█████▋    | 1.74GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  57%|█████▋    | 1.75GB / 3.10GB,  218MB/s  
+
+New Data Upload               :  96%|█████████▌| 1.74GB / 1.81GB,  218MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  59%|█████▊    | 1.81GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  59%|█████▊    | 1.82GB / 3.10GB,  221MB/s  
+
+New Data Upload               :  96%|█████████▋| 1.81GB / 1.88GB,  221MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  60%|██████    | 1.86GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  60%|██████    | 1.87GB / 3.10GB,  222MB/s  
+
+New Data Upload               :  96%|█████████▌| 1.86GB / 1.94GB,  222MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  62%|██████▏   | 1.91GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  62%|██████▏   | 1.92GB / 3.10GB,  222MB/s  
+
+New Data Upload               :  95%|█████████▍| 1.91GB / 2.01GB,  222MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  64%|██████▎   | 1.97GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  64%|██████▍   | 1.98GB / 3.10GB,  224MB/s  
+
+New Data Upload               :  95%|█████████▍| 1.97GB / 2.08GB,  224MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  65%|██████▌   | 2.01GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  65%|██████▌   | 2.03GB / 3.10GB,  224MB/s  
+
+New Data Upload               :  94%|█████████▍| 2.01GB / 2.15GB,  224MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  67%|██████▋   | 2.08GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  67%|██████▋   | 2.09GB / 3.10GB,  226MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.08GB / 2.15GB,  226MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  69%|██████▉   | 2.14GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  70%|██████▉   | 2.16GB / 3.10GB,  228MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.14GB / 2.21GB,  228MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  71%|███████▏  | 2.21GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  72%|███████▏  | 2.22GB / 3.10GB,  230MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.21GB / 2.28GB,  230MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  73%|███████▎  | 2.24GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  73%|███████▎  | 2.25GB / 3.10GB,  229MB/s  
+
+New Data Upload               :  96%|█████████▌| 2.24GB / 2.35GB,  229MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  75%|███████▍  | 2.30GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  75%|███████▍  | 2.31GB / 3.10GB,  230MB/s  
+
+New Data Upload               :  95%|█████████▌| 2.30GB / 2.41GB,  230MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  76%|███████▌  | 2.35GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  76%|███████▌  | 2.36GB / 3.10GB,  230MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.35GB / 2.41GB,  230MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  78%|███████▊  | 2.41GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  78%|███████▊  | 2.42GB / 3.10GB,  235MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.41GB / 2.48GB,  235MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  80%|███████▉  | 2.47GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  80%|████████  | 2.48GB / 3.10GB,  235MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.47GB / 2.55GB,  235MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  82%|████████▏ | 2.53GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  82%|████████▏ | 2.54GB / 3.10GB,  241MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.53GB / 2.62GB,  241MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  84%|████████▍ | 2.59GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  84%|████████▍ | 2.61GB / 3.10GB,  248MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.59GB / 2.68GB,  248MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  86%|████████▌ | 2.65GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  86%|████████▌ | 2.66GB / 3.10GB,  253MB/s  
+
+New Data Upload               :  96%|█████████▌| 2.65GB / 2.75GB,  253MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  87%|████████▋ | 2.70GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  87%|████████▋ | 2.71GB / 3.10GB,  255MB/s  
+
+New Data Upload               :  96%|█████████▌| 2.70GB / 2.82GB,  255MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  89%|████████▉ | 2.75GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  89%|████████▉ | 2.76GB / 3.10GB,  256MB/s  
+
+New Data Upload               :  98%|█████████▊| 2.75GB / 2.82GB,  256MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  91%|█████████ | 2.82GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  91%|█████████ | 2.83GB / 3.10GB,  256MB/s  
+
+New Data Upload               :  98%|█████████▊| 2.82GB / 2.88GB,  256MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  93%|█████████▎| 2.88GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  93%|█████████▎| 2.89GB / 3.10GB,  262MB/s  
+
+New Data Upload               :  98%|█████████▊| 2.88GB / 2.95GB,  262MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  95%|█████████▍| 2.92GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  95%|█████████▍| 2.93GB / 3.10GB,  267MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.92GB / 3.02GB,  267MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  97%|█████████▋| 2.98GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  97%|█████████▋| 2.99GB / 3.10GB,  267MB/s  
+
+New Data Upload               :  97%|█████████▋| 2.98GB / 3.09GB,  267MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors:  98%|█████████▊| 3.04GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      :  98%|█████████▊| 3.05GB / 3.10GB,  268MB/s  
+
+New Data Upload               :  98%|█████████▊| 3.04GB / 3.09GB,  268MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|█████████▉| 3.09GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      : 100%|█████████▉| 3.10GB / 3.10GB,  270MB/s  
+
+New Data Upload               : 100%|█████████▉| 3.09GB / 3.09GB,  270MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|█████████▉| 3.09GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      : 100%|█████████▉| 3.10GB / 3.10GB,  270MB/s  
+
+New Data Upload               : 100%|█████████▉| 3.09GB / 3.09GB,  270MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|█████████▉| 3.09GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      : 100%|█████████▉| 3.10GB / 3.10GB,  267MB/s  
+
+New Data Upload               : 100%|█████████▉| 3.09GB / 3.09GB,  267MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|█████████▉| 3.09GB / 3.09GB            [A[A[A
+Processing Files (1 / 2)      : 100%|█████████▉| 3.10GB / 3.10GB,  262MB/s  
+
+New Data Upload               : 100%|█████████▉| 3.09GB / 3.09GB,  262MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            [A[A[A
+Processing Files (2 / 2)      : 100%|██████████| 3.10GB / 3.10GB,  257MB/s  
+
+New Data Upload               : 100%|██████████| 3.09GB / 3.09GB,  257MB/s  [A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            [A[A[A
+
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            [A[A
+
+
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            [A[A[A
+Processing Files (2 / 2)      : 100%|██████████| 3.10GB / 3.10GB,  242MB/s  
+
+New Data Upload               : 100%|██████████| 3.09GB / 3.09GB,  242MB/s  
+
+  .../grpo/best/tokenizer.json: 100%|██████████| 11.4MB / 11.4MB            
+
+  ...po/best/model.safetensors: 100%|██████████| 3.09GB / 3.09GB            
+
+Return code: 0

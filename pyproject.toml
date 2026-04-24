@@ -18,6 +18,8 @@ dependencies = [
     "uvicorn",
     "pydantic",
     "pytest",
+    "groq",
+    "bitsandbytes",
 ]
 
 [tool.setuptools.packages.find]
