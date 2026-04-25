@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 from typing import Optional
 from role_drift_env.models import State
@@ -29,11 +30,39 @@ class LLMPersona(Persona):
         self._llm = None
 
     def _get_llm(self):
+        if self._llm is not None:
+            return self._llm
+        # OpenAI-compatible vLLM server (single GPU: avoid a second in-process 7B load)
+        openai_base = (os.environ.get("ROLE_DRIFT_PERSONA_OPENAI_BASE_URL") or "").strip().rstrip("/")
+        if openai_base:
+            try:
+                from openai import OpenAI
+
+                self._llm = "openai"
+                self._openai_base = openai_base
+                self._openai_client = OpenAI(
+                    base_url=openai_base,
+                    api_key=os.environ.get("OPENAI_API_KEY", "not-needed"),
+                )
+            except Exception as e:
+                print(f"[LLMPersona] OpenAI path failed, falling back to in-process vLLM or fallback: {e}")
+                self._openai_client = None
+                self._llm = None
+            if self._llm == "openai":
+                return self._llm
         if self._llm is None:
             # Lazy import so we don't crash on import if vllm isn't installed
             try:
                 from vllm import LLM, SamplingParams
-                self._llm = LLM(model=self.model, trust_remote_code=True)
+                # Keep defaults conservative so persona-vLLM can coexist with policy model.
+                gpu_mem_util = float(os.getenv("ROLE_DRIFT_VLLM_GPU_UTIL", "0.35"))
+                max_model_len = int(os.getenv("ROLE_DRIFT_VLLM_MAX_MODEL_LEN", "2048"))
+                self._llm = LLM(
+                    model=self.model,
+                    trust_remote_code=True,
+                    gpu_memory_utilization=gpu_mem_util,
+                    max_model_len=max_model_len,
+                )
                 self._sampling_params = SamplingParams(
                     temperature=self.temperature,
                     max_tokens=self.max_tokens,
@@ -55,13 +84,28 @@ class LLMPersona(Persona):
         if llm == "fallback":
             # Fallback when no LLM is available: scripted-like behavior
             return "Thanks, I think I have what I need. Goodbye."
+        messages = self._build_messages(state)
+        if llm == "openai":
+            oai = getattr(self, "_openai_client", None)
+            if oai is None:
+                return "Thanks, I think I have what I need. Goodbye."
+            kwargs = {
+                "model": self.model,
+                "messages": messages,
+                "temperature": self.temperature,
+                "max_tokens": self.max_tokens,
+            }
+            try:
+                r = oai.chat.completions.create(**kwargs, seed=rng_seed)
+            except TypeError:
+                r = oai.chat.completions.create(**kwargs)
+            return (r.choices[0].message.content or "").strip()
         from vllm import SamplingParams
         sp = SamplingParams(
             temperature=self.temperature,
             max_tokens=self.max_tokens,
             seed=rng_seed,
         )
-        messages = self._build_messages(state)
         outputs = llm.chat(messages, sampling_params=sp)
         return outputs[0].outputs[0].text.strip()
 

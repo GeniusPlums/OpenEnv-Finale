@@ -2,6 +2,7 @@
 """GRPO trainer for role-drift environment."""
 import json
 import os
+import subprocess
 import sys
 import time
 
@@ -100,6 +101,37 @@ class GRPOTrainer:
         self.episode_log = []
         self.kl_history = []
         self.wandb = None
+        self.hub_repo = None  # set via train() for periodic Hub uploads
+
+    def _hub_push_best(self, commit_message: str) -> None:
+        """Upload checkpoints/grpo best folder to a private Hub model repo (survives ephemeral disk)."""
+        repo = self.hub_repo
+        if not repo:
+            return
+        best = self.checkpoint_dir / "best"
+        if not best.is_dir() or not any(best.iterdir()):
+            print(f"[GRPO] Hub skip: no weights at {best}")
+            return
+        token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+        env = {**os.environ}
+        if token:
+            env["HUGGINGFACE_HUB_TOKEN"] = token
+        print(f"[GRPO] Pushing {best} to {repo} ...")
+        subprocess.run(
+            [
+                "huggingface-cli",
+                "upload",
+                repo,
+                str(best),
+                "--repo-type",
+                "model",
+                "--commit-message",
+                commit_message,
+            ],
+            check=True,
+            env=env,
+        )
+        print(f"[GRPO] Hub push OK: {commit_message}")
 
     def init_wandb(self, project: str = "role-drift-env", run_name: str = None, config: dict = None):
         """Initialize wandb logging. Call before train() if you want online logging."""
@@ -264,6 +296,7 @@ class GRPOTrainer:
         max_turns_override: int = None,
         time_each_episode: bool = False,
         transcript_dir: str = "logs/transcripts",
+        hub_repo: str = None,
     ):
         """Run GRPO training loop.
 
@@ -272,6 +305,7 @@ class GRPOTrainer:
             save_transcripts_every: save full rollouts to disk every N episodes
             transcript_dir: where to save transcript JSONs
         """
+        self.hub_repo = hub_repo
         env = RoleDriftEnvironment()
         best_return = -1e9
         transcript_path = Path(transcript_dir)
@@ -382,6 +416,12 @@ class GRPOTrainer:
                 self.model.save_pretrained(tag)
                 self.tokenizer.save_pretrained(tag)
                 print(f"  -> Periodic checkpoint saved to {tag}")
+                # Mid-run Hub backup at 25 / 50 / 75 (not the final periodic at 100 — shell uploads after training)
+                if self.hub_repo and (episode + 1) < num_episodes:
+                    try:
+                        self._hub_push_best(f"GRPO best snapshot after training episode {episode + 1} (V9)")
+                    except Exception as e:
+                        print(f"[GRPO] Hub push failed (continuing): {e}")
 
             if time_each_episode:
                 print(f"  -> Episode wall time: {self.episode_log[-1]['episode_seconds']:.2f}s")
@@ -434,7 +474,16 @@ if __name__ == "__main__":
     parser.add_argument("--max-turns", type=int, default=None, help="Override scenario max turns during rollouts")
     parser.add_argument("--time-each-episode", action="store_true", help="Print wall-clock time for each episode")
     parser.add_argument("--transcript-dir", default="logs/transcripts")
+    parser.add_argument(
+        "--hub-repo",
+        default=None,
+        help="Optional HF model repo id (e.g. org/name). After each periodic checkpoint (before the last), upload best/ to Hub.",
+    )
     args = parser.parse_args()
+    print(
+        f"[V9] ROLE_DRIFT_PERSONA_OPENAI_BASE_URL={os.environ.get('ROLE_DRIFT_PERSONA_OPENAI_BASE_URL', 'UNSET')}",
+        flush=True,
+    )
 
     # Load scenario IDs
     scenario_ids = []
@@ -467,4 +516,5 @@ if __name__ == "__main__":
         max_turns_override=args.max_turns,
         time_each_episode=args.time_each_episode,
         transcript_dir=args.transcript_dir,
+        hub_repo=args.hub_repo,
     )
