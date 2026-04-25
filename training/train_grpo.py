@@ -24,6 +24,7 @@ except ImportError:
     HAS_BITSANDBYTES = False
 from role_drift_env.server.environment import RoleDriftEnvironment
 from role_drift_env.server.customer_sim import CustomerSimulator
+from training.hf_auth import resolve_hf_token
 from training.rollout import rollout_episode
 
 
@@ -112,12 +113,18 @@ class GRPOTrainer:
         if not best.is_dir() or not any(best.iterdir()):
             print(f"[GRPO] Hub skip: no weights at {best}")
             return
-        token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+        token = resolve_hf_token()
         env = {**os.environ}
         if token:
             env["HUGGINGFACE_HUB_TOKEN"] = token
+        else:
+            print(
+                "[GRPO] Hub upload skipped: no Hugging Face token in env or cache. "
+                "Set HF_TOKEN or run `huggingface-cli login` before training with --hub-repo."
+            )
+            return
         print(f"[GRPO] Pushing {best} to {repo} ...")
-        subprocess.run(
+        proc = subprocess.run(
             [
                 "huggingface-cli",
                 "upload",
@@ -128,10 +135,19 @@ class GRPOTrainer:
                 "--commit-message",
                 commit_message,
             ],
-            check=True,
+            check=False,
             env=env,
+            capture_output=True,
+            text=True,
         )
-        print(f"[GRPO] Hub push OK: {commit_message}")
+        if proc.returncode == 0:
+            print(f"[GRPO] Hub push OK: {commit_message}")
+        else:
+            err = (proc.stderr or proc.stdout or "").strip()[:2000]
+            print(
+                f"[GRPO] Hub upload failed (return code {proc.returncode}). "
+                f"Check token permissions and repo id. Server message:\n{err}"
+            )
 
     def init_wandb(self, project: str = "role-drift-env", run_name: str = None, config: dict = None):
         """Initialize wandb logging. Call before train() if you want online logging."""
@@ -482,6 +498,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(
         f"[V9] ROLE_DRIFT_PERSONA_OPENAI_BASE_URL={os.environ.get('ROLE_DRIFT_PERSONA_OPENAI_BASE_URL', 'UNSET')}",
+        flush=True,
+    )
+    _tok = resolve_hf_token()
+    print(
+        f"[V9] HF auth status (for Hub): {'available' if _tok else 'missing'}",
         flush=True,
     )
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # V9: GRPO training with vLLM customer-sim (OpenAI API), Hub persistence, persona gate.
 # Run from repository root, OR the script will clone to /workspace/role-drift-env.
-# Prereq: Job secret HF_TOKEN (write) on Hugging Face.
+# HF auth: prefer env HF_TOKEN / HUGGINGFACE_HUB_TOKEN, else token from `huggingface-cli login` (see training/hf_auth.py).
 #
 # shellcheck disable=SC1091
 set -euo pipefail
@@ -28,12 +28,8 @@ export TRAINED_REPO="${TRAINED_REPO:-GeniusPlums/role-drift-qwen-1-5b-grpo}"
 # With set -u, use :- on every expansion (bare $HF_TOKEN in :-default still trips unbound)
 export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-${HF_TOKEN:-}}"
 
-if [[ -z "${HF_TOKEN:-}" ]] && [[ -z "${HUGGINGFACE_HUB_TOKEN:-}" ]]; then
-  echo "FATAL: HF_TOKEN (or HUGGINGFACE_HUB_TOKEN) not set. Aborting before spend."
-  exit 1
-fi
-huggingface-cli login --token "${HF_TOKEN:-${HUGGINGFACE_HUB_TOKEN:-}}"
-huggingface-cli whoami
+python scripts/hf_auth_preflight.py || true
+huggingface-cli whoami 2>/dev/null || echo "(Hub CLI: not logged in — Hub uploads may fail until token is available)"
 
 # --- vLLM customer server (7B) — same card as 1.5B policy: persona must use this API, not a second in-process 7B ---
 VLLM_PORT="${VLLM_PORT:-8000}"
@@ -127,7 +123,7 @@ if [[ -d "checkpoints/grpo_final/best" ]] && [[ -n "$(ls -A checkpoints/grpo_fin
   fi
   huggingface-cli upload "$TRAINED_REPO" checkpoints/grpo_final/best \
     --repo-type model \
-    --commit-message "$MSG_BEST" || { echo "WARNING: best upload failed (non-fatal for script exit)"; }
+    --commit-message "$MSG_BEST" || { echo "WARNING: best upload failed (check HF token / permissions; non-fatal)."; }
 else
   echo "WARNING: checkpoints/grpo_final/best is missing or empty. Nothing to upload for weights."
 fi
@@ -139,20 +135,23 @@ if [[ -f data/training_logs/run_final/episode_log.jsonl ]]; then
   else
     MSG_LOG="Episode log partial run V9 (train exit $TRAIN_EXIT)"
   fi
-  huggingface-cli upload "$TRAINED_REPO" /tmp/episode_log.jsonl --commit-message "$MSG_LOG" || { echo "WARNING: episode log upload failed"; }
+  huggingface-cli upload "$TRAINED_REPO" /tmp/episode_log.jsonl --commit-message "$MSG_LOG" || { echo "WARNING: episode log upload failed (auth?)"; }
 else
   echo "WARNING: data/training_logs/run_final/episode_log.jsonl not found; skipping episode log upload."
 fi
 
 if [[ -f training.log ]]; then
   cp -f training.log /tmp/training_run.log
-  huggingface-cli upload "$TRAINED_REPO" /tmp/training_run.log --commit-message "Full training stdout V9" || { echo "WARNING: training.log upload failed"; }
+  huggingface-cli upload "$TRAINED_REPO" /tmp/training_run.log --commit-message "Full training stdout V9" || { echo "WARNING: training.log upload failed (auth?)"; }
 fi
 
-echo "===== Verify download ====="
+echo "===== Verify download (optional; needs read access to repo) ====="
 rm -rf /tmp/hf_verify
-huggingface-cli download "$TRAINED_REPO" --include="config.json" --quiet --local-dir /tmp/hf_verify
-ls -la /tmp/hf_verify
+if huggingface-cli download "$TRAINED_REPO" --include="config.json" --quiet --local-dir /tmp/hf_verify 2>/dev/null; then
+  ls -la /tmp/hf_verify
+else
+  echo "WARNING: Hub verify download skipped or failed (missing token or repo not visible)."
+fi
 
 echo "===== V9 complete at $(date) ====="
 echo "Model: https://huggingface.co/${TRAINED_REPO}"

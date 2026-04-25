@@ -17,11 +17,9 @@ import os
 def main() -> None:
     hf = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN")
     if not hf:
-        raise SystemExit(
-            "Set HF_TOKEN in your environment before running this launcher, e.g.:\n"
-            "  PowerShell:  $env:HF_TOKEN = '<your_write_token>'\n"
-            "  bash:        export HF_TOKEN=...\n"
-            "Or run the job from the Hugging Face UI and configure a Job secret named HF_TOKEN.\n"
+        print(
+            "WARNING: HF_TOKEN not set locally; job container will use hf_auth_preflight only. "
+            "Fresh HF Jobs usually need a secret: set HF_TOKEN here or in the Job UI."
         )
 
     api = HfApi(token=True)
@@ -41,18 +39,18 @@ export PYTHONPATH=/workspace/role-drift-env
 exec bash scripts/run_v9_training_job.sh
 """.strip()
 
-    # Pass token into the remote container (huggingface_hub: secrets = secret env for the job)
-    secrets = {"HF_TOKEN": hf, "HUGGINGFACE_HUB_TOKEN": hf}
+    run_kw = {
+        "image": "python:3.11",
+        "command": ["bash", "-lc", bash_cmd],
+        "flavor": flavor,
+        "timeout": timeout,
+        "namespace": namespace,
+        "token": True,
+    }
+    if hf:
+        run_kw["secrets"] = {"HF_TOKEN": hf, "HUGGINGFACE_HUB_TOKEN": hf}
 
-    info = api.run_job(
-        image="python:3.11",
-        command=["bash", "-lc", bash_cmd],
-        secrets=secrets,
-        flavor=flavor,
-        timeout=timeout,
-        namespace=namespace,
-        token=True,
-    )
+    info = api.run_job(**run_kw)
     print(info.id)
     print(info.url)
 
