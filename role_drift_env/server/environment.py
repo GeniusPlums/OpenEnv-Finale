@@ -65,7 +65,14 @@ class RoleDriftEnvironment:
         return obs, state
 
     def _load_prompt(self, prompt_id: str) -> str:
-        path = Path("data/prompts") / f"{prompt_id}.md"
+        # Map to full production prompts
+        prompt_map = {
+            "kundan_kishore": "kundan_kishore_full.md",
+            "masters_union": "masters_union_full.md",
+            "dearconnect": "dearconnect_full.md",
+        }
+        filename = prompt_map.get(prompt_id, f"{prompt_id}.md")
+        path = Path("data/prompts") / filename
         if path.exists():
             return path.read_text(encoding="utf-8")
         return ""

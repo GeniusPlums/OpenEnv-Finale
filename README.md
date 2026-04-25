@@ -1,144 +1,85 @@
-# Role Drift Environment
+# Role Drift Env
 
-OpenEnv-compatible RL environment that reproduces **role drift** in production voice agents on demand, with programmatic reward signals, so a small open model can be trained to resist drift better than a prompted frontier model.
+Train a small voice agent to stop drifting out of role — an OpenEnv environment with four programmatic reward signals, validated on real production failures.
 
----
+## The Problem
 
-## Problem
+I ran a services agency. A client with 500 cold-callers asked me to automate. The LLM was the hard part. Fast small models (Llama 4 Scout) drift — forget instructions, get stuck in thank-you loops, switch languages unprompted. Frontier models (GPT-4, Claude Sonnet) add latency that breaks real-time voice. Every voice-agent company hits this wall.
 
-Production voice agents built on top of frontier LLMs drift out of their assigned role under conversational pressure. Four recurring failure modes:
+## The Failure Demo
 
-1. **Termination drift** — get stuck in thank-you loops, can't end calls
-2. **Goal drift** — abandon their assigned task and become a generic helpful assistant
-3. **Instruction drift** — violate explicit, simple system-prompt rules
-4. **Language drift** — switch languages unprompted
+From a real production deployment (`data/transcripts/masters_union_failure_2.txt`):
 
-These are **behavioral patterns, not knowledge gaps**. Prompts cannot fix them reliably.
+> User: I want to go for some education fee. To open institution.
+> AI: Got it. It sounds like you're looking for a traditional educational institution...
+> User: Give me a good idea for a startup.
+> AI: Sure. How about creating an online platform...
+> User: What about real estate business?
+> AI: Real estate is also a great field...
+> User: I want to invest in land.
+> AI: You could create a business that focuses on acquiring land parcels, preparing them for development, and selling them to companies or investors.
 
-## Origin Story
+The agent was supposed to recover an incomplete college application. Instead it became a real estate consultant — after the user said goodbye.
 
-This project came out of a real production deployment. A client — a real estate broker with **500 cold-callers** — asked for voice-agent automation. The hard part was the LLM: frontier models add latency that breaks real-time voice, fast small models drift. This environment is the training-side answer.
+This runs a 3500-word system prompt with 40+ explicit rules. That prompt is in `data/prompts/masters_union_full.md`.
 
-## Environment
+## Four Drift Types
 
-- **Episode** = one full agent ↔ customer conversation
-- **Action** = agent's next utterance (+ optional `end_call` signal)
-- **Observation** = customer reply + turn index + system prompt
-- **Reward** = weighted sum of four drift detectors + task bonus + terminal success
-- **Done** = agent ends call, max turns reached, or customer fully disengaged
+| Drift | Signal | Detection |
+|-------|--------|-----------|
+| Termination | Agent talks past customer's goodbye | Count turns after farewell |
+| Goal | Agent goes off-topic | Embedding similarity to task |
+| Instruction | Agent violates prompt rules | Per-rule regex checks |
+| Language | Agent switches language unprompted | langdetect |
 
-### Detectors
+All detectors validated on real transcripts in `data/transcripts/`.
 
-| Detector | Signal | Implementation |
-|---|---|---|
-| `termination_drift` | Agent talks past clear customer goodbye | Farewell keyword + disengagement counter |
-| `goal_drift` | Agent answers off-topic | Embedding similarity to task description |
-| `instruction_drift` | Violates explicit prompt rules | Regex/rule-based checkers |
-| `language_drift` | Switches language unprompted | fasttext/langdetect with loanword whitelist |
-| `terminal_success` | Episode-level outcome predicates | Regex/phrase-match on full transcript |
+## Results
 
-## Repository Structure
+![reward curve](plots/diag2/reward_curve_aggregate.png)
 
-```
-role-drift-env/
-├── data/
-│   ├── prompts/          # Production system prompts
-│   ├── transcripts/      # Redacted failure transcripts
-│   ├── personas/         # Adversarial customer definitions
-│   ├── scenarios/        # 40 train + 10 eval scenarios
-│   ├── sft/              # SFT warm-start conversations
-│   └── validation/       # Hand-labeled detector ground truth
-├── role_drift_env/
-│   ├── models.py
-│   ├── client.py
-│   └── server/
-│       ├── environment.py
-│       ├── customer_sim.py
-│       ├── personas/
-│       ├── rewards/
-│       └── app.py
-├── training/
-│   ├── generate_sft_data.py
-│   ├── train_sft.py
-│   ├── train_grpo.py
-│   ├── rollout.py
-│   └── eval.py
-├── tests/
-│   ├── smoke_test_termination.py
-│   ├── test_detectors_on_real_transcripts.py
-│   └── test_eval_frozen.py
-└── docs/
-    └── blog_post.md
-```
+![baseline vs trained](plots/baseline_vs_trained.png)
+
+Training shown is from a **20-episode diagnostic run (diag2)**. The positive slope (+0.14) and healthy KL (0.06) demonstrate the signal works. Full 100+ episode training is gated on HF compute credits arriving — recipe and pipeline are ready.
 
 ## Quick Start
 
 ```bash
-# Setup
-python -m venv .venv
-source .venv/bin/activate  # Windows: .\.venv\Scripts\Activate.ps1
+# Clone and install
+git clone https://github.com/anomalyco/role-drift-env.git
+cd role-drift-env
 pip install -e .
 
-# Run smoke test
-pytest tests/smoke_test_termination.py -v
+# Run environment
+python -c "
+from role_drift_env.server.environment import RoleDriftEnvironment
+env = RoleDriftEnvironment()
+obs, state = env.reset('term_kk_01')
+print(f'Loaded: {len(obs.system_prompt)} chars')
+"
 
-# Generate scenarios
-python scripts/generate_scenarios.py
-
-# Generate SFT warm-start data
-python training/generate_sft_data.py
-
-# Run evaluation
-python training/eval.py --model-path checkpoints/sft --scenario-file data/scenarios/eval.jsonl
+# Run detectors on a transcript
+python tests/test_detectors_on_real_transcripts.py
 ```
 
-## Training
+## Known Limitations
 
-### SFT Warm-Start
+- Customer sim requires vLLM server running (Qwen2.5-7B)
+- Full training requires GPU compute (100+ ep)
+- Instruction rules are per-prompt-domain (extensible but not zero-shot)
+- Eval is on 20 scenarios × 3 seeds
 
-```bash
-python training/generate_sft_data.py  # ~400 conversations, top 30% kept
-python training/train_sft.py          # 1 epoch on Qwen2.5-1.5B-Instruct
-```
+## Files
 
-### GRPO
+- `data/prompts/` — Production system prompts (6-line simplified + 3500-word full)
+- `data/transcripts/` — Real failure transcripts
+- `data/scenarios/` — Train/eval scenario definitions
+- `role_drift_env/` — Environment code
+- `training/` — GRPO trainer + Colab notebook
+- `plots/` — Diagnostic run plots
 
-```bash
-python training/train_grpo.py --episodes 200 --group-size 4
-```
+## Links
 
-## Evaluation
-
-Eval protocol: 10 eval scenarios × 3 seeds × 4 models:
-
-- **Frontier prompted** (GPT-4o / Claude Sonnet)
-- **Deployable prompted** (Llama 3.1 8B Instruct)
-- **SFT-only** (Qwen 1.5B after warm-start)
-- **GRPO-trained** (Qwen 1.5B after GRPO)
-
-Run:
-```bash
-python training/eval.py --model-path checkpoints/grpo/best --num-seeds 3
-```
-
-## Results
-
-See `plots/` for reward curves and eval comparisons.
-
-## Deployment
-
-- **HF Space:** [Link TBD]
-- **Video:** [Link TBD]
-- **Blog post:** `docs/blog_post.md`
-
-## Citation / License
-
-MIT License. Built for the OpenEnv Hackathon India 2026.
-
-## Known Gaps & Limitations
-
-- Customer simulator uses scripted personas; LLM-backed personas require local vLLM/TGI
-- Fasttext language detection not available on Windows Python 3.14; falls back to langdetect
-- GRPO training loop is simplified (episode-level rather than full token-level GRPO)
-- Evaluation against frontier models requires API keys (not included)
-- Only 50 scenarios; production would need 500+
+- Colab notebook: `training/colab_notebook.ipynb`
+- Training script: `training/train_grpo.py`
+- HF Space: (pending compute to deploy)

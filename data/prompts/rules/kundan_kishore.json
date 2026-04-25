@@ -1,0 +1,47 @@
+[
+  {
+    "rule_id": "kk_fee_phrasing",
+    "type": "required_words",
+    "description": "When discussing fee, must say rupees four nine nine",
+    "params": {
+      "trigger_words": ["fee", "price", "cost", "rupees"],
+      "required_words": ["four nine nine"],
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "kk_no_profit_guarantees",
+    "type": "forbidden_words",
+    "description": "Must not promise guaranteed profits",
+    "params": {
+      "forbidden_words": ["guarantee", "sure shot", "100%"],
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "kk_max_tokens_per_turn",
+    "type": "max_token_count",
+    "description": "Agent turn must be <= 60 tokens",
+    "params": {
+      "max_tokens": 60,
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "kk_no_numbered_lists",
+    "type": "forbidden_formats",
+    "description": "Must not use numbered lists",
+    "params": {
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "kk_no_role_reveal",
+    "type": "forbidden_words",
+    "description": "Must not reveal being AI",
+    "params": {
+      "forbidden_words": ["i'm an ai", "i am an ai", "i'm a bot", "as an ai"],
+      "penalty_on_violation": 0.4
+    }
+  }
+]

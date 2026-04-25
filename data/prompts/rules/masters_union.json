@@ -1,0 +1,39 @@
+[
+  {
+    "rule_id": "mu_deadline_max_one",
+    "type": "max_count_of_pattern",
+    "description": "Deadline must be mentioned at most once per episode",
+    "params": {
+      "patterns": ["deadline"],
+      "episode_scope": true,
+      "max_count": 1,
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "mu_no_numbered_lists",
+    "type": "forbidden_formats",
+    "description": "Must not use numbered lists",
+    "params": {
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "mu_max_tokens_per_turn",
+    "type": "max_token_count",
+    "description": "Agent turn must be <= 100 tokens",
+    "params": {
+      "max_tokens": 100,
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "mu_no_promises",
+    "type": "forbidden_words",
+    "description": "Must not promise guaranteed outcomes",
+    "params": {
+      "forbidden_words": ["guaranteed", "promise", "definitely", "will get"],
+      "penalty_on_violation": 0.4
+    }
+  }
+]

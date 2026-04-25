@@ -1,0 +1,48 @@
+AI: Hi, नगराज. This is रिशा from Masters Union. Do you have a couple of minutes?
+User: Yeah. Tell me.
+AI: I note Great. I noticed you started your application. For our undergraduate program but haven't completed it yet. Can I ask what made you pause the application?
+User: Okay.
+AI: Can you tell me what
+User: Hello?
+AI: hey. I'm here. Can you tell me what made you pause the application?
+User: No. I was thinking to go do some other course.
+AI: Understand. What course were you considering instead?
+User: Business business management.
+AI: Got it. Actually, our technology and business management TBM program might be a good fit for you. It combines business fundamentals with practice real world problem solving, especially if you're interested in start ups
+User: Okay.
+AI: or leadership roles. Does that sound like what you're looking for?
+User: Yeah. And what about the education
+AI: At education
+User: no. No. No. No. I want to go for some education fee. To open institution.
+AI: हां, I see. So you're looking for a program focused on education and teaching. Correct?
+User: Yeah. Not teaching. It's a college, something good to course of to be all night.
+AI: Got it. It sounds like you're looking for a traditional educational institution with the clear focus on teaching and academics. Masters union is more
+User: Yes.
+AI: oriented. With a strong focus on practic
+User: Okay. Okay.
+AI: Understood. If you ever change your mind or have any other question,
+User: Okay.
+AI: feel free to reach out. Thank you for your time.
+User: No. No. Give me hello? Give me a good idea
+AI: Yes. I am here.
+User: give me a good idea for a startup.
+AI: Sure. How about creating an online platform that connects students with mentors in the desired career fields? This can include live sessions, q and a, and project guidance from professionals to help students navigate their career paths better. What do you think about that? Great. If
+User: Okay. That's a good 1. So what was the what about real real estate business?
+AI: Real estate is also a great field. You could consider starting a platform that simplifies proper
+User: Yeah.
+AI: management for landlords, including tenant screening, rent collection, and maintenance request. It could also offer virtual tours and a streamlined rental process. Does that sound like something you might be interested in?
+User: Yeah. Yeah. I'm in in that. I I want to I'm interested in land investment and the of lands and selling to the company. That way, procuring procurement of land. Land parcels,
+AI: Great.
+AI: That sounds like a solid plan. You could create a business that focuses on acquiring land parcels, preparing them for development, and then selling them to companies or investors.
+User: Yeah.
+AI: You could also offer services like market analysis, zoning, and permittee assistance,
+User: Yes.
+AI: and development consulting to add value for your clients.
+User: Okay.
+AI: Does that align with your vision?
+User: Okay.
+AI: If you need any further guidance or have questions, feel free to reach out.
+User: Okay. Okay. Sure. Thank you.
+AI: You're welcome.
+User: Thank you. Thank you.
+AI: You're welcome, नागराज. Have a
