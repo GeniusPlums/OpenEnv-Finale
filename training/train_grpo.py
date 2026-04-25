@@ -2,7 +2,6 @@
 """GRPO trainer for role-drift environment."""
 import json
 import os
-import subprocess
 import sys
 import time
 
@@ -25,6 +24,7 @@ except ImportError:
 from role_drift_env.server.environment import RoleDriftEnvironment
 from role_drift_env.server.customer_sim import CustomerSimulator
 from training.hf_auth import resolve_hf_token
+from training.hub_upload import upload_model_folder
 from training.rollout import rollout_episode
 
 
@@ -114,39 +114,19 @@ class GRPOTrainer:
             print(f"[GRPO] Hub skip: no weights at {best}")
             return
         token = resolve_hf_token()
-        env = {**os.environ}
-        if token:
-            env["HUGGINGFACE_HUB_TOKEN"] = token
-        else:
+        if not token:
             print(
                 "[GRPO] Hub upload skipped: no Hugging Face token in env or cache. "
-                "Set HF_TOKEN or run `huggingface-cli login` before training with --hub-repo."
+                "Set HF_TOKEN or run `hf auth login` before training with --hub-repo."
             )
             return
         print(f"[GRPO] Pushing {best} to {repo} ...")
-        proc = subprocess.run(
-            [
-                "huggingface-cli",
-                "upload",
-                repo,
-                str(best),
-                "--repo-type",
-                "model",
-                "--commit-message",
-                commit_message,
-            ],
-            check=False,
-            env=env,
-            capture_output=True,
-            text=True,
-        )
-        if proc.returncode == 0:
+        if upload_model_folder(repo, best, commit_message):
             print(f"[GRPO] Hub push OK: {commit_message}")
         else:
-            err = (proc.stderr or proc.stdout or "").strip()[:2000]
             print(
-                f"[GRPO] Hub upload failed (return code {proc.returncode}). "
-                f"Check token permissions and repo id. Server message:\n{err}"
+                "[GRPO] Hub upload failed (see message above). "
+                "Check token write access to the model repo."
             )
 
     def init_wandb(self, project: str = "role-drift-env", run_name: str = None, config: dict = None):

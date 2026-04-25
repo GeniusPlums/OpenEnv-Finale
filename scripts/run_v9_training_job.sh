@@ -5,6 +5,7 @@
 #
 # shellcheck disable=SC1091
 set -euo pipefail
+export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
 echo "===== V9 Training Job started at $(date) ====="
 
@@ -46,11 +47,12 @@ echo "===== nvidia-smi ====="
 nvidia-smi
 
 echo "===== Starting customer-sim vLLM server ====="
+# Leave ~35–40GB for policy 1.5B + ref + optimizer states + backward (80GB A100 is tight with 7B vLLM)
 python -m vllm.entrypoints.openai.api_server \
   --model Qwen/Qwen2.5-7B-Instruct \
   --port "$VLLM_PORT" \
-  --max-model-len 4096 \
-  --gpu-memory-utilization 0.40 \
+  --max-model-len 2048 \
+  --gpu-memory-utilization 0.30 \
   > vllm_server.log 2>&1 &
 VLLM_PID=$!
 echo "vLLM PID: $VLLM_PID"
@@ -96,9 +98,9 @@ fi
 echo "===== Persona check PASSED ====="
 
 echo "===== Create private model repo (if needed) ====="
-huggingface-cli repo create "$TRAINED_REPO" --type model --private 2>/dev/null || echo "(repo may already exist; continuing)"
+python -m training.hub_upload create-repo "$TRAINED_REPO" || echo "(create-repo note above)"
 
-# OPENCODE V9: lr 1e-5, kl 0.05, 100 ep, no max-turns. Add --max-turns 6 here only if you hit policy OOM.
+# V9: same hyperparams; --max-turns 6 caps seq len in backward (avoids OOM with vLLM on one GPU)
 echo "===== Starting GRPO training ====="
 set +e
 python training/train_grpo.py \
@@ -109,6 +111,7 @@ python training/train_grpo.py \
   --curriculum adversarial \
   --policy-model Qwen/Qwen2.5-1.5B-Instruct \
   --checkpoint-every 25 \
+  --max-turns 6 \
   --output-dir data/training_logs/run_final \
   --checkpoint-dir checkpoints/grpo_final \
   --hub-repo "$TRAINED_REPO" \
@@ -128,9 +131,8 @@ if [[ -d "checkpoints/grpo_final/best" ]] && [[ -n "$(ls -A checkpoints/grpo_fin
   else
     MSG_BEST="Partial/final best checkpoint (training exited $TRAIN_EXIT) V9"
   fi
-  huggingface-cli upload "$TRAINED_REPO" checkpoints/grpo_final/best \
-    --repo-type model \
-    --commit-message "$MSG_BEST" || { echo "WARNING: best upload failed (check HF token / permissions; non-fatal)."; }
+  python -m training.hub_upload upload-folder "$TRAINED_REPO" checkpoints/grpo_final/best --message "$MSG_BEST" \
+    || { echo "WARNING: best upload failed (check HF token / permissions; non-fatal)."; }
 else
   echo "WARNING: checkpoints/grpo_final/best is missing or empty. Nothing to upload for weights."
 fi
@@ -142,22 +144,33 @@ if [[ -f data/training_logs/run_final/episode_log.jsonl ]]; then
   else
     MSG_LOG="Episode log partial run V9 (train exit $TRAIN_EXIT)"
   fi
-  huggingface-cli upload "$TRAINED_REPO" /tmp/episode_log.jsonl --commit-message "$MSG_LOG" || { echo "WARNING: episode log upload failed (auth?)"; }
+  python -m training.hub_upload upload-file "$TRAINED_REPO" /tmp/episode_log.jsonl --path-in-repo episode_log.jsonl --message "$MSG_LOG" \
+    || { echo "WARNING: episode log upload failed (auth?)"; }
 else
   echo "WARNING: data/training_logs/run_final/episode_log.jsonl not found; skipping episode log upload."
 fi
 
 if [[ -f training.log ]]; then
   cp -f training.log /tmp/training_run.log
-  huggingface-cli upload "$TRAINED_REPO" /tmp/training_run.log --commit-message "Full training stdout V9" || { echo "WARNING: training.log upload failed (auth?)"; }
+  python -m training.hub_upload upload-file "$TRAINED_REPO" /tmp/training_run.log --path-in-repo training.log --message "Full training stdout V9" \
+    || { echo "WARNING: training.log upload failed (auth?)"; }
 fi
 
-echo "===== Verify download (optional; needs read access to repo) ====="
+echo "===== Verify read access to model repo (optional) ====="
 rm -rf /tmp/hf_verify
-if huggingface-cli download "$TRAINED_REPO" --include="config.json" --quiet --local-dir /tmp/hf_verify 2>/dev/null; then
+mkdir -p /tmp/hf_verify
+if python -c "
+from huggingface_hub import hf_hub_download
+import os
+r = os.environ.get('TRAINED_REPO', '')
+if not r:
+    raise SystemExit(1)
+hf_hub_download(repo_id=r, filename='config.json', local_dir='/tmp/hf_verify', repo_type='model')
+print('ok')
+" 2>/dev/null; then
   ls -la /tmp/hf_verify
 else
-  echo "WARNING: Hub verify download skipped or failed (missing token or repo not visible)."
+  echo "WARNING: Hub verify download skipped (token or repo read access)."
 fi
 
 echo "===== V9 complete at $(date) ====="
