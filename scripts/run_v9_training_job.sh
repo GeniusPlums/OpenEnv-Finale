@@ -29,7 +29,14 @@ export TRAINED_REPO="${TRAINED_REPO:-GeniusPlums/role-drift-qwen-1-5b-grpo}"
 export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-${HF_TOKEN:-}}"
 
 python scripts/hf_auth_preflight.py || true
-huggingface-cli whoami 2>/dev/null || echo "(Hub CLI: not logged in — Hub uploads may fail until token is available)"
+# whoami often missing in minimal images even when HF_TOKEN is set; uploads still use the env token.
+if huggingface-cli whoami 2>/dev/null; then
+  : # ok
+elif [[ -n "${HUGGINGFACE_HUB_TOKEN:-${HF_TOKEN:-}}" ]]; then
+  echo "(huggingface-cli whoami not available; HF_TOKEN/HUGGINGFACE_HUB_TOKEN is set — Hub CLI uploads are fine)"
+else
+  echo "(No HF token in env; run hf auth login locally or set Job secret)"
+fi
 
 # --- vLLM customer server (7B) — same card as 1.5B policy: persona must use this API, not a second in-process 7B ---
 VLLM_PORT="${VLLM_PORT:-8000}"
