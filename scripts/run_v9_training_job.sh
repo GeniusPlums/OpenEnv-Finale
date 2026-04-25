@@ -25,13 +25,14 @@ pip install -q vllm sentence-transformers langdetect peft accelerate bitsandbyte
 
 export HF_USER="${HF_USER:-GeniusPlums}"
 export TRAINED_REPO="${TRAINED_REPO:-GeniusPlums/role-drift-qwen-1-5b-grpo}"
-export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-$HF_TOKEN}"
+# With set -u, use :- on every expansion (bare $HF_TOKEN in :-default still trips unbound)
+export HUGGINGFACE_HUB_TOKEN="${HUGGINGFACE_HUB_TOKEN:-${HF_TOKEN:-}}"
 
 if [[ -z "${HF_TOKEN:-}" ]] && [[ -z "${HUGGINGFACE_HUB_TOKEN:-}" ]]; then
   echo "FATAL: HF_TOKEN (or HUGGINGFACE_HUB_TOKEN) not set. Aborting before spend."
   exit 1
 fi
-huggingface-cli login --token "${HF_TOKEN:-$HUGGINGFACE_HUB_TOKEN}"
+huggingface-cli login --token "${HF_TOKEN:-${HUGGINGFACE_HUB_TOKEN:-}}"
 huggingface-cli whoami
 
 # --- vLLM customer server (7B) — same card as 1.5B policy: persona must use this API, not a second in-process 7B ---
