@@ -34,6 +34,14 @@ This runs a 3500-word system prompt with 40+ explicit rules. That prompt is in `
 
 All detectors validated on real transcripts in `data/transcripts/`.
 
+## Benchmark
+
+See `BENCHMARK.md` for the eval benchmark with leaderboard and CLI interface.
+
+## Pre-Registered Hypotheses
+
+See `docs/hypotheses.md` — results will be reported honestly regardless of outcome.
+
 ## Results
 
 ![reward curve](plots/diag2/reward_curve_aggregate.png)

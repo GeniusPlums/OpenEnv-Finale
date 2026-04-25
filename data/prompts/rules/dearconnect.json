@@ -1,0 +1,47 @@
+[
+  {
+    "rule_id": "dc_max_tokens",
+    "type": "max_token_count",
+    "description": "Agent turn must be <= 120 tokens (short sentences, no long explanations)",
+    "params": {
+      "max_tokens": 120,
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "dc_no_guarantees",
+    "type": "forbidden_words",
+    "description": "Must not guarantee leads or income",
+    "params": {
+      "forbidden_words": ["guarantee", "guaranteed", "definitely will", "sure shot"],
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "dc_price_context",
+    "type": "required_words",
+    "description": "When price mentioned, must include one-time or 3 months context",
+    "params": {
+      "trigger_words": ["1000", "fee", "registration", "rupees"],
+      "required_words": ["one-time", "3 months", "three months"],
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "dc_no_disqualified_pitch",
+    "type": "forbidden_formats",
+    "description": "Must not pitch when user identifies as customer/buyer/student",
+    "params": {
+      "penalty_on_violation": 0.4
+    }
+  },
+  {
+    "rule_id": "dc_no_aggressive_close",
+    "type": "forbidden_words",
+    "description": "Must not use urgent close tactics without prior commitment",
+    "params": {
+      "forbidden_words": ["you must", "right now", "last chance", "only today", "limited time"],
+      "penalty_on_violation": 0.4
+    }
+  }
+]

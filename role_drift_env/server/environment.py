@@ -16,8 +16,8 @@ class RoleDriftEnvironment:
         self.reward_composer = RewardComposer()
 
     def _load_scenario(self, scenario_id: str) -> Scenario:
-        # Search both train and eval files
-        for filename in ["train.jsonl", "eval.jsonl"]:
+        # Search train, eval, and additional scenario files
+        for filename in ["train.jsonl", "eval.jsonl", "transfer_dearconnect.jsonl", "eval_held_out_persona.jsonl", "eval_injection.jsonl"]:
             path = self.scenarios_dir / filename
             if not path.exists():
                 continue
