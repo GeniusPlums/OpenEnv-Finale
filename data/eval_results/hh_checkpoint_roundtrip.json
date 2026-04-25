@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "backend": "model:data/training_logs/hh_smoke_train_v3/best",
+    "scenario_file": "data/scenarios/eval.jsonl",
+    "num_seeds": 1,
+    "num_episodes": 1,
+    "mean_return": -12.075600000000001,
+    "std_return": 0.0,
+    "per_detector_mean": {
+      "task": 0.0,
+      "term": -0.2,
+      "goal": -9.132100000000003,
+      "instr": -0.4,
+      "lang": -2.3434999999999997
+    }
+  },
+  "episodes": [
+    {
+      "scenario_id": "coop_kk_06",
+      "seed": 0,
+      "episode_return": -12.075600000000001,
+      "turns": 30,
+      "per_detector": {
+        "task": 0.0,
+        "term": -0.2,
+        "goal": -9.132100000000003,
+        "instr": -0.4,
+        "lang": -2.3434999999999997
+      }
+    }
+  ]
+}

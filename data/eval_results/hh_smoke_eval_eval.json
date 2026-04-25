@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "backend": "model:checkpoints/tiny_test_model",
+    "scenario_file": "data/scenarios/eval.jsonl",
+    "num_seeds": 1,
+    "num_episodes": 2,
+    "mean_return": -11.748450000000002,
+    "std_return": 4.725948172060296,
+    "per_detector_mean": {
+      "task": 0.0,
+      "term": -0.45,
+      "goal": -8.555799999999998,
+      "instr": 0.0,
+      "lang": -2.7426500000000003
+    }
+  },
+  "episodes": [
+    {
+      "scenario_id": "coop_kk_06",
+      "seed": 0,
+      "episode_return": -15.090200000000006,
+      "turns": 30,
+      "per_detector": {
+        "task": 0.0,
+        "term": -0.9,
+        "goal": -9.433399999999999,
+        "instr": 0.0,
+        "lang": -4.7568
+      }
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "seed": 0,
+      "episode_return": -8.406699999999999,
+      "turns": 30,
+      "per_detector": {
+        "task": 0.0,
+        "term": 0.0,
+        "goal": -7.678199999999997,
+        "instr": 0.0,
+        "lang": -0.7284999999999999
+      }
+    }
+  ]
+}

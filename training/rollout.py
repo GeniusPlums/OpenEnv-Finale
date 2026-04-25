@@ -12,6 +12,7 @@ def rollout_episode(
     env: RoleDriftEnvironment = None,
     rollout_idx: int = 0,
     transcript_dir: Optional[str] = None,
+    max_turns_override: Optional[int] = None,
 ) -> Tuple[List[Tuple[Observation, AgentAction, TurnReward]], float]:
     """Run one full episode with the given policy.
 
@@ -25,6 +26,8 @@ def rollout_episode(
     if env is None:
         env = RoleDriftEnvironment()
     obs, state = env.reset(scenario_id=scenario_id, rollout_idx=rollout_idx)
+    if max_turns_override is not None:
+        state.scenario.max_turns = max_turns_override
     sim = CustomerSimulator.from_scenario(state.scenario)
 
     trajectory = []

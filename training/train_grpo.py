@@ -3,6 +3,7 @@
 import json
 import os
 import sys
+import time
 
 # Add app directory to path for imports
 if "/app" not in sys.path:
@@ -41,6 +42,7 @@ class GRPOTrainer:
         model_name: str = "Qwen/Qwen2.5-1.5B-Instruct",
         sft_checkpoint: str = "checkpoints/sft",
         output_dir: str = "checkpoints/grpo",
+        checkpoint_dir: str = None,
         group_size: int = 4,
         kl_coef: float = 0.05,
         lr: float = 5e-6,
@@ -93,6 +95,8 @@ class GRPOTrainer:
         self.kl_coef = kl_coef
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.checkpoint_dir = Path(checkpoint_dir) if checkpoint_dir else self.output_dir
+        self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
         self.episode_log = []
         self.kl_history = []
         self.wandb = None
@@ -115,10 +119,11 @@ class GRPOTrainer:
         """Generate an agent action from the current policy."""
         self.model.eval()
         prompt = self._format_prompt(obs, state)
-        # Allow longer contexts; most small models support 2048+
+        # Reserve room for generation tokens to avoid position-id overflow.
         max_prompt_len = getattr(self.tokenizer, "model_max_length", 1024)
-        if max_prompt_len < 2048:
-            max_prompt_len = 2048
+        if max_prompt_len is None or max_prompt_len <= 0:
+            max_prompt_len = 1024
+        max_prompt_len = max(128, min(max_prompt_len - self.max_new_tokens - 1, max_prompt_len))
         inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_prompt_len).to(self.device)
         outputs = self.model.generate(
             **inputs,
@@ -187,6 +192,14 @@ class GRPOTrainer:
             if not response_ids:
                 continue
 
+            model_max_len = getattr(self.tokenizer, "model_max_length", None)
+            if model_max_len is None or model_max_len <= 0:
+                model_max_len = 2048
+            # Keep the full response span and trim older prompt context if needed.
+            if len(prompt_ids) + len(response_ids) > model_max_len:
+                max_prompt_tokens = max(1, model_max_len - len(response_ids))
+                prompt_ids = prompt_ids[-max_prompt_tokens:]
+
             full_ids = prompt_ids + response_ids
             full_tensor = torch.tensor([full_ids], device=self.device)
             mask_tensor = torch.ones_like(full_tensor)
@@ -247,6 +260,9 @@ class GRPOTrainer:
         num_episodes: int = 200,
         log_every: int = 1,
         save_transcripts_every: int = 25,
+        checkpoint_every: int = 25,
+        max_turns_override: int = None,
+        time_each_episode: bool = False,
         transcript_dir: str = "logs/transcripts",
     ):
         """Run GRPO training loop.
@@ -262,9 +278,11 @@ class GRPOTrainer:
         transcript_path.mkdir(parents=True, exist_ok=True)
 
         for episode in range(num_episodes):
+            episode_start = time.time()
             scenario_id = scenario_ids[episode % len(scenario_ids)]
             group_returns = []
             group_turns = []  # List of List[Tuple[prompt, response]] per rollout
+            group_components = []  # Per-rollout summed reward components
             save_transcript = (episode % save_transcripts_every == 0) or (episode == num_episodes - 1)
 
             for g in range(self.group_size):
@@ -283,9 +301,15 @@ class GRPOTrainer:
                     env=env,
                     rollout_idx=episode * self.group_size + g,
                     transcript_dir=str(transcript_path) if save_transcript else None,
+                    max_turns_override=max_turns_override,
                 )
                 group_returns.append(ret)
                 group_turns.append(agent_turns)
+                comp_totals = {}
+                for _, _, reward in traj:
+                    for key, value in reward.components.items():
+                        comp_totals[key] = comp_totals.get(key, 0.0) + value
+                group_components.append(comp_totals)
 
             # Compute group-relative advantages
             returns_t = torch.tensor(group_returns, dtype=torch.float32, device=self.device)
@@ -302,6 +326,12 @@ class GRPOTrainer:
             avg_loss = sum(m["loss"] for m in step_metrics) / len(step_metrics)
             avg_kl = sum(m["approx_kl"] for m in step_metrics) / len(step_metrics)
             self.kl_history.append(avg_kl)
+            component_means = {}
+            all_component_keys = set()
+            for row in group_components:
+                all_component_keys.update(row.keys())
+            for key in all_component_keys:
+                component_means[key] = sum(row.get(key, 0.0) for row in group_components) / len(group_components)
 
             # Logging
             self.episode_log.append({
@@ -313,6 +343,8 @@ class GRPOTrainer:
                 "min_return": returns_t.min().item(),
                 "avg_loss": avg_loss,
                 "avg_kl": avg_kl,
+                "component_means": component_means,
+                "episode_seconds": time.time() - episode_start,
             })
 
             if episode % log_every == 0:
@@ -339,17 +371,20 @@ class GRPOTrainer:
 
             if mean.item() > best_return:
                 best_return = mean.item()
-                tag = self.output_dir / "best"
+                tag = self.checkpoint_dir / "best"
                 self.model.save_pretrained(tag)
                 self.tokenizer.save_pretrained(tag)
                 print(f"  -> New best! Saved to {tag}")
 
             # Checkpoint every 25 episodes (cheap insurance against preemption)
-            if (episode + 1) % 25 == 0:
-                tag = self.output_dir / f"checkpoint-{episode+1}"
+            if (episode + 1) % checkpoint_every == 0:
+                tag = self.checkpoint_dir / f"checkpoint-{episode+1}"
                 self.model.save_pretrained(tag)
                 self.tokenizer.save_pretrained(tag)
                 print(f"  -> Periodic checkpoint saved to {tag}")
+
+            if time_each_episode:
+                print(f"  -> Episode wall time: {self.episode_log[-1]['episode_seconds']:.2f}s")
 
             # Wandb logging if initialized
             if self.wandb is not None:
@@ -369,6 +404,11 @@ class GRPOTrainer:
                 f.write(json.dumps(entry) + "\n")
         print(f"Saved episode log to {log_path}")
 
+        final_tag = self.checkpoint_dir / "final"
+        self.model.save_pretrained(final_tag)
+        self.tokenizer.save_pretrained(final_tag)
+        print(f"Saved final checkpoint to {final_tag}")
+
         print(f"Training complete. Best mean return: {best_return:.3f}")
 
 
@@ -380,13 +420,19 @@ if __name__ == "__main__":
     parser.add_argument("--scenario-file", default="data/scenarios/train.jsonl")
     parser.add_argument("--sft-checkpoint", default="checkpoints/sft")
     parser.add_argument("--output-dir", default="checkpoints/grpo")
+    parser.add_argument("--checkpoint-dir", default=None, help="Directory for model checkpoints")
     parser.add_argument("--model-name", default="Qwen/Qwen2.5-1.5B-Instruct")
+    parser.add_argument("--policy-model", default=None, help="Alias for --model-name")
     parser.add_argument("--kl-coef", type=float, default=0.05, help="KL penalty coefficient")
     parser.add_argument("--lr", type=float, default=5e-6, help="Learning rate")
+    parser.add_argument("--curriculum", default=None, help="Reserved compatibility arg (currently not used)")
     parser.add_argument("--use-wandb", action="store_true", help="Enable wandb logging")
     parser.add_argument("--wandb-project", default="role-drift-env")
     parser.add_argument("--log-every", type=int, default=1, help="Print metrics every N episodes")
     parser.add_argument("--save-transcripts-every", type=int, default=25, help="Save full rollouts every N episodes")
+    parser.add_argument("--checkpoint-every", type=int, default=25, help="Save model checkpoint every N episodes")
+    parser.add_argument("--max-turns", type=int, default=None, help="Override scenario max turns during rollouts")
+    parser.add_argument("--time-each-episode", action="store_true", help="Print wall-clock time for each episode")
     parser.add_argument("--transcript-dir", default="logs/transcripts")
     args = parser.parse_args()
 
@@ -398,9 +444,10 @@ if __name__ == "__main__":
             scenario_ids.append(obj["scenario_id"])
 
     trainer = GRPOTrainer(
-        model_name=args.model_name,
+        model_name=args.policy_model or args.model_name,
         sft_checkpoint=args.sft_checkpoint,
         output_dir=args.output_dir,
+        checkpoint_dir=args.checkpoint_dir,
         group_size=args.group_size,
         kl_coef=args.kl_coef,
         lr=args.lr,
@@ -416,5 +463,8 @@ if __name__ == "__main__":
         num_episodes=args.episodes,
         log_every=args.log_every,
         save_transcripts_every=args.save_transcripts_every,
+        checkpoint_every=args.checkpoint_every,
+        max_turns_override=args.max_turns,
+        time_each_episode=args.time_each_episode,
         transcript_dir=args.transcript_dir,
     )

@@ -1,0 +1,4 @@
+{% for message in messages %}{% if message['role'] == 'system' %}{% set system_message = message['content'] %}{% endif %}{% endfor %}{% if system_message is defined %}{{ system_message }}{% endif %}{% for message in messages %}{% if message['role'] != 'system' %}{% if message['role'] == 'user' %}{{ '
+User: ' + message['content'] }}{% elif message['role'] == 'assistant' %}{{ '
+Assistant: ' + message['content'] }}{% endif %}{% endif %}{% endfor %}
+Assistant:

@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "backend": "model:checkpoints/tiny_test_model",
+    "scenario_file": "data/scenarios/transfer_dearconnect.jsonl",
+    "num_seeds": 1,
+    "num_episodes": 1,
+    "mean_return": -28.65580000000001,
+    "std_return": 0.0,
+    "per_detector_mean": {
+      "task": 0.0,
+      "term": -11.3,
+      "goal": -12.213,
+      "instr": 0.0,
+      "lang": -5.1427999999999985
+    }
+  },
+  "episodes": [
+    {
+      "scenario_id": "dc_term_01",
+      "seed": 0,
+      "episode_return": -28.65580000000001,
+      "turns": 30,
+      "per_detector": {
+        "task": 0.0,
+        "term": -11.3,
+        "goal": -12.213,
+        "instr": 0.0,
+        "lang": -5.1427999999999985
+      }
+    }
+  ]
+}
