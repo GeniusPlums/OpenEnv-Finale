@@ -1,25 +1,41 @@
 """
 Launch V9 training on Hugging Face Jobs (A100) — run_v9_training_job.sh (vLLM + Hub persistence).
 
-**HF_TOKEN in the job container**
-- **This launcher (recommended):** set `HF_TOKEN` (or `HUGGINGFACE_HUB_TOKEN`) in your *local* environment
-  before running this script. It is passed via the Jobs API `secrets` parameter (not written to the repo).
-- **Web UI jobs:** add a secret/mapping so the container has `HF_TOKEN` set to your write token.
+**Auth (no Job UI env vars required):** run this from your machine after `hf auth login`.
+The launcher reads the same token the CLI stores on disk (`resolve_hf_token`) and injects it
+into the remote job via the API `secrets` field — the container never needs you to type env
+vars in the Hugging Face web UI.
 
-Do not commit tokens. If a token was ever pasted into chat, revoke it and create a new one.
+Optional: set `HF_TOKEN` or `HUGGINGFACE_HUB_TOKEN` to override the cached token.
 
 Timeout default: 2h. Override with HF_JOB_TIMEOUT=120m
 """
-from huggingface_hub import HfApi
+from __future__ import annotations
+
 import os
+import sys
+from pathlib import Path
+
+from huggingface_hub import HfApi
+
+# Repo root on path (so `training.hf_auth` imports when cwd is not the project)
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from training.hf_auth import resolve_hf_token  # noqa: E402
 
 
 def main() -> None:
-    hf = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN")
-    if not hf:
+    hf = (os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN") or "").strip() or resolve_hf_token()
+    if hf:
         print(
-            "WARNING: HF_TOKEN not set locally; job container will use hf_auth_preflight only. "
-            "Fresh HF Jobs usually need a secret: set HF_TOKEN here or in the Job UI."
+            "HF auth: using token from env or local `hf auth login` cache; injecting into job as secret."
+        )
+    else:
+        print(
+            "WARNING: No token in env or local cache. Run `hf auth login`, then run this script again "
+            "(Job UI env vars are not required when launching this way)."
         )
 
     api = HfApi(token=True)
