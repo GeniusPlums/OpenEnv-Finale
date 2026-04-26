@@ -28,7 +28,6 @@ if [[ -z "${HF_TOKEN:-}" && -z "${HUGGINGFACE_HUB_TOKEN:-}" ]]; then
   exit 1
 fi
 TOKEN="${HF_TOKEN:-$HUGGINGFACE_HUB_TOKEN}"
-huggingface-cli login --token "$TOKEN" --add-to-git-credential 2>/dev/null || true
 
 TRAINED_MODEL_REPO="GeniusPlums/role-drift-qwen-1-5b-grpo"
 EVAL_RESULTS_REPO="GeniusPlums/role-drift-eval-results"
@@ -37,10 +36,10 @@ EVAL_RESULTS_REPO="GeniusPlums/role-drift-eval-results"
 upload_partial_results() {
   set +e
   echo "===== [trap] Uploading partial results to $EVAL_RESULTS_REPO ====="
-  huggingface-cli repo create "$EVAL_RESULTS_REPO" --type dataset --private 2>/dev/null || true
   if [[ -d "data/eval_results" ]] && [[ -n "$(ls -A data/eval_results 2>/dev/null)" ]]; then
-    huggingface-cli upload "$EVAL_RESULTS_REPO" "data/eval_results/" . \
+    hf upload "$EVAL_RESULTS_REPO" "data/eval_results" . \
       --repo-type dataset \
+      --private \
       --commit-message "Eval results (V10, partial-or-final)" || echo "WARN: upload failed"
   else
     echo "WARN: no eval results to upload"
@@ -65,12 +64,20 @@ mkdir -p data/eval_results
 
 pip install -e . --quiet
 pip install -q vllm sentence-transformers langdetect peft accelerate huggingface_hub openai
+# `hf` is from huggingface_hub; login before Hub download/upload
+hf auth login --token "$TOKEN" --add-to-git-credential
 
 # === Download trained checkpoint ==============================================
+# `huggingface-cli` is broken in many images; `hf download` is required
 echo "===== Downloading trained checkpoint ====="
-huggingface-cli download "$TRAINED_MODEL_REPO" \
+mkdir -p checkpoints/trained
+hf download "$TRAINED_MODEL_REPO" \
   --local-dir checkpoints/trained \
-  --include "*.json" --include "*.safetensors" --include "*.model" --include "*.txt" || true
+  --include "*.json" --include "*.safetensors" --include "*.model" --include "*.txt"
+if [[ ! -f "checkpoints/trained/config.json" ]]; then
+  echo "FATAL: no checkpoints/trained/config.json after hf download. Aborting."
+  exit 1
+fi
 
 # === FM-3: nvidia-smi before model loads ======================================
 nvidia-smi
@@ -182,7 +189,7 @@ python scripts/reward_hacking_probes.py \
 # Final upload
 echo "===== Final upload ====="
 set +e
-huggingface-cli upload "$EVAL_RESULTS_REPO" data/eval_results/ . \
+hf upload "$EVAL_RESULTS_REPO" "data/eval_results" . \
   --repo-type dataset \
   --commit-message "Eval results V10 (final)"
 set -e
@@ -190,7 +197,7 @@ set -e
 echo "===== Verifying upload ====="
 rm -rf /tmp/v10_verify
 mkdir -p /tmp/v10_verify
-huggingface-cli download "$EVAL_RESULTS_REPO" --include "in_domain_trained.json" \
+hf download "$EVAL_RESULTS_REPO" "in_domain_trained.json" \
   --local-dir /tmp/v10_verify --repo-type dataset
 ls -la /tmp/v10_verify/
 

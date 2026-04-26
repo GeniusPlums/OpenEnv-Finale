@@ -171,7 +171,7 @@ def _upload_eval_results(repo: str, local_dir: Path) -> None:
     try:
         subprocess.run(
             [
-                "huggingface-cli",
+                "hf",
                 "upload",
                 repo,
                 str(local_dir),
