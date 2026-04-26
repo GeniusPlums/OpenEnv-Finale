@@ -58,7 +58,9 @@ def main():
     parser.add_argument("--save-transcripts-every", type=int, default=5)
     parser.add_argument("--transcript-dir", default="logs/transcripts")
     parser.add_argument("--skip-upload", action="store_true", help="Skip uploading results")
-    parser.add_argument("--lang-term-oversample", type=int, default=1)
+    parser.add_argument("--lang-oversample", type=int, default=2)
+    parser.add_argument("--term-oversample", type=int, default=1)
+    parser.add_argument("--lang-term-oversample", type=int, default=None)
 
     args = parser.parse_args()
 
@@ -84,8 +86,18 @@ def main():
         "--log-every", str(args.log_every),
         "--save-transcripts-every", str(args.save_transcripts_every),
         "--transcript-dir", args.transcript_dir,
-        "--lang-term-oversample", str(args.lang_term_oversample),
     ]
+    if args.lang_term_oversample is not None:
+        cmd.extend(["--lang-term-oversample", str(args.lang_term_oversample)])
+    else:
+        cmd.extend(
+            [
+                "--lang-oversample",
+                str(args.lang_oversample),
+                "--term-oversample",
+                str(args.term_oversample),
+            ]
+        )
 
     # Add SFT checkpoint if exists
     if args.sft_checkpoint and Path(args.sft_checkpoint).exists():

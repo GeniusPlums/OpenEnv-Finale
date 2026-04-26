@@ -14,7 +14,7 @@ class RewardComposer:
                 "term": 0.8,
                 "goal": 0.5,
                 "instr": 0.5,
-                "lang": 0.6,
+                "lang": 1.0,
             }
         self.weights = weights
         self.term_det = TerminationDriftDetector()

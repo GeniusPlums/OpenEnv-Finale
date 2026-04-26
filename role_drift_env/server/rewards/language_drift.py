@@ -66,20 +66,19 @@ class LanguageDriftDetector:
                     pass
                 return 0.0
 
-            # Wrong language: strong floor so gradients aren't washed out by low conf
+            # Wrong language: non-linear penalty so low-confidence wrong-lang isn't a cheap escape hatch
             try:
                 lang_probs = self._detect_langs(text)
                 if lang_probs:
-                    conf = lang_probs[0].prob
-                    raw = max(float(conf), 0.82)
-                    # Secondary mass in another language → mixed / code-switch
+                    conf = float(lang_probs[0].prob)
+                    raw = max(0.92, conf**1.5)
                     if len(lang_probs) >= 2 and lang_probs[1].prob >= 0.22:
                         raw = min(1.0, raw + 0.12)
                     return round(min(raw, 1.0), 4)
             except Exception:
                 pass
 
-            return 0.85
+            return 0.92
 
         except Exception:
             return 0.0

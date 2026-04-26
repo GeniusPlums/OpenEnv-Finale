@@ -38,9 +38,11 @@ def _primary_drift_from_row(obj: Dict[str, Any]) -> str:
 
 
 def build_grpo_scenario_schedule(
-    scenario_file: str, lang_term_extra_copies: int = 1
+    scenario_file: str,
+    lang_extra_copies: int = 2,
+    term_extra_copies: int = 1,
 ) -> Tuple[List[str], Dict[str, str], int]:
-    """Build episode rotation: each language / termination row appears (1+extra) times.
+    """Build episode rotation with separate oversampling for language vs termination.
 
     Returns (scenario_ids, scenario_id -> primary drift, base_row_count).
     """
@@ -57,7 +59,12 @@ def build_grpo_scenario_schedule(
         sid = obj["scenario_id"]
         d = _primary_drift_from_row(obj)
         drift_by_sid[sid] = d
-        n = 1 + lang_term_extra_copies if d in ("language", "termination") else 1
+        if d == "language":
+            n = 1 + max(0, lang_extra_copies)
+        elif d == "termination":
+            n = 1 + max(0, term_extra_copies)
+        else:
+            n = 1
         scenario_ids.extend([sid] * n)
     return scenario_ids, drift_by_sid, len(rows)
 
@@ -517,10 +524,22 @@ if __name__ == "__main__":
         help="KL penalty coefficient (~+25%% vs 0.1 for tighter ref anchoring)",
     )
     parser.add_argument(
-        "--lang-term-oversample",
+        "--lang-oversample",
+        type=int,
+        default=2,
+        help="Extra copies of each language scenario in rotation (2 => 3x frequency).",
+    )
+    parser.add_argument(
+        "--term-oversample",
         type=int,
         default=1,
-        help="Extra copies of each language+termination scenario in the episode rotation (0=off, 1=2x frequency).",
+        help="Extra copies of each termination scenario (1 => 2x frequency).",
+    )
+    parser.add_argument(
+        "--lang-term-oversample",
+        type=int,
+        default=None,
+        help="If set, overrides both --lang-oversample and --term-oversample to this value.",
     )
     parser.add_argument("--lr", type=float, default=5e-6, help="Learning rate")
     parser.add_argument("--curriculum", default=None, help="Reserved compatibility arg (currently not used)")
@@ -548,12 +567,17 @@ if __name__ == "__main__":
         flush=True,
     )
 
+    if args.lang_term_oversample is not None:
+        le = te = max(0, args.lang_term_oversample)
+    else:
+        le = max(0, args.lang_oversample)
+        te = max(0, args.term_oversample)
     scenario_ids, scenario_drifts, n_base = build_grpo_scenario_schedule(
-        args.scenario_file, lang_term_extra_copies=max(0, args.lang_term_oversample)
+        args.scenario_file, lang_extra_copies=le, term_extra_copies=te
     )
     print(
         f"[GRPO] scenario schedule: {len(scenario_ids)} slots from {n_base} jsonl rows "
-        f"(lang_term_extra_copies={max(0, args.lang_term_oversample)})",
+        f"(lang_extra={le}, term_extra={te})",
         flush=True,
     )
 
