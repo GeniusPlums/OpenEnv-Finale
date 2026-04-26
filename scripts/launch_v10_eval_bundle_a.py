@@ -7,8 +7,8 @@ Clone from GitHub, run baseline/trained + transfer + reward probes, upload to Hu
 (same pattern as launch_v9_job.py).
 
 Optional env:
-  HF_JOB_FLAVOR   default: a100-large
-  HF_JOB_TIMEOUT  default: 90m
+  HF_JOB_FLAVOR   default: h200 (141GB; override with a100-large etc.)
+  HF_JOB_TIMEOUT  default: 3h
   HF_JOB_NAMESPACE default: GeniusPlums
 """
 from __future__ import annotations
@@ -35,8 +35,8 @@ def main() -> None:
         sys.exit(1)
 
     api = HfApi(token=True)
-    flavor = os.getenv("HF_JOB_FLAVOR", "a100-large")
-    timeout = os.getenv("HF_JOB_TIMEOUT", "90m")
+    flavor = os.getenv("HF_JOB_FLAVOR", "h200")
+    timeout = os.getenv("HF_JOB_TIMEOUT", "3h")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")
 
     bash_cmd = r"""
