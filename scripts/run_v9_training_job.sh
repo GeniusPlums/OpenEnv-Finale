@@ -27,6 +27,9 @@ fi
 cd "$REPO_DIR" || exit 1
 export PYTHONPATH="$(pwd)"
 
+# HF `python:3.11` + `pip install -e .` often resolves to CPU-only torch from PyPI; then vLLM keeps it
+# and every CUDA probe fails forever. Install CUDA torch first, then the rest.
+pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cu126
 pip install -e . -q
 pip install -q vllm sentence-transformers langdetect peft accelerate bitsandbytes huggingface_hub openai
 
@@ -52,19 +55,25 @@ export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "===== nvidia-smi ====="
 nvidia-smi
 
+echo "===== CUDA torch sanity (before fabric warmup) ====="
+python -c "import torch; print('torch', torch.__version__, 'built_cuda', torch.version.cuda, 'is_available', torch.cuda.is_available(), 'device_count', torch.cuda.device_count())"
+
 echo "===== CUDA readiness warmup (H200 / fabric can lag behind nvidia-smi) ====="
 CUDA_OK=0
 for i in $(seq 1 36); do
-  if python -c "import torch; assert torch.cuda.is_available() and torch.cuda.device_count() >= 1; torch.cuda.set_device(0); x=torch.zeros(1, device='cuda'); del x; torch.cuda.synchronize(); print('cuda_ok', torch.cuda.get_device_name(0))" 2>/dev/null; then
-    echo "CUDA probe OK after $i attempt(s) (~$((i * 10))s max)"
+  _probe_out="$(python -c "import torch; assert torch.cuda.is_available() and torch.cuda.device_count() >= 1; torch.cuda.set_device(0); x=torch.zeros(1, device='cuda'); del x; torch.cuda.synchronize(); print('cuda_ok', torch.cuda.get_device_name(0))" 2>&1)" && _probe_rc=0 || _probe_rc=$?
+  if [[ "$_probe_rc" -eq 0 ]]; then
+    echo "$_probe_out"
+    echo "CUDA probe OK after $i attempt(s)"
     CUDA_OK=1
     break
   fi
-  echo "CUDA probe $i/36 not ready, sleep 10s..."
+  echo "CUDA probe $i/36 failed:"
+  echo "$_probe_out" | head -30
   sleep 10
 done
 if [[ "$CUDA_OK" -ne 1 ]]; then
-  echo "FATAL: CUDA not usable after warmup (Error 802 / fabric on some h200 nodes). Try flavor a100-large or re-queue."
+  echo "FATAL: CUDA not usable after warmup (driver/fabric issue or CPU-only torch — see probe output above)."
   exit 1
 fi
 
