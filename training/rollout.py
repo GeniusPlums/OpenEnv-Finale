@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Callable, List, Tuple, Optional
+from typing import Callable, List, Tuple, Optional, Union
 from role_drift_env.models import AgentAction, Observation, State, TurnReward
 from role_drift_env.server.environment import RoleDriftEnvironment
 from role_drift_env.server.customer_sim import CustomerSimulator
@@ -13,7 +13,11 @@ def rollout_episode(
     rollout_idx: int = 0,
     transcript_dir: Optional[str] = None,
     max_turns_override: Optional[int] = None,
-) -> Tuple[List[Tuple[Observation, AgentAction, TurnReward]], float]:
+    return_state: bool = False,
+) -> Union[
+    Tuple[List[Tuple[Observation, AgentAction, TurnReward]], float],
+    Tuple[List[Tuple[Observation, AgentAction, TurnReward]], float, State],
+]:
     """Run one full episode with the given policy.
 
     Args:
@@ -73,4 +77,6 @@ def rollout_episode(
         with open(out_dir / fname, "w", encoding="utf-8") as f:
             json.dump(transcript, f, indent=2, ensure_ascii=False)
 
+    if return_state:
+        return trajectory, episode_return, state
     return trajectory, episode_return

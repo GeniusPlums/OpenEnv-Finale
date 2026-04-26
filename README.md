@@ -1,93 +1,77 @@
-# Role Drift Env
+# Role Drift Environment
 
-Train a small voice agent to stop drifting out of role — an OpenEnv environment with four programmatic reward signals, validated on real production failures.
+**OpenEnv**-compatible text environment that scores production voice-agent pathologies: termination drift, goal drift, instruction drift, and language drift. This repo is the code for a GRPO (TRL) run on a **Qwen2.5-1.5B** policy with an LLM-backed **Qwen2.5-7B** customer simulator (served with vLLM, OpenAI-compatible API so the policy does not load a second 7B in process).
 
-## The Problem
+- **Code:** [github.com/GeniusPlums/OpenEnv-Finale](https://github.com/GeniusPlums/OpenEnv-Finale)  
+- **Trained model:** [huggingface.co/GeniusPlums/role-drift-qwen-1-5b-grpo](https://huggingface.co/GeniusPlums/role-drift-qwen-1-5b-grpo) (weights, `episode_log.jsonl`, `training.log`)  
+- **Eval results (V10):** [huggingface.co/datasets/GeniusPlums/role-drift-eval-results](https://huggingface.co/datasets/GeniusPlums/role-drift-eval-results) (after the eval job)  
+- **Live demo (Gradio):** (coming soon) `spaces/GeniusPlums/role-drift-demo` — update this line when Bundle C is deployed
 
-I ran a services agency. A client with 500 cold-callers asked me to automate. The LLM was the hard part. Fast small models (Llama 4 Scout) drift — forget instructions, get stuck in thank-you loops, switch languages unprompted. Frontier models (GPT-4, Claude Sonnet) add latency that breaks real-time voice. Every voice-agent company hits this wall.
+---
 
-## The Failure Demo
+## 1. Why this exists
 
-From a real production deployment (`data/transcripts/masters_union_failure_2.txt`):
+A voice stack is only as good as the LLM. Frontier models are too slow for real-time voice; small models are fast enough but **drift**: they break persona, miss explicit rules, and cannot exit polite “thank you” loops. Prompts alone are brittle on behavior, not facts. This project turns drift into a **composable reward** and trains a deployable-size model to reduce it.
 
-> User: I want to go for some education fee. To open institution.
-> AI: Got it. It sounds like you're looking for a traditional educational institution...
-> User: Give me a good idea for a startup.
-> AI: Sure. How about creating an online platform...
-> User: What about real estate business?
-> AI: Real estate is also a great field...
-> User: I want to invest in land.
-> AI: You could create a business that focuses on acquiring land parcels, preparing them for development, and selling them to companies or investors.
+---
 
-The agent was supposed to recover an incomplete college application. Instead it became a real estate consultant — after the user said goodbye.
+## 2. The result (V9 training + V10 eval)
 
-This runs a 3500-word system prompt with 40+ explicit rules. That prompt is in `data/prompts/masters_union_full.md`.
+GRPO on 100 episodes (group-relative advantages, vLLM customer-sim, 6 max turns in rollouts) produced a best **group-mean return of about 3.215** in the reported run. **Exact headline deltas between baseline and trained** on the held-out **eval** and **transfer** sets live in `BENCHMARK.md` and in the JSONs under `data/eval_results/` after you pull the dataset. Figures below are generated with `python scripts/make_plots.py` once `episode_log.jsonl` and the five eval JSONs are present locally.
 
-## Four Drift Types
+![GRPO reward and rolling mean](plots/reward_curve.png)
 
-| Drift | Signal | Detection |
-|-------|--------|-----------|
-| Termination | Agent talks past customer's goodbye | Count turns after farewell |
-| Goal | Agent goes off-topic | Embedding similarity to task |
-| Instruction | Agent violates prompt rules | Per-rule regex checks |
-| Language | Agent switches language unprompted | langdetect |
+![In-domain bar comparison by drift type](plots/eval_comparison.png)
 
-All detectors validated on real transcripts in `data/transcripts/`.
+---
 
-## Benchmark
+## 3. How the environment works
 
-See `BENCHMARK.md` for the eval benchmark with leaderboard and CLI interface.
+An episode is a full agent–customer dialogue. The agent is your policy; the **customer** is a frozen LLM (or scripted persona) so only the policy learns. On each turn the **RewardComposer** adds weighted contributions from `term`, `goal`, `instr`, `lang`, and a small **task** bonus for clean, on-policy turns. Terminal success is an extra term from the terminal-success module. The detector implementations are under `role_drift_env/server/rewards/`; treat them as frozen when comparing V9 to V10 eval (do not “fix” them between training and final eval, or the comparison is muddled).
 
-## Pre-Registered Hypotheses
+---
 
-See `docs/hypotheses.md` — results will be reported honestly regardless of outcome.
+## 4. Artifacts you can reproduce
 
-## Results
+- **Scenarios:** `data/scenarios/train.jsonl` (training), `eval.jsonl` (in-domain test), `transfer_dearconnect.jsonl` (domain shift). The eval set is **disjoint** from training IDs.  
+- **V10 eval job:** `scripts/run_v10_eval_job.sh` — persona gate, sequential baseline/trained eval (no two policies on the GPU at once), Hub upload with `trap` and per-scenario refresh.  
+- **Local eval only:** `python scripts/run_eval.py in_domain --policy-checkpoint ...` (see `--help`).
 
-![reward curve](plots/diag2/reward_curve_aggregate.png)
+---
 
-![baseline vs trained](plots/baseline_vs_trained.png)
-
-Training shown is from a **20-episode diagnostic run (diag2)**. The positive slope (+0.14) and healthy KL (0.06) demonstrate the signal works. Full 100+ episode training is gated on HF compute credits arriving — recipe and pipeline are ready.
-
-## Quick Start
+## 5. Quick start (dev)
 
 ```bash
-# Clone and install
-git clone https://github.com/anomalyco/role-drift-env.git
-cd role-drift-env
+git clone https://github.com/GeniusPlums/OpenEnv-Finale.git
+cd OpenEnv-Finale
 pip install -e .
-
-# Run environment
-python -c "
-from role_drift_env.server.environment import RoleDriftEnvironment
-env = RoleDriftEnvironment()
-obs, state = env.reset('term_kk_01')
-print(f'Loaded: {len(obs.system_prompt)} chars')
-"
-
-# Run detectors on a transcript
-python tests/test_detectors_on_real_transcripts.py
+export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL=http://127.0.0.1:8000/v1   # vLLM for 7B customer
+# Start vLLM for Qwen2.5-7B-Instruct, then:
+python -c "from role_drift_env.server.environment import RoleDriftEnvironment as E; o,s=E().reset('term_kk_01'); print(len(o.system_prompt or ''))"
 ```
 
-## Known Limitations
+---
 
-- Customer sim requires vLLM server running (Qwen2.5-7B)
-- Full training requires GPU compute (100+ ep)
-- Instruction rules are per-prompt-domain (extensible but not zero-shot)
-- Eval is on 20 scenarios × 3 seeds
+## 6. Plots and tables
 
-## Files
+- **Methodology and numbered results:** [BENCHMARK.md](BENCHMARK.md)  
+- **Hypotheses (pre-registered):** [docs/hypotheses.md](docs/hypotheses.md) if present
 
-- `data/prompts/` — Production system prompts (6-line simplified + 3500-word full)
-- `data/transcripts/` — Real failure transcripts
-- `data/scenarios/` — Train/eval scenario definitions
-- `role_drift_env/` — Environment code
-- `training/` — GRPO trainer + Colab notebook
-- `plots/` — Diagnostic run plots
+---
 
-## Links
+## 7. Generalization (transfer)
 
-- Colab notebook: `training/colab_notebook.ipynb`
-- Training script: `training/train_grpo.py`
-- HF Space: (pending compute to deploy)
+The DearConnect **transfer** scenarios are defined in `data/scenarios/transfer_dearconnect.jsonl` (eight scenarios). The same eval harness runs baseline and trained checkpoints on that file; bar charts and CIs are in `transfer.png` and in the `transfer_*.json` results.
+
+![Transfer (DearConnect) comparison](plots/transfer.png)
+
+---
+
+## 8. Failure modes (operator notes)
+
+- **vLLM before eval:** always wait for `/v1/models`, then run a persona line that is **not** the scripted fallback string.  
+- **Hub uploads:** any job that produces checkpoints or JSONs should **upload before exit**; use traps and `|| true` on non-fatal steps.  
+- **OOM:** do not co-load two full policies; eval scripts are one process per policy. The Space should **not** load 7B; use scripted customers only.  
+- **Token scope:** `HF_TOKEN` for Jobs must be **write**-capable for uploads and dataset commits.
+
+This README is the public face of the submission: environment definition, where the weights and logs are, and how the eval was run honestly on held-out scenario IDs.

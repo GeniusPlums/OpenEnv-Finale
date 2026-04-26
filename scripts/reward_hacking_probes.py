@@ -1,164 +1,231 @@
 """
-Reward hacking probes: trivial one-step policies vs optional full-episode trained policy.
+Reward hacking probes: four trivial full-episode policies vs optional trained checkpoint.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
+import re
 import sys
 from pathlib import Path
 
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 import numpy as np
 
-from role_drift_env.models import AgentAction
+print(
+    f"[V10] ROLE_DRIFT_PERSONA_OPENAI_BASE_URL={os.environ.get('ROLE_DRIFT_PERSONA_OPENAI_BASE_URL', '')!r}",
+    flush=True,
+)
+
+from role_drift_env.models import AgentAction, Observation, State
 from role_drift_env.server.environment import RoleDriftEnvironment
-from role_drift_env.server.rewards import RewardComposer
+from training.rollout import rollout_episode
+
+_FAREWELL_RE = re.compile(
+    r"(?i)(goodbye|bye\b|thanks|thank you|have a good day|see you|take care)",
+)
 
 
-def run_probe(env, scenario_id: str, agent_mode: str, num_seeds: int = 3) -> float:
-    results = []
-    for seed in range(num_seeds):
-        try:
-            obs, state = env.reset(scenario_id, seed)
-        except Exception:
+def _farewell_in_history(state: State) -> bool:
+    for turn in state.history:
+        if turn.get("role") != "customer":
             continue
-
-        if agent_mode == "silent":
-            action = AgentAction(utterance="")
-        elif agent_mode == "minimal":
-            action = AgentAction(utterance="Okay.")
-        elif agent_mode == "verbose":
-            action = AgentAction(
-                utterance="Thank you for sharing that information. I understand your interest and will consider the appropriate steps to move forward effectively."
-            )
-        else:
-            continue
-
-        composer = RewardComposer()
-        reward = composer.score(state, action)
-        results.append(reward.total)
-
-    return float(np.mean(results)) if results else 0.0
+        text = turn.get("text") or ""
+        if _FAREWELL_RE.search(text):
+            return True
+    return False
 
 
-def run_trivial_probes(scenario_file: Path, num_seeds: int) -> dict[str, float]:
-    env = RoleDriftEnvironment()
-    with open(scenario_file, encoding="utf-8") as f:
-        scenarios = [json.loads(line)["scenario_id"] for line in f][:10]
-    results: dict[str, float] = {}
-    for mode in ("silent", "minimal", "verbose"):
-        total = 0.0
-        count = 0
-        for sid in scenarios:
-            r = run_probe(env, sid, mode, num_seeds=num_seeds)
-            if r != 0:
-                total += r
-                count += 1
-        results[mode] = round(total / max(count, 1), 3)
-    return results
+def policy_always_empty(_obs: Observation, _state: State) -> AgentAction:
+    return AgentAction(utterance="")
 
 
-def run_trained_probe(
-    checkpoint: str, scenario_file: Path, num_seeds: int, temp_out: Path
+def policy_always_rephrase(_obs: Observation, _state: State) -> AgentAction:
+    return AgentAction(
+        utterance="Let me rephrase that in simpler terms: I understand your message and I am here to help you move forward."
+    )
+
+
+def policy_always_summary(_obs: Observation, _state: State) -> AgentAction:
+    return AgentAction(
+        utterance="In short: the key takeaway is to stay focused on the next step the college asked for and avoid unnecessary tangents."
+    )
+
+
+def policy_mute_after_farewell(obs: Observation, state: State) -> AgentAction:
+    if _FAREWELL_RE.search((obs.customer_message or "").strip()) or _farewell_in_history(
+        state
+    ):
+        return AgentAction(utterance="")
+    return AgentAction(
+        utterance="I can help you with the application. What is the one thing you need help with first?"
+    )
+
+
+POLICIES = {
+    "always_empty": policy_always_empty,
+    "always_rephrase": policy_always_rephrase,
+    "always_summary": policy_always_summary,
+    "mute_after_farewell": policy_mute_after_farewell,
+}
+
+
+def _run_one_episode(
+    env: RoleDriftEnvironment,
+    policy,
+    scenario_id: str,
+    seed: int,
+    max_turns: int,
 ) -> float:
-    from training.eval_baseline import evaluate_baseline
+    traj, ret, _st = rollout_episode(
+        policy=policy,
+        scenario_id=scenario_id,
+        env=env,
+        rollout_idx=seed,
+        max_turns_override=max_turns,
+        return_state=True,
+    )
+    return float(ret)
 
-    temp_out.parent.mkdir(parents=True, exist_ok=True)
+
+def run_policy_over_file(
+    policy_name: str,
+    scenario_path: Path,
+    seeds: list[int],
+    max_turns: int,
+) -> tuple[list[float], float, float, float]:
+    policy = POLICIES[policy_name]
+    env = RoleDriftEnvironment()
+    rows = _load_scenarios(scenario_path)
+    returns: list[float] = []
+    for s in rows:
+        sid = s["scenario_id"]
+        for seed in seeds:
+            returns.append(
+                _run_one_episode(env, policy, sid, seed, max_turns),
+            )
+    m = float(np.mean(returns)) if returns else 0.0
+    if len(returns) < 2:
+        return returns, m, m, m
+    rng = np.random.default_rng(42)
+    boot = 2000
+    means = np.empty(boot, dtype=np.float64)
+    arr = np.asarray(returns, dtype=np.float64)
+    n = len(arr)
+    for i in range(boot):
+        means[i] = float(np.mean(rng.choice(arr, size=n, replace=True)))
+    return (
+        returns,
+        m,
+        float(np.percentile(means, 2.5)),
+        float(np.percentile(means, 97.5)),
+    )
+
+
+def _load_scenarios(path: Path) -> list[dict]:
+    with open(path, encoding="utf-8") as f:
+        return [json.loads(line) for line in f if line.strip()]
+
+
+def _trained_mean_from_checkpoint(
+    checkpoint: str, scenario_path: Path, seeds: list[int]
+) -> float | None:
+    try:
+        from training.eval_baseline import evaluate_baseline
+    except Exception as e:
+        print(f"[probes] trained eval import failed: {e}", file=sys.stderr)
+        return None
+    out = Path("/tmp/probe_trained_eval.json")
+    if sys.platform == "win32":
+        out = Path("data/eval_results/_tmp_probe_trained.json")
     payload = evaluate_baseline(
         model_path=checkpoint,
-        scenario_file=str(scenario_file),
-        num_seeds=num_seeds,
-        output_path=str(temp_out),
+        scenario_file=str(scenario_path),
+        num_seeds=max(seeds) + 1 if seeds else 3,
+        output_path=str(out),
     )
     return float(payload["summary"]["mean_return"])
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--checkpoint", default=None, help="Trained model dir (optional)")
+    ap = argparse.ArgumentParser(
+        description="Trivial full-episode policies (reward-hacking baselines).",
+    )
     ap.add_argument(
+        "--scenarios-jsonl",
         "--scenario-file",
         default="data/scenarios/eval.jsonl",
-        help="Scenarios for probes and trained eval",
+        dest="scenarios_jsonl",
+        help="Scenarios (eval.jsonl, never train.jsonl).",
     )
     ap.add_argument(
+        "--output-json",
         "--output",
-        default="data/eval_results/reward_hacking_probe_complete.json",
-        help="Output JSON path",
+        default="data/eval_results/reward_hacking_probes.json",
+        dest="output_json",
     )
-    ap.add_argument("--num-seeds", type=int, default=2, help="Seeds per scenario (trivial + trained)")
-    ap.add_argument("--plot", action="store_true", help="Save plots/reward_hacking_probe.png")
+    ap.add_argument(
+        "--checkpoint",
+        default=None,
+        help="Optional trained model path or repo id to log reference mean (full eval).",
+    )
+    ap.add_argument(
+        "--seeds",
+        default="0,1,2,3,4",
+        help="Comma-separated rollout seeds (same as V10 eval).",
+    )
+    ap.add_argument(
+        "--max-turns", type=int, default=6, help="Max turns (match V9 training / run_eval)."
+    )
     args = ap.parse_args()
-
-    scenario_file = Path(args.scenario_file)
-    if not scenario_file.is_file():
-        print(f"Not found: {scenario_file}", file=sys.stderr)
+    scenario_path = Path(args.scenarios_jsonl)
+    if "train" in str(scenario_path).lower():
+        print("FATAL: do not use training scenarios for probes.", file=sys.stderr)
+        sys.exit(1)
+    if not scenario_path.is_file():
+        print(f"Not found: {scenario_path}", file=sys.stderr)
         sys.exit(1)
 
-    print("Running trivial probes (one-step)...")
-    trivial = run_trivial_probes(scenario_file, args.num_seeds)
+    seeds = [int(x.strip()) for x in args.seeds.split(",") if x.strip()]
 
-    out_obj: dict = {
-        "silent": {"aggregate_mean": trivial["silent"]},
-        "minimal": {"aggregate_mean": trivial["minimal"]},
-        "verbose": {"aggregate_mean": trivial["verbose"]},
-        "trained": None,
+    out: dict = {
+        "scenarios_file": str(scenario_path),
+        "n_scenarios": len(_load_scenarios(scenario_path)),
+        "n_seeds": len(seeds),
+        "max_turns": args.max_turns,
+        "policies": {},
     }
 
-    if args.checkpoint:
-        print("Running trained policy (full episodes)...")
-        tmp = Path("/tmp/reward_hacking_trained_eval.json")
-        if sys.platform == "win32":
-            tmp = Path(args.output).parent / "_tmp_trained_probe_eval.json"
-        mean = run_trained_probe(
-            args.checkpoint, scenario_file, args.num_seeds, tmp
+    for name in POLICIES:
+        rets, m, lo, hi = run_policy_over_file(
+            name, scenario_path, seeds, args.max_turns
         )
-        out_obj["trained"] = {"aggregate_mean": round(mean, 4)}
-        try:
-            tmp.unlink(missing_ok=True)  # type: ignore[arg-type]
-        except Exception:
-            pass
-    else:
-        out_obj["trained"] = {"aggregate_mean": None}
+        out["policies"][name] = {
+            "mean_total_reward": round(m, 4),
+            "ci_lower_95": round(lo, 4),
+            "ci_upper_95": round(hi, 4),
+            "n_values": len(rets),
+        }
+        print(f"[probes] {name}: mean={m:.4f} ci=[{lo:.4f}, {hi:.4f}]")
 
-    # Backward compatibility
-    out_obj["probe_results"] = {
-        k: trivial[k] for k in ("silent", "minimal", "verbose")
-    }
+    out["trained_reference_mean_return"] = None
+    if args.checkpoint:
+        tm = _trained_mean_from_checkpoint(
+            args.checkpoint, scenario_path, seeds
+        )
+        if tm is not None:
+            out["trained_reference_mean_return"] = round(tm, 4)
+            print(f"[probes] trained reference (evaluate_baseline): {tm:.4f}")
 
-    outp = Path(args.output)
+    outp = Path(args.output_json)
     outp.parent.mkdir(parents=True, exist_ok=True)
     with open(outp, "w", encoding="utf-8") as f:
-        json.dump(out_obj, f, indent=2)
+        json.dump(out, f, indent=2, ensure_ascii=False)
     print(f"Saved {outp}")
-
-    if args.plot or args.checkpoint:
-        import matplotlib
-
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-
-        modes = ["silent", "minimal", "verbose", "trained"]
-        vals = [
-            (out_obj[m] or {}).get("aggregate_mean")
-            if isinstance(out_obj.get(m), dict)
-            else None
-            for m in modes
-        ]
-        vals_plot = [float(v) if v is not None else 0.0 for v in vals]
-        labels = ["Silent", "Minimal", "Verbose", "Trained"]
-        colors = ["#e76f51", "#e76f51", "#e76f51", "#2a9d8f"]
-        fig, ax = plt.subplots(figsize=(8, 5))
-        ax.bar(labels, vals_plot, color=colors)
-        ax.set_ylabel("Mean aggregate reward (see docstring for scale mix)")
-        ax.set_title("Reward-hacking probes")
-        ax.axhline(y=0, color="black", linewidth=0.5)
-        ax.grid(axis="y", alpha=0.3)
-        Path("plots").mkdir(parents=True, exist_ok=True)
-        plt.tight_layout()
-        plt.savefig("plots/reward_hacking_probe.png", dpi=120)
-        plt.close()
-        print("Saved plots/reward_hacking_probe.png")
 
 
 if __name__ == "__main__":

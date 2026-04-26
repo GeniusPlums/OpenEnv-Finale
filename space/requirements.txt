@@ -1,0 +1,7 @@
+gradio>=4.44.0
+transformers>=4.45.0
+torch>=2.1.0
+sentence-transformers>=2.2.0
+langdetect>=1.0.9
+openai>=1.0.0
+huggingface-hub>=0.20.0
