@@ -11,15 +11,33 @@ import subprocess
 import sys
 import time
 
-# One short process: init + tiny allocation (matches training / vLLM needs)
+# One short process: init + tiny allocation (matches training / vLLM needs).
+# Do NOT call device_count() first — on HF H200 / NVSwitch, cudaGetDeviceCount can throw
+# Error 802 until the fabric is ready; binding the device + current_device() matches a
+# more reliable init order than count-first.
 _PROBE = r"""
 import torch
-if torch.cuda.device_count() < 1:
-    raise RuntimeError("no CUDA devices")
-x = torch.zeros(1, device="cuda", dtype=torch.float32)
-torch.cuda.synchronize()
-print("cuda_ok", torch.cuda.get_device_name(0), "torch", torch.__version__)
-del x
+
+def _probe():
+    # Explicit init (no-op if already done); can succeed slightly before count-first path stabilizes.
+    try:
+        torch.cuda.init()
+    except Exception as e:
+        raise RuntimeError(f"torch.cuda.init failed: {e}") from e
+    if not torch.cuda.is_available():
+        raise RuntimeError("torch.cuda.is_available() is False after init")
+    torch.cuda.set_device(0)
+    torch.cuda.current_device()
+    n = torch.cuda.device_count()
+    if n < 1:
+        raise RuntimeError("no CUDA devices")
+    name = torch.cuda.get_device_name(0)
+    x = torch.zeros(2, device="cuda", dtype=torch.float32)
+    torch.cuda.synchronize()
+    del x
+    print("cuda_ok", name, "torch", torch.__version__, "devices", n)
+
+_probe()
 """
 
 
@@ -36,6 +54,11 @@ def main() -> int:
         f"(~{max_r * sleep_s:.0f}s cap); subprocess per attempt",
         flush=True,
     )
+
+    initial = float(os.environ.get("CUDA_WAIT_INITIAL_SLEEP_SEC", "0"))
+    if initial > 0:
+        print(f"[wait_for_cuda] initial sleep {initial}s (CUDA_WAIT_INITIAL_SLEEP_SEC)", flush=True)
+        time.sleep(initial)
 
     for i in range(max_r):
         if i == max_r // 2:
