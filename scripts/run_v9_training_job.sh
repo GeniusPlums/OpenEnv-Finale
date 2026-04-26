@@ -9,8 +9,8 @@ export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:T
 # HF Jobs H200 / NVSwitch: cudaGetDeviceCount can return Error 802 until fabric is ready (see huggingface_hub#4134).
 export CUDA_DEVICE_ORDER="${CUDA_DEVICE_ORDER:-PCI_BUS_ID}"
 export CUDA_MODULE_LOADING="${CUDA_MODULE_LOADING:-LAZY}"
-# Try 1 first; on H200 some nodes fail NVML path — warmup loop can retry with 0.
-export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-1}"
+# Default 0: on HF H200, NVML-based init often hits 802; script flips to 1 mid-warmup if needed.
+export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-0}"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
 # Prefer legacy vLLM engine: avoids torch.accelerator worker init issues on some PyTorch + H200 stacks.
 export VLLM_USE_V1="${VLLM_USE_V1:-0}"
@@ -57,23 +57,29 @@ export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "===== nvidia-smi ====="
 nvidia-smi
 
-# H200 / NVSwitch: touching CUDA before fabric is ready yields Error 802. Do not run torch here.
-echo "===== Waiting for GPU fabric (initial 45s after nvidia-smi) ====="
-sleep 45
+# H200 / NVSwitch: PyTorch cudaGetDeviceCount() → Error 802 until fabric is ready (minutes, not seconds).
+# Do not import torch before this section.
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-300}"
+echo "===== Waiting for GPU fabric (${_FABRIC_SLEEP}s — set CUDA_FABRIC_SLEEP_SEC to tune) ====="
+sleep "$_FABRIC_SLEEP"
 
-echo "===== CUDA readiness warmup (no set_device — avoids torch 802 on some H200 stacks) ====="
+echo "===== nvidia-smi ping loop (no PyTorch yet) ====="
+for _k in $(seq 1 90); do
+  nvidia-smi -L >/dev/null 2>&1 || true
+  sleep 2
+done
+
+echo "===== CUDA readiness warmup (PyTorch first touch) ====="
 CUDA_OK=0
-_WARM_TRIES="${CUDA_WARMUP_TRIES:-48}"
-_WARM_SLEEP="${CUDA_WARMUP_SLEEP:-15}"
+_WARM_TRIES="${CUDA_WARMUP_TRIES:-72}"
+_WARM_SLEEP="${CUDA_WARMUP_SLEEP:-12}"
 for i in $(seq 1 "$_WARM_TRIES"); do
-  # Alternate NVML check after half the tries (some HF H200 nodes need NVML off).
   if [[ "$i" -eq $((_WARM_TRIES / 2)) ]]; then
-    export PYTORCH_NVML_BASED_CUDA_CHECK=0
-    echo "[warmup] switching PYTORCH_NVML_BASED_CUDA_CHECK=0 for remaining probes"
+    export PYTORCH_NVML_BASED_CUDA_CHECK=1
+    echo "[warmup] switching PYTORCH_NVML_BASED_CUDA_CHECK=1 for remaining probes"
   fi
-  # Avoid torch.cuda.set_device(0): triggers _cuda_setDevice → 802 while fabric still down.
-  _probe_out="$(
-    python -c "
+  set +e
+  _probe_out="$(python -c "
 import torch
 if torch.cuda.device_count() < 1:
     raise RuntimeError('no cuda devices')
@@ -81,11 +87,12 @@ x = torch.zeros(1, device='cuda', dtype=torch.float32)
 torch.cuda.synchronize()
 print('cuda_ok', torch.cuda.get_device_name(0), 'torch', torch.__version__)
 del x
-" 2>&1
-  )" && _probe_rc=0 || _probe_rc=$?
+" 2>&1)"
+  _probe_rc=$?
+  set -e
   if [[ "$_probe_rc" -eq 0 ]]; then
     echo "$_probe_out"
-    echo "CUDA probe OK after $i attempt(s) (~$((i * ${_WARM_SLEEP}))s budget)"
+    echo "CUDA probe OK after $i attempt(s)"
     CUDA_OK=1
     break
   fi
@@ -93,8 +100,39 @@ del x
   echo "$_probe_out" | head -35
   sleep "$_WARM_SLEEP"
 done
+
 if [[ "$CUDA_OK" -ne 1 ]]; then
-  echo "FATAL: CUDA not usable after warmup (H200 Error 802 / fabric — re-queue job or use HF_JOB_FLAVOR=a100-large)."
+  echo "===== CUDA still failing — extended fabric wait + second probe phase ====="
+  export PYTORCH_NVML_BASED_CUDA_CHECK=0
+  sleep "${CUDA_FABRIC_RETRY_SLEEP_SEC:-240}"
+  _R2="${CUDA_WARMUP_RETRY_TRIES:-48}"
+  for i in $(seq 1 "$_R2"); do
+    set +e
+    _probe_out="$(python -c "
+import torch
+if torch.cuda.device_count() < 1:
+    raise RuntimeError('no cuda devices')
+x = torch.zeros(1, device='cuda', dtype=torch.float32)
+torch.cuda.synchronize()
+print('cuda_ok', torch.cuda.get_device_name(0), 'torch', torch.__version__)
+del x
+" 2>&1)"
+    _probe_rc=$?
+    set -e
+    if [[ "$_probe_rc" -eq 0 ]]; then
+      echo "$_probe_out"
+      echo "CUDA probe OK in retry phase after $i attempt(s)"
+      CUDA_OK=1
+      break
+    fi
+    echo "CUDA retry $i/$_R2 failed:"
+    echo "$_probe_out" | head -25
+    sleep 10
+  done
+fi
+
+if [[ "$CUDA_OK" -ne 1 ]]; then
+  echo "FATAL: CUDA Error 802 persisted — bad H200 node or fabric. Cancel and re-queue, or HF_JOB_FLAVOR=a100-large."
   exit 1
 fi
 
