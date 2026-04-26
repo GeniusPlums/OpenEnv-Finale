@@ -54,7 +54,7 @@ class RewardComposer:
             and lang_penalty == 0.0
             and len(action.utterance.split()) >= 3
         ):
-            lang_anchor = 0.6
+            lang_anchor = 0.5
         components["lang_anchor"] = round(lang_anchor, 4)
 
         total = sum(components.values())

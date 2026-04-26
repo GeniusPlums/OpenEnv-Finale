@@ -71,14 +71,14 @@ class LanguageDriftDetector:
                 lang_probs = self._detect_langs(text)
                 if lang_probs:
                     conf = float(lang_probs[0].prob)
-                    raw = max(0.92, conf**1.5)
+                    raw = max(0.85, conf**1.5)
                     if len(lang_probs) >= 2 and lang_probs[1].prob >= 0.22:
                         raw = min(1.0, raw + 0.12)
                     return round(min(raw, 1.0), 4)
             except Exception:
                 pass
 
-            return 0.92
+            return 0.85
 
         except Exception:
             return 0.0
