@@ -47,6 +47,16 @@ class RewardComposer:
         lang_penalty = self.lang_det.score(state, action)
         components["lang"] = round(-self.weights["lang"] * lang_penalty, 4)
 
+        # Option B: anchor first agent turn when language matches baseline (learnability, not only penalty).
+        lang_anchor = 0.0
+        if (
+            state.turn_idx == 0
+            and lang_penalty == 0.0
+            and len(action.utterance.split()) >= 3
+        ):
+            lang_anchor = 0.6
+        components["lang_anchor"] = round(lang_anchor, 4)
+
         total = sum(components.values())
         total = max(-5.0, min(5.0, total))
         return TurnReward(total=round(total, 4), components=components)
