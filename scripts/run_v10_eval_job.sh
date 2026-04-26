@@ -4,6 +4,12 @@
 set -euo pipefail
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 export PYTHONUNBUFFERED=1
+# HF Jobs H200: align with V9 — avoid premature NVML CUDA init before fabric is ready.
+export CUDA_DEVICE_ORDER="${CUDA_DEVICE_ORDER:-PCI_BUS_ID}"
+export CUDA_MODULE_LOADING="${CUDA_MODULE_LOADING:-LAZY}"
+export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-0}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+export VLLM_USE_V1="${VLLM_USE_V1:-0}"
 
 echo "V10_ENTRY ROLE_DRIFT_PERSONA_OPENAI_BASE_URL=${ROLE_DRIFT_PERSONA_OPENAI_BASE_URL-}"
 
@@ -87,35 +93,103 @@ if [[ ! -f "checkpoints/trained/config.json" ]]; then
   exit 1
 fi
 
-# === FM-3: nvidia-smi before model loads ======================================
+# === FM-3: nvidia-smi before any PyTorch CUDA calls ============================
+echo "===== nvidia-smi (before fabric wait) ====="
 nvidia-smi
 
-# === Customer-sim vLLM ========================================================
+# GPU fabric on HF can lag nvidia-smi; wait before first torch CUDA probe (Error 802).
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-100}"
+echo "===== Post-nvidia-smi fabric settle (${_FABRIC_SLEEP}s, override CUDA_FABRIC_SLEEP_SEC; use 90–120 on H200) ====="
+sleep "$_FABRIC_SLEEP"
+
+# Subprocess per attempt — same as V9 training; no torch in parent yet for probe.
+export CUDA_WAIT_PRE_PROBE_SEC="${CUDA_WAIT_PRE_PROBE_SEC:-30}"
+echo "===== Active CUDA wait (scripts/wait_for_cuda.py, CUDA_WAIT_*) ====="
+python scripts/wait_for_cuda.py || {
+  echo "FATAL: CUDA not ready after wait_for_cuda (802 / driver race). Increase CUDA_FABRIC_SLEEP_SEC or CUDA_WAIT_PRE_PROBE_SEC."
+  exit 1
+}
+
+# Warmup in THIS process so vLLM inherits a known-good CUDA context state.
+echo "===== CUDA warmup (before vLLM; confirms GPU ready) ====="
+python -c "
+import torch
+print('[V10] torch', torch.__version__, 'cuda', torch.version.cuda, flush=True)
+avail = torch.cuda.is_available()
+print('[V10] cuda.is_available() =', avail, flush=True)
+if not avail:
+    raise SystemExit('CUDA not available after wait_for_cuda')
+torch.cuda.set_device(0)
+_ = torch.cuda.current_device()
+n = torch.cuda.device_count()
+print('[V10] cuda.device_count() =', n, flush=True)
+x = torch.zeros(2, device='cuda', dtype=torch.float32)
+torch.cuda.synchronize()
+del x
+print('[V10] GPU ready:', torch.cuda.get_device_name(0), flush=True)
+"
+
+# === Customer-sim vLLM (retries for engine init / 802 races) ==================
 VLLM_PORT="${VLLM_PORT:-8000}"
 export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "[V10] ROLE_DRIFT_PERSONA_OPENAI_BASE_URL=$ROLE_DRIFT_PERSONA_OPENAI_BASE_URL"
 
-echo "===== Starting customer-sim vLLM ====="
-python -m vllm.entrypoints.openai.api_server \
-  --model Qwen/Qwen2.5-7B-Instruct \
-  --port "$VLLM_PORT" \
-  --max-model-len 4096 \
-  --gpu-memory-utilization 0.40 \
-  > vllm_server.log 2>&1 &
-VLLM_PID=$!
+VLLM_MAX_START_ATTEMPTS="${VLLM_MAX_START_ATTEMPTS:-3}"
+VLLM_RETRY_SLEEP_SEC="${VLLM_RETRY_SLEEP_SEC:-25}"
 
-VLLM_OK=0
-for i in $(seq 1 60); do
-  if curl -sf "http://127.0.0.1:${VLLM_PORT}/v1/models" >/dev/null; then
-    echo "vLLM ready after ~$((i * 5))s"
-    VLLM_OK=1
-    break
-  fi
-  sleep 5
-done
-if [[ "$VLLM_OK" -ne 1 ]]; then
-  echo "FATAL: vLLM not ready in 5 min (see vllm_server.log)"
-  tail -120 vllm_server.log 2>/dev/null || true
+start_vllm_with_retries() {
+  local attempt ok i
+  VLLM_PID=""
+  for attempt in $(seq 1 "$VLLM_MAX_START_ATTEMPTS"); do
+    echo "===== vLLM start attempt ${attempt}/${VLLM_MAX_START_ATTEMPTS} ====="
+    if [[ -n "${VLLM_PID:-}" ]] && kill -0 "$VLLM_PID" 2>/dev/null; then
+      echo "[V10] stopping previous vLLM pid=$VLLM_PID"
+      kill "$VLLM_PID" 2>/dev/null || true
+      wait "$VLLM_PID" 2>/dev/null || true
+    fi
+    VLLM_PID=""
+    if [[ "$attempt" -gt 1 ]]; then
+      echo "[V10] sleeping ${VLLM_RETRY_SLEEP_SEC}s before vLLM retry (CUDA_WAIT / fabric)..."
+      sleep "$VLLM_RETRY_SLEEP_SEC"
+      echo "[V10] post-retry CUDA ping:"
+      python -c "import torch; torch.cuda.synchronize(); print('[V10] device_count', torch.cuda.device_count())" || true
+    fi
+    echo "[V10] launching vLLM (enforce-eager; log: vllm_server.log)..."
+    python -m vllm.entrypoints.openai.api_server \
+      --model Qwen/Qwen2.5-7B-Instruct \
+      --port "$VLLM_PORT" \
+      --max-model-len 4096 \
+      --gpu-memory-utilization 0.40 \
+      --enforce-eager \
+      > vllm_server.log 2>&1 &
+    VLLM_PID=$!
+    echo "[V10] vLLM PID=$VLLM_PID"
+
+    ok=0
+    for i in $(seq 1 60); do
+      if curl -sf "http://127.0.0.1:${VLLM_PORT}/v1/models" >/dev/null; then
+        echo "[V10] vLLM HTTP ready after ~$((i * 5))s (attempt ${attempt})"
+        ok=1
+        break
+      fi
+      if ! kill -0 "$VLLM_PID" 2>/dev/null; then
+        echo "[V10] vLLM process died during startup (attempt ${attempt}). Log tail:"
+        tail -100 vllm_server.log 2>/dev/null || true
+        break
+      fi
+      sleep 5
+    done
+    if [[ "$ok" -eq 1 ]]; then
+      return 0
+    fi
+    echo "[V10] vLLM attempt ${attempt} failed (no HTTP /models in 5 min or process exit)"
+    tail -100 vllm_server.log 2>/dev/null || true
+  done
+  return 1
+}
+
+if ! start_vllm_with_retries; then
+  echo "FATAL: vLLM failed after ${VLLM_MAX_START_ATTEMPTS} attempts"
   exit 1
 fi
 
