@@ -9,7 +9,8 @@ export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:T
 # HF Jobs H200 / NVSwitch: cudaGetDeviceCount can return Error 802 until fabric is ready (see huggingface_hub#4134).
 export CUDA_DEVICE_ORDER="${CUDA_DEVICE_ORDER:-PCI_BUS_ID}"
 export CUDA_MODULE_LOADING="${CUDA_MODULE_LOADING:-LAZY}"
-export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-1}"
+# H200 on HF Jobs: NVML-based CUDA init often throws 802 until fabric is ready — start with 0, not 1.
+export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-0}"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
 # Prefer legacy vLLM engine: avoids torch.accelerator worker init issues on some PyTorch + H200 stacks.
 export VLLM_USE_V1="${VLLM_USE_V1:-0}"
@@ -56,20 +57,19 @@ export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "===== nvidia-smi ====="
 nvidia-smi
 
-# Short optional wait only. The real fix for "probe never passes" is CUDA torch *before* pip install -e .
-# If you hit Error 802 on a bad H200 node, re-queue or set CUDA_FABRIC_SLEEP_SEC=120 (do not commit huge defaults).
-_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-45}"
+# H200 fabric often needs >45s after nvidia-smi before cudaGetDeviceCount succeeds. Override with CUDA_FABRIC_SLEEP_SEC.
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-120}"
 echo "===== Waiting for GPU fabric (${_FABRIC_SLEEP}s, env CUDA_FABRIC_SLEEP_SEC) ====="
 sleep "$_FABRIC_SLEEP"
 
-echo "===== CUDA readiness warmup ====="
+echo "===== CUDA readiness warmup (NVML=0 first; flip to 1 mid-run if still failing) ====="
 CUDA_OK=0
 _WARM_TRIES="${CUDA_WARMUP_TRIES:-36}"
 _WARM_SLEEP="${CUDA_WARMUP_SLEEP:-10}"
 for i in $(seq 1 "$_WARM_TRIES"); do
   if [[ "$i" -eq $((_WARM_TRIES / 2)) ]]; then
-    export PYTORCH_NVML_BASED_CUDA_CHECK=0
-    echo "[warmup] switching PYTORCH_NVML_BASED_CUDA_CHECK=0"
+    export PYTORCH_NVML_BASED_CUDA_CHECK=1
+    echo "[warmup] switching PYTORCH_NVML_BASED_CUDA_CHECK=1"
   fi
   set +e
   _probe_out="$(python -c "
@@ -94,7 +94,7 @@ del x
   sleep "$_WARM_SLEEP"
 done
 if [[ "$CUDA_OK" -ne 1 ]]; then
-  echo "FATAL: CUDA not ready (802 / fabric — re-queue job, or CUDA_FABRIC_SLEEP_SEC=120, or HF_JOB_FLAVOR=a100-large)."
+  echo "FATAL: CUDA not ready (802 / bad node — cancel and re-queue the same h200 job)."
   exit 1
 fi
 
