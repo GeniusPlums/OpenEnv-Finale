@@ -59,8 +59,8 @@ Write-Host "[6/7] 2-episode timing smoke"
 python training/train_grpo.py `
   --episodes 2 `
   --group-size 4 `
-  --lr 1e-5 `
-  --kl-coef 0.05 `
+  --lr 5e-6 `
+  --kl-coef 0.125 `
   --curriculum adversarial `
   --policy-model $PolicyModel `
   --checkpoint-every 1 `

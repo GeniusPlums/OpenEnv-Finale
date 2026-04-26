@@ -11,10 +11,10 @@ class RewardComposer:
         if weights is None:
             weights = {
                 "task": 1.0,
-                "term": 0.5,
+                "term": 0.65,
                 "goal": 0.5,
                 "instr": 0.5,
-                "lang": 0.3,
+                "lang": 0.45,
             }
         self.weights = weights
         self.term_det = TerminationDriftDetector()

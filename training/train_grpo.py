@@ -11,8 +11,9 @@ if "/app" not in sys.path:
 
 import torch
 import torch.nn.functional as F
+from collections import defaultdict
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from role_drift_env.models import AgentAction, Observation, State
 
@@ -26,6 +27,39 @@ from role_drift_env.server.customer_sim import CustomerSimulator
 from training.hf_auth import resolve_hf_token
 from training.hub_upload import upload_model_folder
 from training.rollout import rollout_episode
+
+
+def _primary_drift_from_row(obj: Dict[str, Any]) -> str:
+    types = obj.get("drift_types") or []
+    for t in types:
+        if t != "cooperative":
+            return str(t)
+    return "cooperative"
+
+
+def build_grpo_scenario_schedule(
+    scenario_file: str, lang_term_extra_copies: int = 1
+) -> Tuple[List[str], Dict[str, str], int]:
+    """Build episode rotation: each language / termination row appears (1+extra) times.
+
+    Returns (scenario_ids, scenario_id -> primary drift, base_row_count).
+    """
+    rows: List[Dict[str, Any]] = []
+    with open(scenario_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rows.append(json.loads(line))
+    drift_by_sid: Dict[str, str] = {}
+    scenario_ids: List[str] = []
+    for obj in rows:
+        sid = obj["scenario_id"]
+        d = _primary_drift_from_row(obj)
+        drift_by_sid[sid] = d
+        n = 1 + lang_term_extra_copies if d in ("language", "termination") else 1
+        scenario_ids.extend([sid] * n)
+    return scenario_ids, drift_by_sid, len(rows)
 
 
 class GRPOTrainer:
@@ -46,7 +80,7 @@ class GRPOTrainer:
         output_dir: str = "checkpoints/grpo",
         checkpoint_dir: str = None,
         group_size: int = 4,
-        kl_coef: float = 0.05,
+        kl_coef: float = 0.125,
         lr: float = 5e-6,
         device: str = None,
         max_new_tokens: int = 60,
@@ -293,6 +327,7 @@ class GRPOTrainer:
         time_each_episode: bool = False,
         transcript_dir: str = "logs/transcripts",
         hub_repo: str = None,
+        scenario_drifts: Optional[Dict[str, str]] = None,
     ):
         """Run GRPO training loop.
 
@@ -300,12 +335,15 @@ class GRPOTrainer:
             log_every: print metrics every N episodes
             save_transcripts_every: save full rollouts to disk every N episodes
             transcript_dir: where to save transcript JSONs
+            scenario_drifts: scenario_id -> primary drift label (for running mean_return_by_drift)
         """
         self.hub_repo = hub_repo
         env = RoleDriftEnvironment()
         best_return = -1e9
         transcript_path = Path(transcript_dir)
         transcript_path.mkdir(parents=True, exist_ok=True)
+        drift_sum: Dict[str, float] = defaultdict(float)
+        drift_cnt: Dict[str, int] = defaultdict(int)
 
         for episode in range(num_episodes):
             episode_start = time.time()
@@ -363,10 +401,18 @@ class GRPOTrainer:
             for key in all_component_keys:
                 component_means[key] = sum(row.get(key, 0.0) for row in group_components) / len(group_components)
 
+            drift_label = (scenario_drifts or {}).get(scenario_id, "unknown")
+            drift_sum[drift_label] += float(mean.item())
+            drift_cnt[drift_label] += 1
+            mean_return_by_drift = {
+                k: round(drift_sum[k] / drift_cnt[k], 4) for k in sorted(drift_cnt.keys())
+            }
+
             # Logging
             self.episode_log.append({
                 "episode": episode,
                 "scenario_id": scenario_id,
+                "primary_drift": drift_label,
                 "mean_return": mean.item(),
                 "std_return": std.item(),
                 "max_return": returns_t.max().item(),
@@ -374,14 +420,18 @@ class GRPOTrainer:
                 "avg_loss": avg_loss,
                 "avg_kl": avg_kl,
                 "component_means": component_means,
+                "mean_return_by_drift": mean_return_by_drift,
                 "episode_seconds": time.time() - episode_start,
             })
 
             if episode % log_every == 0:
+                by_d = " ".join(
+                    f"{k}={mean_return_by_drift[k]:.3f}" for k in sorted(mean_return_by_drift.keys())
+                )
                 print(
-                    f"Ep {episode:03d} | scenario={scenario_id} | "
+                    f"Ep {episode:03d} | scenario={scenario_id} | drift={drift_label} | "
                     f"mean_ret={mean.item():.3f} | std={std.item():.3f} | "
-                    f"loss={avg_loss:.4f} | kl={avg_kl:.4f}"
+                    f"loss={avg_loss:.4f} | kl={avg_kl:.4f} | cum_mean_by_drift [{by_d}]"
                 )
                 if save_transcript:
                     print(f"  -> Saved transcripts to {transcript_path}")
@@ -431,6 +481,7 @@ class GRPOTrainer:
                     "avg_loss": avg_loss,
                     "avg_kl": avg_kl,
                     "best_return": best_return,
+                    "mean_return_by_drift": mean_return_by_drift,
                 })
 
         # Save logs
@@ -459,7 +510,18 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint-dir", default=None, help="Directory for model checkpoints")
     parser.add_argument("--model-name", default="Qwen/Qwen2.5-1.5B-Instruct")
     parser.add_argument("--policy-model", default=None, help="Alias for --model-name")
-    parser.add_argument("--kl-coef", type=float, default=0.05, help="KL penalty coefficient")
+    parser.add_argument(
+        "--kl-coef",
+        type=float,
+        default=0.125,
+        help="KL penalty coefficient (~+25%% vs 0.1 for tighter ref anchoring)",
+    )
+    parser.add_argument(
+        "--lang-term-oversample",
+        type=int,
+        default=1,
+        help="Extra copies of each language+termination scenario in the episode rotation (0=off, 1=2x frequency).",
+    )
     parser.add_argument("--lr", type=float, default=5e-6, help="Learning rate")
     parser.add_argument("--curriculum", default=None, help="Reserved compatibility arg (currently not used)")
     parser.add_argument("--use-wandb", action="store_true", help="Enable wandb logging")
@@ -486,12 +548,14 @@ if __name__ == "__main__":
         flush=True,
     )
 
-    # Load scenario IDs
-    scenario_ids = []
-    with open(args.scenario_file, "r", encoding="utf-8") as f:
-        for line in f:
-            obj = json.loads(line)
-            scenario_ids.append(obj["scenario_id"])
+    scenario_ids, scenario_drifts, n_base = build_grpo_scenario_schedule(
+        args.scenario_file, lang_term_extra_copies=max(0, args.lang_term_oversample)
+    )
+    print(
+        f"[GRPO] scenario schedule: {len(scenario_ids)} slots from {n_base} jsonl rows "
+        f"(lang_term_extra_copies={max(0, args.lang_term_oversample)})",
+        flush=True,
+    )
 
     trainer = GRPOTrainer(
         model_name=args.policy_model or args.model_name,
@@ -518,4 +582,5 @@ if __name__ == "__main__":
         time_each_episode=args.time_each_episode,
         transcript_dir=args.transcript_dir,
         hub_repo=args.hub_repo,
+        scenario_drifts=scenario_drifts,
     )

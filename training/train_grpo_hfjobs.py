@@ -47,7 +47,7 @@ def main():
     parser = argparse.ArgumentParser(description="HF Jobs GRPO trainer")
     parser.add_argument("--episodes", type=int, default=5)
     parser.add_argument("--group-size", type=int, default=4)
-    parser.add_argument("--kl-coef", type=float, default=0.05)
+    parser.add_argument("--kl-coef", type=float, default=0.125)
     parser.add_argument("--lr", type=float, default=5e-6)
     parser.add_argument("--model-name", default="Qwen/Qwen2.5-1.5B-Instruct")
     parser.add_argument("--scenario-file", default="data/scenarios/train.jsonl")
@@ -58,6 +58,7 @@ def main():
     parser.add_argument("--save-transcripts-every", type=int, default=5)
     parser.add_argument("--transcript-dir", default="logs/transcripts")
     parser.add_argument("--skip-upload", action="store_true", help="Skip uploading results")
+    parser.add_argument("--lang-term-oversample", type=int, default=1)
 
     args = parser.parse_args()
 
@@ -83,6 +84,7 @@ def main():
         "--log-every", str(args.log_every),
         "--save-transcripts-every", str(args.save_transcripts_every),
         "--transcript-dir", args.transcript_dir,
+        "--lang-term-oversample", str(args.lang_term_oversample),
     ]
 
     # Add SFT checkpoint if exists

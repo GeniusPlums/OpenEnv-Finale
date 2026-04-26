@@ -47,7 +47,7 @@ time python training/train_grpo.py \
   --episodes 2 \
   --group-size 4 \
   --lr 5e-6 \
-  --kl-coef 0.1 \
+  --kl-coef 0.125 \
   --curriculum adversarial \
   --policy-model Qwen/Qwen2.5-1.5B-Instruct \
   --checkpoint-every 1 \
