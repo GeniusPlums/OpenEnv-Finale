@@ -57,46 +57,14 @@ export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "===== nvidia-smi ====="
 nvidia-smi
 
-# H200 fabric often needs >45s after nvidia-smi before cudaGetDeviceCount succeeds. Override with CUDA_FABRIC_SLEEP_SEC.
-_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-120}"
-echo "===== Waiting for GPU fabric (${_FABRIC_SLEEP}s, env CUDA_FABRIC_SLEEP_SEC) ====="
+# Brief settle after nvidia-smi; main wait is active in scripts/wait_for_cuda.py (subprocess per try).
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-15}"
+echo "===== Post-nvidia-smi settle (${_FABRIC_SLEEP}s, override CUDA_FABRIC_SLEEP_SEC) ====="
 sleep "$_FABRIC_SLEEP"
 
-echo "===== CUDA readiness warmup (NVML=0 first; flip to 1 mid-run if still failing) ====="
-CUDA_OK=0
-_WARM_TRIES="${CUDA_WARMUP_TRIES:-36}"
-_WARM_SLEEP="${CUDA_WARMUP_SLEEP:-10}"
-for i in $(seq 1 "$_WARM_TRIES"); do
-  if [[ "$i" -eq $((_WARM_TRIES / 2)) ]]; then
-    export PYTORCH_NVML_BASED_CUDA_CHECK=1
-    echo "[warmup] switching PYTORCH_NVML_BASED_CUDA_CHECK=1"
-  fi
-  set +e
-  _probe_out="$(python -c "
-import torch
-if torch.cuda.device_count() < 1:
-    raise RuntimeError('no cuda devices')
-x = torch.zeros(1, device='cuda', dtype=torch.float32)
-torch.cuda.synchronize()
-print('cuda_ok', torch.cuda.get_device_name(0), 'torch', torch.__version__)
-del x
-" 2>&1)"
-  _probe_rc=$?
-  set -e
-  if [[ "$_probe_rc" -eq 0 ]]; then
-    echo "$_probe_out"
-    echo "CUDA probe OK after $i attempt(s)"
-    CUDA_OK=1
-    break
-  fi
-  echo "CUDA probe $i/$_WARM_TRIES failed:"
-  echo "$_probe_out" | head -35
-  sleep "$_WARM_SLEEP"
-done
-if [[ "$CUDA_OK" -ne 1 ]]; then
-  echo "FATAL: CUDA not ready (802 / bad node — cancel and re-queue the same h200 job)."
-  exit 1
-fi
+echo "===== Active CUDA wait (default 60×5s ≈ 5m — CUDA_WAIT_MAX_RETRIES / CUDA_WAIT_SLEEP_SEC) ====="
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+python scripts/wait_for_cuda.py
 
 echo "===== CUDA torch sanity (after fabric ready) ====="
 python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'devices', torch.cuda.device_count())"
