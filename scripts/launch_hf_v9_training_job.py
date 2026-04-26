@@ -28,8 +28,7 @@ def main() -> None:
     api = HfApi(token=True)
     # Default h200 (141GB). Warmup + vLLM flags in run_v9_training_job.sh mitigate CUDA 802 on some nodes.
     flavor = os.getenv("HF_JOB_FLAVOR", "h200")
-    # Long default: H200 fabric warmup can exceed ~35 min before vLLM starts.
-    timeout = os.getenv("HF_JOB_TIMEOUT", "480m")
+    timeout = os.getenv("HF_JOB_TIMEOUT", "400m")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")
     repo_url = os.getenv("REPO_URL", "https://github.com/GeniusPlums/OpenEnv-Finale.git")
 
