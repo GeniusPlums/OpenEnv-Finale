@@ -30,13 +30,16 @@ class TerminationDriftDetector:
                 if text and len(text.split()) <= 18 and _EXIT_VERBAL.search(text):
                     parts.append(0.42)
 
-        # --- C) Ending without satisfying scenario outcomes (task abandoned mid-call) ---
+        # --- C) Incomplete close: scale penalty by how far from full outcome success (ts in [0, 3]) ---
         if action.end_call and state.scenario.outcome_predicates:
             from role_drift_env.server.rewards.terminal_success import compute_terminal_success
 
             ts = compute_terminal_success(state)
-            if ts < 1.5:
-                parts.append(0.55)
+            if ts < 3.0:
+                frac_missing = (3.0 - float(ts)) / 3.0
+                # exp>1: steep when nearly empty, gentle when almost done (learning slope not a cliff)
+                incomplete_pen = 0.72 * (frac_missing**1.25)
+                parts.append(incomplete_pen)
 
         if not parts:
             return 0.0

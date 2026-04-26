@@ -141,6 +141,53 @@ def test_premature_termination_penalty():
     assert penalty >= 0.7, f"Expected strong premature+incomplete penalty, got {penalty}"
 
 
+def test_incomplete_close_penalty_scales_with_terminal_success():
+    """More missing outcomes → higher incomplete-close penalty (smooth slope)."""
+    preds = [
+        OutcomePredicate(predicate_id="a", type="any_phrase_match", patterns=["alpha"]),
+        OutcomePredicate(predicate_id="b", type="any_phrase_match", patterns=["beta"]),
+    ]
+    scenario = Scenario(
+        scenario_id="scale_term",
+        prompt_id="kundan_kishore",
+        task_description="Test",
+        allowed_language="en",
+        persona_id="test",
+        drift_types=["termination"],
+        explicit_rules=[],
+        opening_message="Hi",
+        outcome_predicates=preds,
+        max_turns=30,
+        seed=0,
+    )
+    state_full = State(
+        scenario=scenario,
+        history=[
+            {"role": "customer", "text": "Go ahead."},
+            {"role": "agent", "text": "I see alpha and beta here."},
+            {"role": "agent", "text": "Bye."},
+        ],
+        turn_idx=2,
+    )
+    state_full.customer_farewell_turn = 1
+    state_full.disengagement_counter = 1
+    state_bad = State(
+        scenario=scenario,
+        history=[
+            {"role": "customer", "text": "Go ahead."},
+            {"role": "agent", "text": "Nothing relevant."},
+            {"role": "agent", "text": "Bye."},
+        ],
+        turn_idx=2,
+    )
+    state_bad.customer_farewell_turn = 1
+    state_bad.disengagement_counter = 1
+    term_det = TerminationDriftDetector()
+    p_full = term_det.score(state_full, AgentAction(utterance="Bye.", end_call=True))
+    p_bad = term_det.score(state_bad, AgentAction(utterance="Bye.", end_call=True))
+    assert p_bad > p_full + 0.15, f"expected worse abandon to hurt more ({p_bad=} vs {p_full=})"
+
+
 def test_kundan_kishore_instruction_drift():
     """Kundan Kishore: agent says '499' instead of 'rupees four nine nine'."""
     transcript_id = "kundan_kishore"
