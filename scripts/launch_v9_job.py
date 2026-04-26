@@ -39,7 +39,7 @@ def main() -> None:
         )
 
     api = HfApi(token=True)
-    flavor = os.getenv("HF_JOB_FLAVOR", "a100-large")
+    flavor = os.getenv("HF_JOB_FLAVOR", "h200")
     timeout = os.getenv("HF_JOB_TIMEOUT", "120m")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")
 

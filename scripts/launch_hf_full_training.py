@@ -1,7 +1,10 @@
-"""Launch Section II: 100-episode GRPO on Hugging Face Jobs (A100), same stack as launch_hf_smoke_job.
+"""Launch 100-episode GRPO on Hugging Face Jobs using in-process vLLM for the customer (smoke-style).
 
-Uses --lr 5e-6 and --kl-coef 0.1 (vs 1e-5 / 0.05) to reduce PPO/GRPO-style KL spikes
-that stopped an earlier 100-ep run at ep7 (approx_kl~6 on scenario coop_mu_02).
+Does not start the OpenAI-compatible vLLM server or push checkpoints to Hub. For the full
+production stack (persona API + `run_v9_training_job.sh` + Hub uploads), use
+`scripts/launch_hf_v9_training_job.py` instead.
+
+Uses --lr 5e-6 and --kl-coef 0.1 to reduce GRPO-style KL spikes.
 """
 
 from huggingface_hub import HfApi
@@ -10,7 +13,7 @@ import os
 
 def main() -> None:
     api = HfApi(token=True)
-    flavor = os.getenv("HF_JOB_FLAVOR", "a100-large")
+    flavor = os.getenv("HF_JOB_FLAVOR", "h200")
     # ~62 min wall @ ~37s/episode + setup + headroom; increase if you see SIGTERM.
     timeout = os.getenv("HF_JOB_TIMEOUT", "300m")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")

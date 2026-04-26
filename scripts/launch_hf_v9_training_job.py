@@ -26,9 +26,8 @@ def main() -> None:
         sys.exit(1)
 
     api = HfApi(token=True)
-    # Default a100-large: HF Jobs H200 pool can hit CUDA "802 system not yet initialized" until fabric is up (#4134).
-    # For H200 when stable: HF_JOB_FLAVOR=h200
-    flavor = os.getenv("HF_JOB_FLAVOR", "a100-large")
+    # Default h200 (141GB). Warmup + vLLM flags in run_v9_training_job.sh mitigate CUDA 802 on some nodes.
+    flavor = os.getenv("HF_JOB_FLAVOR", "h200")
     timeout = os.getenv("HF_JOB_TIMEOUT", "400m")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")
     repo_url = os.getenv("REPO_URL", "https://github.com/GeniusPlums/OpenEnv-Finale.git")

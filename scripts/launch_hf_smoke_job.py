@@ -4,7 +4,7 @@ import os
 
 def main() -> None:
     api = HfApi(token=True)
-    flavor = os.getenv("HF_JOB_FLAVOR", "a100-large")
+    flavor = os.getenv("HF_JOB_FLAVOR", "h200")
     timeout = os.getenv("HF_JOB_TIMEOUT", "60m")
     namespace = os.getenv("HF_JOB_NAMESPACE", "GeniusPlums")
 
@@ -46,8 +46,8 @@ python /tmp/persona_check.py
 time python training/train_grpo.py \
   --episodes 2 \
   --group-size 4 \
-  --lr 1e-5 \
-  --kl-coef 0.05 \
+  --lr 5e-6 \
+  --kl-coef 0.1 \
   --curriculum adversarial \
   --policy-model Qwen/Qwen2.5-1.5B-Instruct \
   --checkpoint-every 1 \
