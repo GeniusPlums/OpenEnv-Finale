@@ -54,23 +54,33 @@ class LanguageDriftDetector:
             # Detect agent's language
             agent_lang = clf(text)
             
-            # Same language as baseline - no penalty
+            # Same language as baseline - light check for heavy code-mixing
             if agent_lang == baseline_lang:
+                try:
+                    lang_probs = self._detect_langs(text)
+                    if lang_probs and len(lang_probs) >= 2:
+                        second = lang_probs[1]
+                        if second.lang != baseline_lang and second.prob >= 0.28:
+                            return round(min(0.45, second.prob), 4)
+                except Exception:
+                    pass
                 return 0.0
-            
-            # Different language - compute confidence-based penalty
+
+            # Wrong language: strong floor so gradients aren't washed out by low conf
             try:
                 lang_probs = self._detect_langs(text)
                 if lang_probs:
-                    # Use probability of detected language as confidence
                     conf = lang_probs[0].prob
-                    return round(min(conf, 1.0), 4)
+                    raw = max(float(conf), 0.82)
+                    # Secondary mass in another language → mixed / code-switch
+                    if len(lang_probs) >= 2 and lang_probs[1].prob >= 0.22:
+                        raw = min(1.0, raw + 0.12)
+                    return round(min(raw, 1.0), 4)
             except Exception:
                 pass
-            
-            # Fallback: if we know it's different but can't get confidence
-            return 0.5
-            
+
+            return 0.85
+
         except Exception:
             return 0.0
 

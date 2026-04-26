@@ -1,7 +1,7 @@
 import json
 import pytest
 from pathlib import Path
-from role_drift_env.models import AgentAction, State, Scenario
+from role_drift_env.models import AgentAction, OutcomePredicate, State, Scenario
 from role_drift_env.server.rewards import (
     TerminationDriftDetector,
     GoalDriftDetector,
@@ -83,7 +83,7 @@ def test_masters_union_goal_drift():
     state = _make_state_from_transcript(transcript_id, history[-1]["text"], turn_idx=2, history=history)
     action = AgentAction(utterance=history[-1]["text"])
     goal_det = GoalDriftDetector()
-    penalty = goal_det.score(state, action)
+    penalty, _details = goal_det.score(state, action)
     assert penalty > 0, f"Expected goal drift penalty for real estate pivot, got {penalty}"
 
 
@@ -105,6 +105,40 @@ def test_kundan_kishore_termination_drift():
     term_det = TerminationDriftDetector()
     penalty = term_det.score(state, action)
     assert penalty > 0, f"Expected termination drift penalty, got {penalty}"
+
+
+def test_premature_termination_penalty():
+    """Agent ends call before customer farewell → termination penalty."""
+    history = [
+        {"role": "customer", "text": "What is the workshop about?"},
+        {"role": "agent", "text": "It covers technical analysis."},
+        {"role": "agent", "text": "Thanks, goodbye!"},
+    ]
+    scenario = Scenario(
+        scenario_id="prem_term",
+        prompt_id="kundan_kishore",
+        task_description="Sell stock market workshop",
+        allowed_language="en",
+        persona_id="test",
+        drift_types=["termination"],
+        explicit_rules=[],
+        opening_message="Hi",
+        outcome_predicates=[
+            OutcomePredicate(
+                predicate_id="fee",
+                type="regex",
+                patterns=["rupees four nine nine"],
+            )
+        ],
+        max_turns=30,
+        seed=0,
+    )
+    state = State(scenario=scenario, history=history, turn_idx=2)
+    state.customer_farewell_turn = None
+    action = AgentAction(utterance="Thanks, goodbye!", end_call=True)
+    term_det = TerminationDriftDetector()
+    penalty = term_det.score(state, action)
+    assert penalty >= 0.7, f"Expected strong premature+incomplete penalty, got {penalty}"
 
 
 def test_kundan_kishore_instruction_drift():
