@@ -30,6 +30,8 @@ fi
 TOKEN="${HF_TOKEN:-$HUGGINGFACE_HUB_TOKEN}"
 
 TRAINED_MODEL_REPO="GeniusPlums/role-drift-qwen-1-5b-grpo"
+# Optional: pin a Hub git revision (commit SHA or branch) for reproducible eval.
+TRAINED_MODEL_REVISION="${TRAINED_MODEL_REVISION:-}"
 EVAL_RESULTS_REPO="GeniusPlums/role-drift-eval-results"
 
 # === FM-2: trap + partial upload ============================================
@@ -62,6 +64,8 @@ NVIDIA_MONITOR_PID=$!
 
 mkdir -p data/eval_results
 
+# CUDA torch first (HF python:3.11 image often resolves CPU-only torch from `pip install -e .`).
+pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cu126
 pip install -e . --quiet
 pip install -q vllm sentence-transformers langdetect peft accelerate huggingface_hub openai
 # `hf` is from huggingface_hub; login before Hub download/upload
@@ -71,9 +75,13 @@ hf auth login --token "$TOKEN" --add-to-git-credential
 # `huggingface-cli` is broken in many images; `hf download` is required
 echo "===== Downloading trained checkpoint ====="
 mkdir -p checkpoints/trained
-hf download "$TRAINED_MODEL_REPO" \
-  --local-dir checkpoints/trained \
-  --include "*.json" --include "*.safetensors" --include "*.model" --include "*.txt"
+HF_DL_ARGS=("$TRAINED_MODEL_REPO" --local-dir checkpoints/trained \
+  --include "*.json" --include "*.safetensors" --include "*.model" --include "*.txt")
+if [[ -n "$TRAINED_MODEL_REVISION" ]]; then
+  HF_DL_ARGS+=(--revision "$TRAINED_MODEL_REVISION")
+  echo "[V10] Using TRAINED_MODEL_REVISION=$TRAINED_MODEL_REVISION"
+fi
+hf download "${HF_DL_ARGS[@]}"
 if [[ ! -f "checkpoints/trained/config.json" ]]; then
   echo "FATAL: no checkpoints/trained/config.json after hf download. Aborting."
   exit 1
