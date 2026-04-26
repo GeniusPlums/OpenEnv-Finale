@@ -58,18 +58,16 @@ echo "===== nvidia-smi ====="
 nvidia-smi
 
 # Brief settle after nvidia-smi; main wait is active in scripts/wait_for_cuda.py (subprocess per try).
-_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-22}"
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-15}"
 echo "===== Post-nvidia-smi settle (${_FABRIC_SLEEP}s, override CUDA_FABRIC_SLEEP_SEC) ====="
 sleep "$_FABRIC_SLEEP"
 
 echo "===== Active CUDA wait (default 60×5s ≈ 5m — CUDA_WAIT_MAX_RETRIES / CUDA_WAIT_SLEEP_SEC) ====="
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
-# Extra beat before first torch CUDA probe (802 until fabric ready); override with 0 to skip.
-export CUDA_WAIT_INITIAL_SLEEP_SEC="${CUDA_WAIT_INITIAL_SLEEP_SEC:-12}"
 python scripts/wait_for_cuda.py
 
 echo "===== CUDA torch sanity (after fabric ready) ====="
-python -c "import torch; torch.cuda.set_device(0); torch.cuda.current_device(); print('torch', torch.__version__, 'cuda', torch.version.cuda, 'devices', torch.cuda.device_count(), torch.cuda.get_device_name(0))"
+python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'devices', torch.cuda.device_count())"
 
 echo "===== Starting customer-sim vLLM server ====="
 # Leave ~35–40GB for policy 1.5B + ref + optimizer states + backward (80GB A100 is tight with 7B vLLM)
