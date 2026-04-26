@@ -58,12 +58,15 @@ echo "===== nvidia-smi ====="
 nvidia-smi
 
 # Brief settle after nvidia-smi; main wait is active in scripts/wait_for_cuda.py (subprocess per try).
-_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-15}"
+# H200 jobs: 15s is often too short before first torch CUDA probe (802). Override down if your node is stable.
+_FABRIC_SLEEP="${CUDA_FABRIC_SLEEP_SEC:-35}"
 echo "===== Post-nvidia-smi settle (${_FABRIC_SLEEP}s, override CUDA_FABRIC_SLEEP_SEC) ====="
 sleep "$_FABRIC_SLEEP"
 
 echo "===== Active CUDA wait (default 60×5s ≈ 5m — CUDA_WAIT_MAX_RETRIES / CUDA_WAIT_SLEEP_SEC) ====="
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+# Extra wall-clock only (no torch import) before first probe; set 0 to skip.
+export CUDA_WAIT_PRE_PROBE_SEC="${CUDA_WAIT_PRE_PROBE_SEC:-30}"
 python scripts/wait_for_cuda.py
 
 echo "===== CUDA torch sanity (after fabric ready) ====="

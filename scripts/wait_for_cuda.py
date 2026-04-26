@@ -37,6 +37,13 @@ def main() -> int:
         flush=True,
     )
 
+    # No PyTorch/CUDA here — just wall-clock delay so NVSwitch/fabric can finish
+    # before the first cudaGetDeviceCount() in the probe (Error 802 if too early).
+    pre = float(os.environ.get("CUDA_WAIT_PRE_PROBE_SEC", "0"))
+    if pre > 0:
+        print(f"[wait_for_cuda] pre-probe sleep {pre}s (CUDA_WAIT_PRE_PROBE_SEC)", flush=True)
+        time.sleep(pre)
+
     for i in range(max_r):
         if i == max_r // 2:
             os.environ["PYTORCH_NVML_BASED_CUDA_CHECK"] = "1"
