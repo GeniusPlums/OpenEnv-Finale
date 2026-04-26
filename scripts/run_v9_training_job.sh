@@ -6,6 +6,12 @@
 # shellcheck disable=SC1091
 set -euo pipefail
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
+# HF Jobs H200 / NVSwitch: cudaGetDeviceCount can return Error 802 until fabric is ready (see huggingface_hub#4134).
+export CUDA_DEVICE_ORDER="${CUDA_DEVICE_ORDER:-PCI_BUS_ID}"
+export PYTORCH_NVML_BASED_CUDA_CHECK="${PYTORCH_NVML_BASED_CUDA_CHECK:-1}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
+# Prefer legacy vLLM engine: avoids torch.accelerator worker init issues on some PyTorch + H200 stacks.
+export VLLM_USE_V1="${VLLM_USE_V1:-0}"
 
 echo "===== V9 Training Job started at $(date) ====="
 
@@ -46,13 +52,31 @@ export ROLE_DRIFT_PERSONA_OPENAI_BASE_URL="http://127.0.0.1:${VLLM_PORT}/v1"
 echo "===== nvidia-smi ====="
 nvidia-smi
 
+echo "===== CUDA readiness warmup (H200 / fabric can lag behind nvidia-smi) ====="
+CUDA_OK=0
+for i in $(seq 1 36); do
+  if python -c "import torch; assert torch.cuda.is_available() and torch.cuda.device_count() >= 1; torch.cuda.set_device(0); x=torch.zeros(1, device='cuda'); del x; torch.cuda.synchronize(); print('cuda_ok', torch.cuda.get_device_name(0))" 2>/dev/null; then
+    echo "CUDA probe OK after $i attempt(s) (~$((i * 10))s max)"
+    CUDA_OK=1
+    break
+  fi
+  echo "CUDA probe $i/36 not ready, sleep 10s..."
+  sleep 10
+done
+if [[ "$CUDA_OK" -ne 1 ]]; then
+  echo "FATAL: CUDA not usable after warmup (Error 802 / fabric on some h200 nodes). Try flavor a100-large or re-queue."
+  exit 1
+fi
+
 echo "===== Starting customer-sim vLLM server ====="
 # Leave ~35–40GB for policy 1.5B + ref + optimizer states + backward (80GB A100 is tight with 7B vLLM)
+# --enforce-eager: avoids CUDA graph capture failures during init on some drivers (vLLM troubleshooting).
 python -m vllm.entrypoints.openai.api_server \
   --model Qwen/Qwen2.5-7B-Instruct \
   --port "$VLLM_PORT" \
   --max-model-len 2048 \
   --gpu-memory-utilization 0.30 \
+  --enforce-eager \
   > vllm_server.log 2>&1 &
 VLLM_PID=$!
 echo "vLLM PID: $VLLM_PID"
@@ -106,8 +130,8 @@ set +e
 python training/train_grpo.py \
   --episodes 100 \
   --group-size 4 \
-  --lr 1e-5 \
-  --kl-coef 0.05 \
+  --lr 5e-6 \
+  --kl-coef 0.1 \
   --curriculum adversarial \
   --policy-model Qwen/Qwen2.5-1.5B-Instruct \
   --checkpoint-every 25 \
