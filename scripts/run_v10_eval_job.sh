@@ -8,7 +8,7 @@ export PYTHONUNBUFFERED=1
 echo "V10_ENTRY ROLE_DRIFT_PERSONA_OPENAI_BASE_URL=${ROLE_DRIFT_PERSONA_OPENAI_BASE_URL-}"
 
 # --- Resolve repository root -------------------------------------------------
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0})" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
 if [[ -f "$SCRIPT_DIR/../role_drift_env/__init__.py" ]]; then
   REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
   cd "$REPO_ROOT"
