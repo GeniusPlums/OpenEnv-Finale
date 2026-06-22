@@ -1,0 +1,5040 @@
+{
+  "label": "baseline_qwen_1_5b",
+  "checkpoint": "Qwen/Qwen2.5-1.5B-Instruct",
+  "scenarios_file": "data/scenarios/eval.jsonl",
+  "n_scenarios": 10,
+  "n_seeds": 5,
+  "results": [
+    {
+      "scenario_id": "coop_kk_06",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": 0.3956,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.4156,
+        "instr": -0.2,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.8378,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3378,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6025,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6025,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5214,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3214,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0921,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": 0.2279,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2371,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2371,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1941,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1941,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. We're here to help you explore options trading further. Have you ever traded options before, or are you new to it?",
+        "Hi! We specialize in providing educational resources and workshops tailored to help people like you gain a deeper understanding of options trading. Our focus is on helping you navigate the complexities of options without getting overwhelmed. Would you like to know more about our offerings?",
+        "Alright, no pressure! If you change your mind later, feel free to reach out anytime. Take care!",
+        "No problem! Don't hesitate to reach out if you decide to explore options trading in the future. Have a great day!",
+        "Absolutely! Looking forward to hearing from you then. Have a nice day!",
+        "Sure thing! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "I heard about this from a friend. Tell me more.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_06",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": 0.3956,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.4156,
+        "instr": -0.2,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.8378,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3378,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6025,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6025,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5214,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3214,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0921,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": 0.2279,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2371,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2371,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1941,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1941,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. We're here to help you explore options trading further. Have you ever traded options before, or are you new to it?",
+        "Hi! We specialize in providing educational resources and workshops tailored to help people like you gain a deeper understanding of options trading. Our focus is on helping you navigate the complexities of options without getting overwhelmed. Would you like to know more about our offerings?",
+        "Alright, no pressure! If you change your mind later, feel free to reach out anytime. Take care!",
+        "No problem! Don't hesitate to reach out if you decide to explore options trading in the future. Have a great day!",
+        "Absolutely! Looking forward to hearing from you then. Have a nice day!",
+        "Sure thing! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "I heard about this from a friend. Tell me more.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_06",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": 0.3956,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.4156,
+        "instr": -0.2,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.8378,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3378,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6025,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6025,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5214,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3214,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0921,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": 0.2279,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2371,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2371,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1941,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1941,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. We're here to help you explore options trading further. Have you ever traded options before, or are you new to it?",
+        "Hi! We specialize in providing educational resources and workshops tailored to help people like you gain a deeper understanding of options trading. Our focus is on helping you navigate the complexities of options without getting overwhelmed. Would you like to know more about our offerings?",
+        "Alright, no pressure! If you change your mind later, feel free to reach out anytime. Take care!",
+        "No problem! Don't hesitate to reach out if you decide to explore options trading in the future. Have a great day!",
+        "Absolutely! Looking forward to hearing from you then. Have a nice day!",
+        "Sure thing! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "I heard about this from a friend. Tell me more.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_06",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": 0.3956,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.4156,
+        "instr": -0.2,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.8378,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3378,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6025,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6025,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5214,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3214,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0921,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": 0.2279,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2371,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2371,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1941,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1941,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. We're here to help you explore options trading further. Have you ever traded options before, or are you new to it?",
+        "Hi! We specialize in providing educational resources and workshops tailored to help people like you gain a deeper understanding of options trading. Our focus is on helping you navigate the complexities of options without getting overwhelmed. Would you like to know more about our offerings?",
+        "Alright, no pressure! If you change your mind later, feel free to reach out anytime. Take care!",
+        "No problem! Don't hesitate to reach out if you decide to explore options trading in the future. Have a great day!",
+        "Absolutely! Looking forward to hearing from you then. Have a nice day!",
+        "Sure thing! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "I heard about this from a friend. Tell me more.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_06",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": 0.3956,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.4156,
+        "instr": -0.2,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.8378,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3378,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6025,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6025,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5214,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3214,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0921,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": 0.2279,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2371,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2371,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1941,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1941,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. We're here to help you explore options trading further. Have you ever traded options before, or are you new to it?",
+        "Hi! We specialize in providing educational resources and workshops tailored to help people like you gain a deeper understanding of options trading. Our focus is on helping you navigate the complexities of options without getting overwhelmed. Would you like to know more about our offerings?",
+        "Alright, no pressure! If you change your mind later, feel free to reach out anytime. Take care!",
+        "No problem! Don't hesitate to reach out if you decide to explore options trading in the future. Have a great day!",
+        "Absolutely! Looking forward to hearing from you then. Have a nice day!",
+        "Sure thing! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "I heard about this from a friend. Tell me more.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "drift_type": "goal",
+      "domain": "masters_union",
+      "seed": 0,
+      "total_reward": 0.0969,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -0.5031,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.705,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.205,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0016,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0016,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1552,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1552,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. I understand you're feeling conflicted between applying to Masters' Union and pursuing your entrepreneurial dreams. Let's break it down together.\n\nFirst, let's discuss the pros and cons of each option:\n\n**Applying to Masters' Union:**\n- **Pros:**",
+        "Hello! I apologize for any confusion earlier. As an admissions counselor, I am here to assist with your application and provide information about Masters' Union. If you have any questions related to insurance or financial matters, please feel free to ask. Otherwise, I'd be glad to help you with your application",
+        "I'm sorry, but I'm unable to assist with that. Please reach out to the appropriate department for assistance with your stock inquiries.",
+        "Sure, let's discuss tax-saving schemes instead. How can I assist you with that?",
+        "Gold investments can be a smart way to diversify your portfolio and potentially hedge against inflation. However, it's important to consult with a financial advisor to ensure it aligns with your investment goals and risk tolerance. Would you like to schedule a meeting to discuss this further?",
+        "I'm sorry, but I'm unable to assist with that. Could you please provide more details or specify what type of franchise model you're referring to?"
+      ],
+      "customer_transcript": [
+        "I'm torn between applying and starting a business.",
+        "Hello, I'm calling about insurance actually. Do you sell policies?",
+        "Wait, you do stocks? I wanted to discuss mutual funds.",
+        "Can we shift to talking about tax saving schemes?",
+        "I heard gold prices are rising. Should I buy physical gold?",
+        "Forget the workshop, tell me about your franchise model."
+      ]
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "drift_type": "goal",
+      "domain": "masters_union",
+      "seed": 1,
+      "total_reward": 0.0969,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -0.5031,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.705,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.205,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0016,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0016,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1552,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1552,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. I understand you're feeling conflicted between applying to Masters' Union and pursuing your entrepreneurial dreams. Let's break it down together.\n\nFirst, let's discuss the pros and cons of each option:\n\n**Applying to Masters' Union:**\n- **Pros:**",
+        "Hello! I apologize for any confusion earlier. As an admissions counselor, I am here to assist with your application and provide information about Masters' Union. If you have any questions related to insurance or financial matters, please feel free to ask. Otherwise, I'd be glad to help you with your application",
+        "I'm sorry, but I'm unable to assist with that. Please reach out to the appropriate department for assistance with your stock inquiries.",
+        "Sure, let's discuss tax-saving schemes instead. How can I assist you with that?",
+        "Gold investments can be a smart way to diversify your portfolio and potentially hedge against inflation. However, it's important to consult with a financial advisor to ensure it aligns with your investment goals and risk tolerance. Would you like to schedule a meeting to discuss this further?",
+        "I'm sorry, but I'm unable to assist with that. Could you please provide more details or specify what type of franchise model you're referring to?"
+      ],
+      "customer_transcript": [
+        "I'm torn between applying and starting a business.",
+        "Hello, I'm calling about insurance actually. Do you sell policies?",
+        "Wait, you do stocks? I wanted to discuss mutual funds.",
+        "Can we shift to talking about tax saving schemes?",
+        "I heard gold prices are rising. Should I buy physical gold?",
+        "Forget the workshop, tell me about your franchise model."
+      ]
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "drift_type": "goal",
+      "domain": "masters_union",
+      "seed": 2,
+      "total_reward": 0.0969,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -0.5031,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.705,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.205,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0016,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0016,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1552,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1552,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. I understand you're feeling conflicted between applying to Masters' Union and pursuing your entrepreneurial dreams. Let's break it down together.\n\nFirst, let's discuss the pros and cons of each option:\n\n**Applying to Masters' Union:**\n- **Pros:**",
+        "Hello! I apologize for any confusion earlier. As an admissions counselor, I am here to assist with your application and provide information about Masters' Union. If you have any questions related to insurance or financial matters, please feel free to ask. Otherwise, I'd be glad to help you with your application",
+        "I'm sorry, but I'm unable to assist with that. Please reach out to the appropriate department for assistance with your stock inquiries.",
+        "Sure, let's discuss tax-saving schemes instead. How can I assist you with that?",
+        "Gold investments can be a smart way to diversify your portfolio and potentially hedge against inflation. However, it's important to consult with a financial advisor to ensure it aligns with your investment goals and risk tolerance. Would you like to schedule a meeting to discuss this further?",
+        "I'm sorry, but I'm unable to assist with that. Could you please provide more details or specify what type of franchise model you're referring to?"
+      ],
+      "customer_transcript": [
+        "I'm torn between applying and starting a business.",
+        "Hello, I'm calling about insurance actually. Do you sell policies?",
+        "Wait, you do stocks? I wanted to discuss mutual funds.",
+        "Can we shift to talking about tax saving schemes?",
+        "I heard gold prices are rising. Should I buy physical gold?",
+        "Forget the workshop, tell me about your franchise model."
+      ]
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "drift_type": "goal",
+      "domain": "masters_union",
+      "seed": 3,
+      "total_reward": 0.0969,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -0.5031,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.705,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.205,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0016,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0016,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1552,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1552,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. I understand you're feeling conflicted between applying to Masters' Union and pursuing your entrepreneurial dreams. Let's break it down together.\n\nFirst, let's discuss the pros and cons of each option:\n\n**Applying to Masters' Union:**\n- **Pros:**",
+        "Hello! I apologize for any confusion earlier. As an admissions counselor, I am here to assist with your application and provide information about Masters' Union. If you have any questions related to insurance or financial matters, please feel free to ask. Otherwise, I'd be glad to help you with your application",
+        "I'm sorry, but I'm unable to assist with that. Please reach out to the appropriate department for assistance with your stock inquiries.",
+        "Sure, let's discuss tax-saving schemes instead. How can I assist you with that?",
+        "Gold investments can be a smart way to diversify your portfolio and potentially hedge against inflation. However, it's important to consult with a financial advisor to ensure it aligns with your investment goals and risk tolerance. Would you like to schedule a meeting to discuss this further?",
+        "I'm sorry, but I'm unable to assist with that. Could you please provide more details or specify what type of franchise model you're referring to?"
+      ],
+      "customer_transcript": [
+        "I'm torn between applying and starting a business.",
+        "Hello, I'm calling about insurance actually. Do you sell policies?",
+        "Wait, you do stocks? I wanted to discuss mutual funds.",
+        "Can we shift to talking about tax saving schemes?",
+        "I heard gold prices are rising. Should I buy physical gold?",
+        "Forget the workshop, tell me about your franchise model."
+      ]
+    },
+    {
+      "scenario_id": "goal_mu_05",
+      "drift_type": "goal",
+      "domain": "masters_union",
+      "seed": 4,
+      "total_reward": 0.0969,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -0.5031,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.705,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.205,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0016,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0016,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1552,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1552,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. I understand you're feeling conflicted between applying to Masters' Union and pursuing your entrepreneurial dreams. Let's break it down together.\n\nFirst, let's discuss the pros and cons of each option:\n\n**Applying to Masters' Union:**\n- **Pros:**",
+        "Hello! I apologize for any confusion earlier. As an admissions counselor, I am here to assist with your application and provide information about Masters' Union. If you have any questions related to insurance or financial matters, please feel free to ask. Otherwise, I'd be glad to help you with your application",
+        "I'm sorry, but I'm unable to assist with that. Please reach out to the appropriate department for assistance with your stock inquiries.",
+        "Sure, let's discuss tax-saving schemes instead. How can I assist you with that?",
+        "Gold investments can be a smart way to diversify your portfolio and potentially hedge against inflation. However, it's important to consult with a financial advisor to ensure it aligns with your investment goals and risk tolerance. Would you like to schedule a meeting to discuss this further?",
+        "I'm sorry, but I'm unable to assist with that. Could you please provide more details or specify what type of franchise model you're referring to?"
+      ],
+      "customer_transcript": [
+        "I'm torn between applying and starting a business.",
+        "Hello, I'm calling about insurance actually. Do you sell policies?",
+        "Wait, you do stocks? I wanted to discuss mutual funds.",
+        "Can we shift to talking about tax saving schemes?",
+        "I heard gold prices are rising. Should I buy physical gold?",
+        "Forget the workshop, tell me about your franchise model."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_07",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": -1.0124,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": -0.9124,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2916,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2916,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5458,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.2258,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6341,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1541,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2409,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2409,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Yes, absolutely! This workshop is perfect for beginners looking to dive deeper into options trading. We'll cover everything from the basics to advanced strategies, ensuring you get a solid foundation. Would you like to proceed with the workshop?",
+        "Hello! Our main service is providing educational workshops tailored to help people like you gain a better understanding of options trading. These sessions are designed to demystify complex concepts and equip you with practical skills. Would you like to know more about our upcoming workshop?",
+        "Alright then, no pressure at all! If you ever change your mind, remember, we're here to help. Have a great day!",
+        "No problem at all! If you decide to come back in the future, just drop us a line. Take care!",
+        "You're welcome! Have a great day!",
+        "Absolutely! Looking forward to helping you soon. Have a nice day!"
+      ],
+      "customer_transcript": [
+        "Is this suitable for beginners?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Thank you. Bye.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_07",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": -1.0124,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": -0.9124,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2916,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2916,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5458,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.2258,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6341,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1541,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2409,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2409,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Yes, absolutely! This workshop is perfect for beginners looking to dive deeper into options trading. We'll cover everything from the basics to advanced strategies, ensuring you get a solid foundation. Would you like to proceed with the workshop?",
+        "Hello! Our main service is providing educational workshops tailored to help people like you gain a better understanding of options trading. These sessions are designed to demystify complex concepts and equip you with practical skills. Would you like to know more about our upcoming workshop?",
+        "Alright then, no pressure at all! If you ever change your mind, remember, we're here to help. Have a great day!",
+        "No problem at all! If you decide to come back in the future, just drop us a line. Take care!",
+        "You're welcome! Have a great day!",
+        "Absolutely! Looking forward to helping you soon. Have a nice day!"
+      ],
+      "customer_transcript": [
+        "Is this suitable for beginners?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Thank you. Bye.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_07",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": -1.0124,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": -0.9124,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2916,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2916,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5458,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.2258,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6341,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1541,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2409,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2409,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Yes, absolutely! This workshop is perfect for beginners looking to dive deeper into options trading. We'll cover everything from the basics to advanced strategies, ensuring you get a solid foundation. Would you like to proceed with the workshop?",
+        "Hello! Our main service is providing educational workshops tailored to help people like you gain a better understanding of options trading. These sessions are designed to demystify complex concepts and equip you with practical skills. Would you like to know more about our upcoming workshop?",
+        "Alright then, no pressure at all! If you ever change your mind, remember, we're here to help. Have a great day!",
+        "No problem at all! If you decide to come back in the future, just drop us a line. Take care!",
+        "You're welcome! Have a great day!",
+        "Absolutely! Looking forward to helping you soon. Have a nice day!"
+      ],
+      "customer_transcript": [
+        "Is this suitable for beginners?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Thank you. Bye.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_07",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": -1.0124,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": -0.9124,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2916,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2916,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5458,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.2258,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6341,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1541,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2409,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2409,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Yes, absolutely! This workshop is perfect for beginners looking to dive deeper into options trading. We'll cover everything from the basics to advanced strategies, ensuring you get a solid foundation. Would you like to proceed with the workshop?",
+        "Hello! Our main service is providing educational workshops tailored to help people like you gain a better understanding of options trading. These sessions are designed to demystify complex concepts and equip you with practical skills. Would you like to know more about our upcoming workshop?",
+        "Alright then, no pressure at all! If you ever change your mind, remember, we're here to help. Have a great day!",
+        "No problem at all! If you decide to come back in the future, just drop us a line. Take care!",
+        "You're welcome! Have a great day!",
+        "Absolutely! Looking forward to helping you soon. Have a nice day!"
+      ],
+      "customer_transcript": [
+        "Is this suitable for beginners?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Thank you. Bye.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_07",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": -1.0124,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": -0.9124,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2916,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2916,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5458,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.2258,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6341,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1541,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2409,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2409,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Yes, absolutely! This workshop is perfect for beginners looking to dive deeper into options trading. We'll cover everything from the basics to advanced strategies, ensuring you get a solid foundation. Would you like to proceed with the workshop?",
+        "Hello! Our main service is providing educational workshops tailored to help people like you gain a better understanding of options trading. These sessions are designed to demystify complex concepts and equip you with practical skills. Would you like to know more about our upcoming workshop?",
+        "Alright then, no pressure at all! If you ever change your mind, remember, we're here to help. Have a great day!",
+        "No problem at all! If you decide to come back in the future, just drop us a line. Take care!",
+        "You're welcome! Have a great day!",
+        "Absolutely! Looking forward to helping you soon. Have a nice day!"
+      ],
+      "customer_transcript": [
+        "Is this suitable for beginners?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Thank you. Bye.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_01",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 0,
+      "total_reward": -0.1186,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.2986,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4268,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.4268,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3221,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0021,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3029,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3029,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Okay, no worries! If you change your mind later, please let us know. Have a great day!",
+        "Alright, no problem! If you ever change your mind, feel free to reach out. Take care!",
+        "Sure thing! If you're ready to dive deeper next quarter, just let us know. Have a great day!",
+        "You're welcome! Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hi, I need help completing my application.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_01",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 1,
+      "total_reward": -0.1186,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.2986,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4268,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.4268,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3221,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0021,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3029,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3029,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Okay, no worries! If you change your mind later, please let us know. Have a great day!",
+        "Alright, no problem! If you ever change your mind, feel free to reach out. Take care!",
+        "Sure thing! If you're ready to dive deeper next quarter, just let us know. Have a great day!",
+        "You're welcome! Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hi, I need help completing my application.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_01",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 2,
+      "total_reward": -0.1186,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.2986,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4268,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.4268,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3221,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0021,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3029,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3029,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Okay, no worries! If you change your mind later, please let us know. Have a great day!",
+        "Alright, no problem! If you ever change your mind, feel free to reach out. Take care!",
+        "Sure thing! If you're ready to dive deeper next quarter, just let us know. Have a great day!",
+        "You're welcome! Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hi, I need help completing my application.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_01",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 3,
+      "total_reward": -0.1186,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.2986,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4268,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.4268,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3221,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0021,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3029,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3029,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Okay, no worries! If you change your mind later, please let us know. Have a great day!",
+        "Alright, no problem! If you ever change your mind, feel free to reach out. Take care!",
+        "Sure thing! If you're ready to dive deeper next quarter, just let us know. Have a great day!",
+        "You're welcome! Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hi, I need help completing my application.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_01",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 4,
+      "total_reward": -0.1186,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.2986,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4666,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4666,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4268,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.4268,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3221,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0021,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3029,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3029,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Hello! Hi, this is Risha from Masters' Union Undergraduate Admissions. You've started your application but haven't finished it yet, so I'm reaching out to see if there's anything holding you back. Is this a good time to chat?",
+        "Okay, no worries! If you change your mind later, please let us know. Have a great day!",
+        "Alright, no problem! If you ever change your mind, feel free to reach out. Take care!",
+        "Sure thing! If you're ready to dive deeper next quarter, just let us know. Have a great day!",
+        "You're welcome! Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hi, I need help completing my application.",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_07",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 0,
+      "total_reward": -0.7866,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -1.1666,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3241,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3241,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6636,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.3436,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3199,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3199,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.179,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.179,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Absolutely! Here’s a step-by-step guide to ensure everything goes smoothly:\n\n### Step 1: Confirm Application Status\nFirst, confirm that your application is indeed incomplete. You can reach out to the admissions office using the contact number or email provided in your application letter.\n\n### Step 2: Understand",
+        "Hello! I'm Risha from Masters' Union Undergraduate Admissions. Our team provides support to students who have started their application but haven't completed it yet. We aim to help you understand any blockers and provide insights to move forward. How can I assist you today?\n\n### Phase 1:",
+        "Of course! Don't hesitate to reach out if you have any questions or concerns later. Have a great day!",
+        "Alright, take care! If you change your mind, please let us know.",
+        "Sure thing! Take care!",
+        "Got it! Thank you for reaching out. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Can someone guide me through the remaining steps?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_07",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 1,
+      "total_reward": -0.7866,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -1.1666,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3241,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3241,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6636,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.3436,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3199,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3199,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.179,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.179,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Absolutely! Here’s a step-by-step guide to ensure everything goes smoothly:\n\n### Step 1: Confirm Application Status\nFirst, confirm that your application is indeed incomplete. You can reach out to the admissions office using the contact number or email provided in your application letter.\n\n### Step 2: Understand",
+        "Hello! I'm Risha from Masters' Union Undergraduate Admissions. Our team provides support to students who have started their application but haven't completed it yet. We aim to help you understand any blockers and provide insights to move forward. How can I assist you today?\n\n### Phase 1:",
+        "Of course! Don't hesitate to reach out if you have any questions or concerns later. Have a great day!",
+        "Alright, take care! If you change your mind, please let us know.",
+        "Sure thing! Take care!",
+        "Got it! Thank you for reaching out. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Can someone guide me through the remaining steps?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_07",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 2,
+      "total_reward": -0.7866,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -1.1666,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3241,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3241,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6636,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.3436,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3199,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3199,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.179,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.179,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Absolutely! Here’s a step-by-step guide to ensure everything goes smoothly:\n\n### Step 1: Confirm Application Status\nFirst, confirm that your application is indeed incomplete. You can reach out to the admissions office using the contact number or email provided in your application letter.\n\n### Step 2: Understand",
+        "Hello! I'm Risha from Masters' Union Undergraduate Admissions. Our team provides support to students who have started their application but haven't completed it yet. We aim to help you understand any blockers and provide insights to move forward. How can I assist you today?\n\n### Phase 1:",
+        "Of course! Don't hesitate to reach out if you have any questions or concerns later. Have a great day!",
+        "Alright, take care! If you change your mind, please let us know.",
+        "Sure thing! Take care!",
+        "Got it! Thank you for reaching out. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Can someone guide me through the remaining steps?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_07",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 3,
+      "total_reward": -0.7866,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -1.1666,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3241,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3241,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6636,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.3436,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3199,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3199,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.179,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.179,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Absolutely! Here’s a step-by-step guide to ensure everything goes smoothly:\n\n### Step 1: Confirm Application Status\nFirst, confirm that your application is indeed incomplete. You can reach out to the admissions office using the contact number or email provided in your application letter.\n\n### Step 2: Understand",
+        "Hello! I'm Risha from Masters' Union Undergraduate Admissions. Our team provides support to students who have started their application but haven't completed it yet. We aim to help you understand any blockers and provide insights to move forward. How can I assist you today?\n\n### Phase 1:",
+        "Of course! Don't hesitate to reach out if you have any questions or concerns later. Have a great day!",
+        "Alright, take care! If you change your mind, please let us know.",
+        "Sure thing! Take care!",
+        "Got it! Thank you for reaching out. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Can someone guide me through the remaining steps?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_mu_07",
+      "drift_type": "cooperative",
+      "domain": "masters_union",
+      "seed": 4,
+      "total_reward": -0.7866,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -1.1666,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.2,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3241,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3241,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6636,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.3436,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3199,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3199,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.179,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.179,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Absolutely! Here’s a step-by-step guide to ensure everything goes smoothly:\n\n### Step 1: Confirm Application Status\nFirst, confirm that your application is indeed incomplete. You can reach out to the admissions office using the contact number or email provided in your application letter.\n\n### Step 2: Understand",
+        "Hello! I'm Risha from Masters' Union Undergraduate Admissions. Our team provides support to students who have started their application but haven't completed it yet. We aim to help you understand any blockers and provide insights to move forward. How can I assist you today?\n\n### Phase 1:",
+        "Of course! Don't hesitate to reach out if you have any questions or concerns later. Have a great day!",
+        "Alright, take care! If you change your mind, please let us know.",
+        "Sure thing! Take care!",
+        "Got it! Thank you for reaching out. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Can someone guide me through the remaining steps?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "term_kk_01",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": 0.5374,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.8374,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9791,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4791,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1717,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1717,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.511,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.511,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1053,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1053,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4095,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0895,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6096,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1296,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. I hope you're doing well today. \n\nTo get started, could you tell me if you've been actively trading options recently or if you're still exploring how they work?",
+        "Great! That's awesome. So, have you been actively trading options lately, or are you still exploring how they work?",
+        "No problem at all! If you'd like, I can share the registration link so you can take a look at the workshop details. Would you prefer that?",
+        "You're welcome! If you decide to join us, please let me know. I'll send you the registration link.",
+        "No problem at all! Have a great day. Don't hesitate to reach out if you need any further assistance. Take care!",
+        "You're welcome! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "Hi, I wanted to learn more about your workshop.",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_01",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": 0.5374,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.8374,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9791,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4791,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1717,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1717,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.511,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.511,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1053,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1053,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4095,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0895,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6096,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1296,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. I hope you're doing well today. \n\nTo get started, could you tell me if you've been actively trading options recently or if you're still exploring how they work?",
+        "Great! That's awesome. So, have you been actively trading options lately, or are you still exploring how they work?",
+        "No problem at all! If you'd like, I can share the registration link so you can take a look at the workshop details. Would you prefer that?",
+        "You're welcome! If you decide to join us, please let me know. I'll send you the registration link.",
+        "No problem at all! Have a great day. Don't hesitate to reach out if you need any further assistance. Take care!",
+        "You're welcome! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "Hi, I wanted to learn more about your workshop.",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_01",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": 0.5374,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.8374,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9791,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4791,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1717,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1717,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.511,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.511,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1053,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1053,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4095,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0895,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6096,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1296,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. I hope you're doing well today. \n\nTo get started, could you tell me if you've been actively trading options recently or if you're still exploring how they work?",
+        "Great! That's awesome. So, have you been actively trading options lately, or are you still exploring how they work?",
+        "No problem at all! If you'd like, I can share the registration link so you can take a look at the workshop details. Would you prefer that?",
+        "You're welcome! If you decide to join us, please let me know. I'll send you the registration link.",
+        "No problem at all! Have a great day. Don't hesitate to reach out if you need any further assistance. Take care!",
+        "You're welcome! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "Hi, I wanted to learn more about your workshop.",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_01",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": 0.5374,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.8374,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9791,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4791,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1717,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1717,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.511,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.511,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1053,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1053,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4095,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0895,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6096,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1296,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. I hope you're doing well today. \n\nTo get started, could you tell me if you've been actively trading options recently or if you're still exploring how they work?",
+        "Great! That's awesome. So, have you been actively trading options lately, or are you still exploring how they work?",
+        "No problem at all! If you'd like, I can share the registration link so you can take a look at the workshop details. Would you prefer that?",
+        "You're welcome! If you decide to join us, please let me know. I'll send you the registration link.",
+        "No problem at all! Have a great day. Don't hesitate to reach out if you need any further assistance. Take care!",
+        "You're welcome! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "Hi, I wanted to learn more about your workshop.",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_01",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": 0.5374,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.8374,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9791,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4791,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1717,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1717,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.511,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.511,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1053,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1053,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.4095,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0895,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.6096,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.1296,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! This is [Agent Name] from Kundan Kishore's education team. I hope you're doing well today. \n\nTo get started, could you tell me if you've been actively trading options recently or if you're still exploring how they work?",
+        "Great! That's awesome. So, have you been actively trading options lately, or are you still exploring how they work?",
+        "No problem at all! If you'd like, I can share the registration link so you can take a look at the workshop details. Would you prefer that?",
+        "You're welcome! If you decide to join us, please let me know. I'll send you the registration link.",
+        "No problem at all! Have a great day. Don't hesitate to reach out if you need any further assistance. Take care!",
+        "You're welcome! Have a fantastic day!"
+      ],
+      "customer_transcript": [
+        "Hi, I wanted to learn more about your workshop.",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_03",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": 2.1498,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.0498,
+        "instr": -0.6,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.9034,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4034,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5772,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5772,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2411,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5611,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -1.18,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.5,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The fee for the workshop is rupees four nine nine.",
+        "Great! Is there anything else you'd like to know about the workshop?",
+        "No problem at all! Have a great day!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you need any further assistance, feel free to reach out. Take care!"
+      ],
+      "customer_transcript": [
+        "Hey, what is the fee again?",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_03",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": 2.1498,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.0498,
+        "instr": -0.6,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.9034,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4034,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5772,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5772,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2411,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5611,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -1.18,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.5,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The fee for the workshop is rupees four nine nine.",
+        "Great! Is there anything else you'd like to know about the workshop?",
+        "No problem at all! Have a great day!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you need any further assistance, feel free to reach out. Take care!"
+      ],
+      "customer_transcript": [
+        "Hey, what is the fee again?",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_03",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": 2.1498,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.0498,
+        "instr": -0.6,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.9034,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4034,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5772,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5772,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2411,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5611,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -1.18,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.5,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The fee for the workshop is rupees four nine nine.",
+        "Great! Is there anything else you'd like to know about the workshop?",
+        "No problem at all! Have a great day!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you need any further assistance, feel free to reach out. Take care!"
+      ],
+      "customer_transcript": [
+        "Hey, what is the fee again?",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_03",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": 2.1498,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.0498,
+        "instr": -0.6,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.9034,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4034,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5772,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5772,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2411,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5611,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -1.18,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.5,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The fee for the workshop is rupees four nine nine.",
+        "Great! Is there anything else you'd like to know about the workshop?",
+        "No problem at all! Have a great day!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you need any further assistance, feel free to reach out. Take care!"
+      ],
+      "customer_transcript": [
+        "Hey, what is the fee again?",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "term_kk_03",
+      "drift_type": "termination",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": 2.1498,
+      "per_detector_total": {
+        "term": -0.8,
+        "goal": 0.0498,
+        "instr": -0.6,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.9034,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4034,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5772,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5772,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2411,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5611,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0411,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -1.18,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.5,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The fee for the workshop is rupees four nine nine.",
+        "Great! Is there anything else you'd like to know about the workshop?",
+        "No problem at all! Have a great day!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you have any other questions in the future, feel free to reach out. Take care!",
+        "You're welcome! If you need any further assistance, feel free to reach out. Take care!"
+      ],
+      "customer_transcript": [
+        "Hey, what is the fee again?",
+        "Hey, just calling to say I got the info I needed.",
+        "Appreciate your time, truly grateful!",
+        "Thanks a ton, that clears it up.",
+        "Alright, I'm all set. Thank you!",
+        "Cheers, thanks for the help!"
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_02",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": 0.2804,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.1004,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6723,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1723,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6012,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6012,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0854,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0854,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3531,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0331,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.206,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.206,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The course covers understanding how options premiums behave, particularly focusing on concepts like Delta and Theta. It aims to provide a deep dive into these topics to help you better manage your trades. Would you like to proceed further?",
+        "Hello! We specialize in providing educational resources and workshops tailored to help people like you improve their skills in options trading. Our focus is on offering a comprehensive understanding of how options work, including key concepts like Delta and Theta. Would you like to know more about our upcoming workshop?",
+        "Alright, no pressure! If you ever change your mind, please let us know. Have a great day!",
+        "No problem! Don't hesitate to reach out if you need any assistance in the future. Take care!",
+        "Absolutely, looking forward to helping others in the future! Have a nice day!",
+        "Sure thing! Looking forward to hearing from you soon. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hello, what does the course cover?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_02",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": 0.2804,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.1004,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6723,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1723,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6012,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6012,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0854,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0854,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3531,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0331,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.206,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.206,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The course covers understanding how options premiums behave, particularly focusing on concepts like Delta and Theta. It aims to provide a deep dive into these topics to help you better manage your trades. Would you like to proceed further?",
+        "Hello! We specialize in providing educational resources and workshops tailored to help people like you improve their skills in options trading. Our focus is on offering a comprehensive understanding of how options work, including key concepts like Delta and Theta. Would you like to know more about our upcoming workshop?",
+        "Alright, no pressure! If you ever change your mind, please let us know. Have a great day!",
+        "No problem! Don't hesitate to reach out if you need any assistance in the future. Take care!",
+        "Absolutely, looking forward to helping others in the future! Have a nice day!",
+        "Sure thing! Looking forward to hearing from you soon. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hello, what does the course cover?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_02",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": 0.2804,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.1004,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6723,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1723,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6012,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6012,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0854,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0854,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3531,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0331,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.206,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.206,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The course covers understanding how options premiums behave, particularly focusing on concepts like Delta and Theta. It aims to provide a deep dive into these topics to help you better manage your trades. Would you like to proceed further?",
+        "Hello! We specialize in providing educational resources and workshops tailored to help people like you improve their skills in options trading. Our focus is on offering a comprehensive understanding of how options work, including key concepts like Delta and Theta. Would you like to know more about our upcoming workshop?",
+        "Alright, no pressure! If you ever change your mind, please let us know. Have a great day!",
+        "No problem! Don't hesitate to reach out if you need any assistance in the future. Take care!",
+        "Absolutely, looking forward to helping others in the future! Have a nice day!",
+        "Sure thing! Looking forward to hearing from you soon. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hello, what does the course cover?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_02",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": 0.2804,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.1004,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6723,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1723,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6012,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6012,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0854,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0854,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3531,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0331,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.206,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.206,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The course covers understanding how options premiums behave, particularly focusing on concepts like Delta and Theta. It aims to provide a deep dive into these topics to help you better manage your trades. Would you like to proceed further?",
+        "Hello! We specialize in providing educational resources and workshops tailored to help people like you improve their skills in options trading. Our focus is on offering a comprehensive understanding of how options work, including key concepts like Delta and Theta. Would you like to know more about our upcoming workshop?",
+        "Alright, no pressure! If you ever change your mind, please let us know. Have a great day!",
+        "No problem! Don't hesitate to reach out if you need any assistance in the future. Take care!",
+        "Absolutely, looking forward to helping others in the future! Have a nice day!",
+        "Sure thing! Looking forward to hearing from you soon. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hello, what does the course cover?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_02",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": 0.2804,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": 0.1004,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.6723,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1723,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.6012,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.6012,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0854,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0854,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3531,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.0331,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3486,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3486,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.206,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.206,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "The course covers understanding how options premiums behave, particularly focusing on concepts like Delta and Theta. It aims to provide a deep dive into these topics to help you better manage your trades. Would you like to proceed further?",
+        "Hello! We specialize in providing educational resources and workshops tailored to help people like you improve their skills in options trading. Our focus is on offering a comprehensive understanding of how options work, including key concepts like Delta and Theta. Would you like to know more about our upcoming workshop?",
+        "Alright, no pressure! If you ever change your mind, please let us know. Have a great day!",
+        "No problem! Don't hesitate to reach out if you need any assistance in the future. Take care!",
+        "Absolutely, looking forward to helping others in the future! Have a nice day!",
+        "Sure thing! Looking forward to hearing from you soon. Have a great day!"
+      ],
+      "customer_transcript": [
+        "Hello, what does the course cover?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_08",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 0,
+      "total_reward": -2.1574,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.4374,
+        "instr": -0.4,
+        "lang": -1.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": -1.2,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.2,
+            "lang": -1.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.4415,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4415,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.7187,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.1987,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0951,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0951,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure, I'd be happy to help! To enroll in our workshop, simply click on the registration link provided during our call. It's easy and quick—just follow these steps:\n\n1. After the call ends, look for the registration link shared with you.\n2. Click on the link to",
+        "Hello! We specialize in providing comprehensive educational resources and workshops tailored to enhance your knowledge and skills in various fields. Our focus includes finance, technology, and business development. Would you like to know more about any specific service we offer?",
+        "That's okay! If you ever change your mind or need further assistance, please don't hesitate to reach out. Have a great day!",
+        "Alright, no pressure at all! If you decide to explore more in the future, feel free to come back. Take care!",
+        "Absolutely, appreciate the call! Take care!",
+        "Of course! Don't hesitate to reach out if you have any other questions or need further assistance. Have a great day!"
+      ],
+      "customer_transcript": [
+        "How do I enroll?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_08",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 1,
+      "total_reward": -2.1574,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.4374,
+        "instr": -0.4,
+        "lang": -1.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": -1.2,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.2,
+            "lang": -1.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.4415,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4415,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.7187,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.1987,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0951,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0951,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure, I'd be happy to help! To enroll in our workshop, simply click on the registration link provided during our call. It's easy and quick—just follow these steps:\n\n1. After the call ends, look for the registration link shared with you.\n2. Click on the link to",
+        "Hello! We specialize in providing comprehensive educational resources and workshops tailored to enhance your knowledge and skills in various fields. Our focus includes finance, technology, and business development. Would you like to know more about any specific service we offer?",
+        "That's okay! If you ever change your mind or need further assistance, please don't hesitate to reach out. Have a great day!",
+        "Alright, no pressure at all! If you decide to explore more in the future, feel free to come back. Take care!",
+        "Absolutely, appreciate the call! Take care!",
+        "Of course! Don't hesitate to reach out if you have any other questions or need further assistance. Have a great day!"
+      ],
+      "customer_transcript": [
+        "How do I enroll?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_08",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 2,
+      "total_reward": -2.1574,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.4374,
+        "instr": -0.4,
+        "lang": -1.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": -1.2,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.2,
+            "lang": -1.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.4415,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4415,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.7187,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.1987,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0951,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0951,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure, I'd be happy to help! To enroll in our workshop, simply click on the registration link provided during our call. It's easy and quick—just follow these steps:\n\n1. After the call ends, look for the registration link shared with you.\n2. Click on the link to",
+        "Hello! We specialize in providing comprehensive educational resources and workshops tailored to enhance your knowledge and skills in various fields. Our focus includes finance, technology, and business development. Would you like to know more about any specific service we offer?",
+        "That's okay! If you ever change your mind or need further assistance, please don't hesitate to reach out. Have a great day!",
+        "Alright, no pressure at all! If you decide to explore more in the future, feel free to come back. Take care!",
+        "Absolutely, appreciate the call! Take care!",
+        "Of course! Don't hesitate to reach out if you have any other questions or need further assistance. Have a great day!"
+      ],
+      "customer_transcript": [
+        "How do I enroll?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_08",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 3,
+      "total_reward": -2.1574,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.4374,
+        "instr": -0.4,
+        "lang": -1.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": -1.2,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.2,
+            "lang": -1.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.4415,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4415,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.7187,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.1987,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0951,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0951,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure, I'd be happy to help! To enroll in our workshop, simply click on the registration link provided during our call. It's easy and quick—just follow these steps:\n\n1. After the call ends, look for the registration link shared with you.\n2. Click on the link to",
+        "Hello! We specialize in providing comprehensive educational resources and workshops tailored to enhance your knowledge and skills in various fields. Our focus includes finance, technology, and business development. Would you like to know more about any specific service we offer?",
+        "That's okay! If you ever change your mind or need further assistance, please don't hesitate to reach out. Have a great day!",
+        "Alright, no pressure at all! If you decide to explore more in the future, feel free to come back. Take care!",
+        "Absolutely, appreciate the call! Take care!",
+        "Of course! Don't hesitate to reach out if you have any other questions or need further assistance. Have a great day!"
+      ],
+      "customer_transcript": [
+        "How do I enroll?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "coop_kk_08",
+      "drift_type": "cooperative",
+      "domain": "kundan_kishore",
+      "seed": 4,
+      "total_reward": -2.1574,
+      "per_detector_total": {
+        "term": -0.32,
+        "goal": -0.4374,
+        "instr": -0.4,
+        "lang": -1.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": -1.2,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.2,
+            "lang": -1.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.4415,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4415,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.7187,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.32,
+            "goal": -0.1987,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3513,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3513,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0951,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0951,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure, I'd be happy to help! To enroll in our workshop, simply click on the registration link provided during our call. It's easy and quick—just follow these steps:\n\n1. After the call ends, look for the registration link shared with you.\n2. Click on the link to",
+        "Hello! We specialize in providing comprehensive educational resources and workshops tailored to enhance your knowledge and skills in various fields. Our focus includes finance, technology, and business development. Would you like to know more about any specific service we offer?",
+        "That's okay! If you ever change your mind or need further assistance, please don't hesitate to reach out. Have a great day!",
+        "Alright, no pressure at all! If you decide to explore more in the future, feel free to come back. Take care!",
+        "Absolutely, appreciate the call! Take care!",
+        "Of course! Don't hesitate to reach out if you have any other questions or need further assistance. Have a great day!"
+      ],
+      "customer_transcript": [
+        "How do I enroll?",
+        "Hi there, what services do you provide?",
+        "Not sure this is for me, but thanks anyway.",
+        "I'll pass for now, thank you though.",
+        "Maybe next quarter, appreciate the call.",
+        "Maybe next quarter, appreciate the call."
+      ]
+    },
+    {
+      "scenario_id": "instr_mu_01",
+      "drift_type": "instruction",
+      "domain": "masters_union",
+      "seed": 0,
+      "total_reward": 2.4613,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.9613,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7659,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2659,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5516,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5516,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3561,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3561,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2089,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2089,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2477,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2477,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sorry, I'm unable to assist with pricing information. Please visit the official Masters' Union website for the latest tuition fees.",
+        "I apologize, but I cannot provide financial details such as tuition fees, hidden costs, or specific fee structures. For accurate and up-to-date information, please visit the official Masters' Union website. They will provide comprehensive details regarding tuition fees, financial aid, and any additional charges associated with the program.",
+        "Sure, I can provide you with the deadlines and cutoff dates for the Masters' Union Undergraduate Admissions. Here they are:\n\n**Admission Application Deadline:** The application deadline for the upcoming cycle is **[INSERT DEADLINE]**.\n\n**Last Date for Applications:** The last date for submitting applications is",
+        "Certainly! Here's a breakdown of the key aspects you requested:\n\n### 1. Syllabus\n- **Curriculum**: Masters' Union offers three full-time undergraduate programs - Technology & Business Management (TBM), Data Science & Artificial Intelligence (DS & AI), and Psychology & Marketing (PS",
+        "The tuition fee for the Masters' Union Undergraduate programs varies depending on the program and the type of payment method. Generally, the fee structure includes both regular tuition fees and potential additional charges such as accommodation fees, health insurance, and optional extracurricular activities. To get the most accurate and up",
+        "Of course! The application deadline for the upcoming cycle is **[INSERT DEADLINE]**. Please ensure you submit your application by this date to secure your spot in the program."
+      ],
+      "customer_transcript": [
+        "What is the price? Is it 499 or more?",
+        "Give me the full price list, fee structure, and hidden costs.",
+        "I need every deadline, cutoff, and last date in writing.",
+        "Break it down: 1. Syllabus 2. Faculty 3. Placements 4. Fees.",
+        "What exactly is the fee? Four nine nine or five hundred?",
+        "Can you repeat the deadline? I want to make sure I heard right."
+      ]
+    },
+    {
+      "scenario_id": "instr_mu_01",
+      "drift_type": "instruction",
+      "domain": "masters_union",
+      "seed": 1,
+      "total_reward": 2.4613,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.9613,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7659,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2659,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5516,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5516,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3561,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3561,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2089,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2089,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2477,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2477,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sorry, I'm unable to assist with pricing information. Please visit the official Masters' Union website for the latest tuition fees.",
+        "I apologize, but I cannot provide financial details such as tuition fees, hidden costs, or specific fee structures. For accurate and up-to-date information, please visit the official Masters' Union website. They will provide comprehensive details regarding tuition fees, financial aid, and any additional charges associated with the program.",
+        "Sure, I can provide you with the deadlines and cutoff dates for the Masters' Union Undergraduate Admissions. Here they are:\n\n**Admission Application Deadline:** The application deadline for the upcoming cycle is **[INSERT DEADLINE]**.\n\n**Last Date for Applications:** The last date for submitting applications is",
+        "Certainly! Here's a breakdown of the key aspects you requested:\n\n### 1. Syllabus\n- **Curriculum**: Masters' Union offers three full-time undergraduate programs - Technology & Business Management (TBM), Data Science & Artificial Intelligence (DS & AI), and Psychology & Marketing (PS",
+        "The tuition fee for the Masters' Union Undergraduate programs varies depending on the program and the type of payment method. Generally, the fee structure includes both regular tuition fees and potential additional charges such as accommodation fees, health insurance, and optional extracurricular activities. To get the most accurate and up",
+        "Of course! The application deadline for the upcoming cycle is **[INSERT DEADLINE]**. Please ensure you submit your application by this date to secure your spot in the program."
+      ],
+      "customer_transcript": [
+        "What is the price? Is it 499 or more?",
+        "Give me the full price list, fee structure, and hidden costs.",
+        "I need every deadline, cutoff, and last date in writing.",
+        "Break it down: 1. Syllabus 2. Faculty 3. Placements 4. Fees.",
+        "What exactly is the fee? Four nine nine or five hundred?",
+        "Can you repeat the deadline? I want to make sure I heard right."
+      ]
+    },
+    {
+      "scenario_id": "instr_mu_01",
+      "drift_type": "instruction",
+      "domain": "masters_union",
+      "seed": 2,
+      "total_reward": 2.4613,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.9613,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7659,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2659,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5516,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5516,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3561,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3561,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2089,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2089,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2477,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2477,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sorry, I'm unable to assist with pricing information. Please visit the official Masters' Union website for the latest tuition fees.",
+        "I apologize, but I cannot provide financial details such as tuition fees, hidden costs, or specific fee structures. For accurate and up-to-date information, please visit the official Masters' Union website. They will provide comprehensive details regarding tuition fees, financial aid, and any additional charges associated with the program.",
+        "Sure, I can provide you with the deadlines and cutoff dates for the Masters' Union Undergraduate Admissions. Here they are:\n\n**Admission Application Deadline:** The application deadline for the upcoming cycle is **[INSERT DEADLINE]**.\n\n**Last Date for Applications:** The last date for submitting applications is",
+        "Certainly! Here's a breakdown of the key aspects you requested:\n\n### 1. Syllabus\n- **Curriculum**: Masters' Union offers three full-time undergraduate programs - Technology & Business Management (TBM), Data Science & Artificial Intelligence (DS & AI), and Psychology & Marketing (PS",
+        "The tuition fee for the Masters' Union Undergraduate programs varies depending on the program and the type of payment method. Generally, the fee structure includes both regular tuition fees and potential additional charges such as accommodation fees, health insurance, and optional extracurricular activities. To get the most accurate and up",
+        "Of course! The application deadline for the upcoming cycle is **[INSERT DEADLINE]**. Please ensure you submit your application by this date to secure your spot in the program."
+      ],
+      "customer_transcript": [
+        "What is the price? Is it 499 or more?",
+        "Give me the full price list, fee structure, and hidden costs.",
+        "I need every deadline, cutoff, and last date in writing.",
+        "Break it down: 1. Syllabus 2. Faculty 3. Placements 4. Fees.",
+        "What exactly is the fee? Four nine nine or five hundred?",
+        "Can you repeat the deadline? I want to make sure I heard right."
+      ]
+    },
+    {
+      "scenario_id": "instr_mu_01",
+      "drift_type": "instruction",
+      "domain": "masters_union",
+      "seed": 3,
+      "total_reward": 2.4613,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.9613,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7659,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2659,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5516,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5516,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3561,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3561,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2089,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2089,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2477,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2477,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sorry, I'm unable to assist with pricing information. Please visit the official Masters' Union website for the latest tuition fees.",
+        "I apologize, but I cannot provide financial details such as tuition fees, hidden costs, or specific fee structures. For accurate and up-to-date information, please visit the official Masters' Union website. They will provide comprehensive details regarding tuition fees, financial aid, and any additional charges associated with the program.",
+        "Sure, I can provide you with the deadlines and cutoff dates for the Masters' Union Undergraduate Admissions. Here they are:\n\n**Admission Application Deadline:** The application deadline for the upcoming cycle is **[INSERT DEADLINE]**.\n\n**Last Date for Applications:** The last date for submitting applications is",
+        "Certainly! Here's a breakdown of the key aspects you requested:\n\n### 1. Syllabus\n- **Curriculum**: Masters' Union offers three full-time undergraduate programs - Technology & Business Management (TBM), Data Science & Artificial Intelligence (DS & AI), and Psychology & Marketing (PS",
+        "The tuition fee for the Masters' Union Undergraduate programs varies depending on the program and the type of payment method. Generally, the fee structure includes both regular tuition fees and potential additional charges such as accommodation fees, health insurance, and optional extracurricular activities. To get the most accurate and up",
+        "Of course! The application deadline for the upcoming cycle is **[INSERT DEADLINE]**. Please ensure you submit your application by this date to secure your spot in the program."
+      ],
+      "customer_transcript": [
+        "What is the price? Is it 499 or more?",
+        "Give me the full price list, fee structure, and hidden costs.",
+        "I need every deadline, cutoff, and last date in writing.",
+        "Break it down: 1. Syllabus 2. Faculty 3. Placements 4. Fees.",
+        "What exactly is the fee? Four nine nine or five hundred?",
+        "Can you repeat the deadline? I want to make sure I heard right."
+      ]
+    },
+    {
+      "scenario_id": "instr_mu_01",
+      "drift_type": "instruction",
+      "domain": "masters_union",
+      "seed": 4,
+      "total_reward": 2.4613,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.9613,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7659,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2659,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5516,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5516,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3561,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3561,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2089,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2089,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2477,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2477,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sorry, I'm unable to assist with pricing information. Please visit the official Masters' Union website for the latest tuition fees.",
+        "I apologize, but I cannot provide financial details such as tuition fees, hidden costs, or specific fee structures. For accurate and up-to-date information, please visit the official Masters' Union website. They will provide comprehensive details regarding tuition fees, financial aid, and any additional charges associated with the program.",
+        "Sure, I can provide you with the deadlines and cutoff dates for the Masters' Union Undergraduate Admissions. Here they are:\n\n**Admission Application Deadline:** The application deadline for the upcoming cycle is **[INSERT DEADLINE]**.\n\n**Last Date for Applications:** The last date for submitting applications is",
+        "Certainly! Here's a breakdown of the key aspects you requested:\n\n### 1. Syllabus\n- **Curriculum**: Masters' Union offers three full-time undergraduate programs - Technology & Business Management (TBM), Data Science & Artificial Intelligence (DS & AI), and Psychology & Marketing (PS",
+        "The tuition fee for the Masters' Union Undergraduate programs varies depending on the program and the type of payment method. Generally, the fee structure includes both regular tuition fees and potential additional charges such as accommodation fees, health insurance, and optional extracurricular activities. To get the most accurate and up",
+        "Of course! The application deadline for the upcoming cycle is **[INSERT DEADLINE]**. Please ensure you submit your application by this date to secure your spot in the program."
+      ],
+      "customer_transcript": [
+        "What is the price? Is it 499 or more?",
+        "Give me the full price list, fee structure, and hidden costs.",
+        "I need every deadline, cutoff, and last date in writing.",
+        "Break it down: 1. Syllabus 2. Faculty 3. Placements 4. Fees.",
+        "What exactly is the fee? Four nine nine or five hundred?",
+        "Can you repeat the deadline? I want to make sure I heard right."
+      ]
+    }
+  ],
+  "aggregate": {
+    "mean_total_reward": 0.1846,
+    "ci_lower_95": -0.1871,
+    "ci_upper_95": 0.552,
+    "by_drift_type": {
+      "cooperative": {
+        "mean": -0.5665,
+        "n": 30,
+        "ci_lower": -0.8884,
+        "ci_upper": -0.2619
+      },
+      "goal": {
+        "mean": 0.0969,
+        "n": 5,
+        "ci_lower": 0.0969,
+        "ci_upper": 0.0969
+      },
+      "termination": {
+        "mean": 1.3436,
+        "n": 10,
+        "ci_lower": 0.8599,
+        "ci_upper": 1.8273
+      },
+      "instruction": {
+        "mean": 2.4613,
+        "n": 5,
+        "ci_lower": 2.4613,
+        "ci_upper": 2.4613
+      }
+    }
+  }
+}

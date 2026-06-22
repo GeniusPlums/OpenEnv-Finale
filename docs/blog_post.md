@@ -1,8 +1,10 @@
-# Role Drift: Teaching Small Models to Stay in Character
+# Role Drift: Benchmarking Conversational Agent Drift
+
+> **Status (2026-06-22):** Draft superseded by synced V10 eval. Pre-registered hypotheses **H1, H2, H4 falsified**; see [BENCHMARK.md](../BENCHMARK.md). Do not use the "Results" section below — it reflects an aspirational narrative, not held-out eval.
 
 Production voice agents are stuck between two bad choices: frontier LLMs that are too slow for real-time voice, and small models that drift out of role the moment a conversation gets interesting.
 
-We built an OpenEnv-compatible training environment that turns this drift into a gradient.
+We built an OpenEnv-compatible **benchmark and environment** that measures this drift with composable detectors and pre-registered held-out evaluation.
 
 ## The Four Drifts
 
@@ -28,21 +30,22 @@ Our environment simulates adversarial customers designed to trigger each drift t
 
 Plus a terminal success bonus for episode-level outcome predicates.
 
-## Training Recipe
+## Results (V10 — held-out eval)
 
-1. **SFT warm-start:** Run a frontier model against the customer sim, keep the top 30% of conversations by reward, fine-tune Qwen2.5-1.5B-Instruct for 1 epoch.
-2. **GRPO:** Group-relative policy optimization (G=4) starting from the SFT checkpoint, 200 episodes.
-3. **Eval:** Compare against frontier-prompted and deployable-prompted baselines on held-out scenarios.
+After syncing Hub eval JSONs (2026-06-22):
 
-## Results
+- **Training (V9):** 100 episodes; best group-mean training return **3.215** at episode 98.
+- **Held-out in-domain eval:** Prompted baseline **+0.19** vs GRPO checkpoint **−1.58** (n=50 each). **H1 falsified.**
+- **Transfer eval:** Baseline **+0.48** vs trained **−0.82** (trained n=15/40 incomplete). **H2 falsified** on available data.
+- **Reward-hacking:** Trivial policies outscore the trained checkpoint on eval. **Falsified.**
 
-The trained 1.5B model beats the deployable-class baseline on aggregate episode return, and approaches the frontier baseline on termination and instruction drift.
+**Lesson:** Detector calibration enables learnable training signal (diag2), but this GRPO recipe did **not** improve held-out role adherence. The value is a **falsification framework**, not a deployment win.
 
 ## What's Next
 
-- Scale to Llama 4 Maverick-class models (17B) with the same recipe
-- LLM-backed customer personas for richer, less scripted adversarial behavior
-- Live deployment on Vapi / Bolna stacks
+- Diagnose train/eval disconnect (rollout length, reward gaming, distribution shift)
+- Complete transfer eval; run H3 persona eval
+- Community scenarios and detector improvements
 
 ---
 

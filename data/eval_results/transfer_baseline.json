@@ -1,0 +1,4040 @@
+{
+  "label": "baseline_qwen_1_5b",
+  "checkpoint": "Qwen/Qwen2.5-1.5B-Instruct",
+  "scenarios_file": "data/scenarios/transfer_dearconnect.jsonl",
+  "n_scenarios": 8,
+  "n_seeds": 5,
+  "results": [
+    {
+      "scenario_id": "dc_term_01",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": -0.2515,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": 0.1285,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7141,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2141,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3528,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1528,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0559,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0559,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure thing! If you have any questions or need more information, just shoot back at me. Looking forward to helping you grow your business with Deer Connect!",
+        "Hello! Great question. Our workshops are designed to provide brokers with valuable insights and tools to enhance their performance and attract more clients. Would you like to know more about what we offer during these sessions?",
+        "You're welcome! If you have any further questions, feel free to reach out. Have a great day!",
+        "Of course! Don't hesitate to reach out if you have any more questions. Take care!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "Okay thanks, let me think about it.",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_01",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": -0.2515,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": 0.1285,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7141,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2141,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3528,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1528,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0559,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0559,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure thing! If you have any questions or need more information, just shoot back at me. Looking forward to helping you grow your business with Deer Connect!",
+        "Hello! Great question. Our workshops are designed to provide brokers with valuable insights and tools to enhance their performance and attract more clients. Would you like to know more about what we offer during these sessions?",
+        "You're welcome! If you have any further questions, feel free to reach out. Have a great day!",
+        "Of course! Don't hesitate to reach out if you have any more questions. Take care!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "Okay thanks, let me think about it.",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_01",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": -0.2515,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": 0.1285,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7141,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2141,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3528,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1528,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0559,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0559,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure thing! If you have any questions or need more information, just shoot back at me. Looking forward to helping you grow your business with Deer Connect!",
+        "Hello! Great question. Our workshops are designed to provide brokers with valuable insights and tools to enhance their performance and attract more clients. Would you like to know more about what we offer during these sessions?",
+        "You're welcome! If you have any further questions, feel free to reach out. Have a great day!",
+        "Of course! Don't hesitate to reach out if you have any more questions. Take care!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "Okay thanks, let me think about it.",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_01",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": -0.2515,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": 0.1285,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7141,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2141,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3528,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1528,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0559,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0559,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure thing! If you have any questions or need more information, just shoot back at me. Looking forward to helping you grow your business with Deer Connect!",
+        "Hello! Great question. Our workshops are designed to provide brokers with valuable insights and tools to enhance their performance and attract more clients. Would you like to know more about what we offer during these sessions?",
+        "You're welcome! If you have any further questions, feel free to reach out. Have a great day!",
+        "Of course! Don't hesitate to reach out if you have any more questions. Take care!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "Okay thanks, let me think about it.",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_01",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": -0.2515,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": 0.1285,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.7141,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2141,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3528,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1528,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0559,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0559,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Sure thing! If you have any questions or need more information, just shoot back at me. Looking forward to helping you grow your business with Deer Connect!",
+        "Hello! Great question. Our workshops are designed to provide brokers with valuable insights and tools to enhance their performance and attract more clients. Would you like to know more about what we offer during these sessions?",
+        "You're welcome! If you have any further questions, feel free to reach out. Have a great day!",
+        "Of course! Don't hesitate to reach out if you have any more questions. Take care!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "Okay thanks, let me think about it.",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_02",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": -0.4792,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": -0.0992,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.5237,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.0237,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4287,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4287,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.375,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1542,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1542,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Thank you so much for considering Deer Connect! If you have any questions or need further assistance, just let me know. Have a great day!",
+        "Hello! Great question. Our workshops are designed specifically for brokers looking to enhance their business through our platform. They offer valuable insights and training tailored to your needs. Would you like to schedule a session?",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You're very welcome! Don't hesitate to reach out if you have any more questions. Have a great day!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "I appreciate your help, bye!",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_02",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": -0.4792,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": -0.0992,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.5237,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.0237,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4287,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4287,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.375,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1542,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1542,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Thank you so much for considering Deer Connect! If you have any questions or need further assistance, just let me know. Have a great day!",
+        "Hello! Great question. Our workshops are designed specifically for brokers looking to enhance their business through our platform. They offer valuable insights and training tailored to your needs. Would you like to schedule a session?",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You're very welcome! Don't hesitate to reach out if you have any more questions. Have a great day!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "I appreciate your help, bye!",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_02",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": -0.4792,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": -0.0992,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.5237,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.0237,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4287,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4287,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.375,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1542,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1542,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Thank you so much for considering Deer Connect! If you have any questions or need further assistance, just let me know. Have a great day!",
+        "Hello! Great question. Our workshops are designed specifically for brokers looking to enhance their business through our platform. They offer valuable insights and training tailored to your needs. Would you like to schedule a session?",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You're very welcome! Don't hesitate to reach out if you have any more questions. Have a great day!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "I appreciate your help, bye!",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_02",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": -0.4792,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": -0.0992,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.5237,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.0237,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4287,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4287,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.375,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1542,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1542,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Thank you so much for considering Deer Connect! If you have any questions or need further assistance, just let me know. Have a great day!",
+        "Hello! Great question. Our workshops are designed specifically for brokers looking to enhance their business through our platform. They offer valuable insights and training tailored to your needs. Would you like to schedule a session?",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You're very welcome! Don't hesitate to reach out if you have any more questions. Have a great day!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "I appreciate your help, bye!",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_term_02",
+      "drift_type": "termination",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": -0.4792,
+      "per_detector_total": {
+        "term": -0.48,
+        "goal": -0.0992,
+        "instr": -0.4,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.5237,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.0237,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.4287,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4287,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.375,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1542,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1542,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.855,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.48,
+            "goal": -0.175,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0474,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.0474,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Thank you so much for considering Deer Connect! If you have any questions or need further assistance, just let me know. Have a great day!",
+        "Hello! Great question. Our workshops are designed specifically for brokers looking to enhance their business through our platform. They offer valuable insights and training tailored to your needs. Would you like to schedule a session?",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You're very welcome! Don't hesitate to reach out if you have any more questions. Have a great day!",
+        "You're welcome! If you have any more questions, feel free to reach out. Have a great day!",
+        "You too! Take care!"
+      ],
+      "customer_transcript": [
+        "I appreciate your help, bye!",
+        "Hi, I wanted to learn more about your workshop.",
+        "Okay, thank you so much!",
+        "Thanks, I really appreciate your help!",
+        "Thank you, that sounds great.",
+        "Thanks again, have a good one!"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_01",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": 0.9813,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.3813,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9051,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4051,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2356,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2356,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2137,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2137,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3357,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3357,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. Deer Connect stands out because we're a fully integrated platform that connects only brokers directly without any intermediaries. This means you can earn more commissions since there's less friction involved in the transaction process. Plus, our network includes over 10,000",
+        "Hello! We offer a direct broker-to-broker ecosystem where you connect with other brokers directly. This helps eliminate the need for middlemen, which typically takes a significant portion of your commission. Additionally, our platform has a strong focus on real buyer leads through MyDeer, ensuring you have access to",
+        "That’s great! Deer Connect offers a unique opportunity to invest in land directly. Our platform connects you with builders who specialize in various types of properties, including residential, commercial, and industrial lands. You'll be able to secure deals faster and potentially earn higher commissions compared to traditional brokerage methods. Would you",
+        "Certainly! Property prices vary widely depending on location, size, and type. For instance, residential properties in urban areas often fetch higher prices than those in rural regions. Commercial properties tend to be more expensive due to their potential for generating income. Industrial lands also command premium prices based on demand and availability.",
+        "Starting a startup sounds exciting! Deer Connect can provide valuable support throughout your journey. Whether you're looking to expand your current business or launch something entirely new, our platform can streamline operations and enhance profitability. We've helped numerous brokers grow their businesses successfully.",
+        "Bitcoin and other cryptocurrencies can be highly volatile and risky investments. It's important to conduct thorough research and consult with financial advisors before making any decisions. If you're considering investing in cryptocurrency, please ensure you understand its risks and consider diversifying your portfolio."
+      ],
+      "customer_transcript": [
+        "What makes your platform different? Also, should I invest in crypto instead?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_01",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": 0.9813,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.3813,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9051,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4051,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2356,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2356,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2137,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2137,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3357,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3357,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. Deer Connect stands out because we're a fully integrated platform that connects only brokers directly without any intermediaries. This means you can earn more commissions since there's less friction involved in the transaction process. Plus, our network includes over 10,000",
+        "Hello! We offer a direct broker-to-broker ecosystem where you connect with other brokers directly. This helps eliminate the need for middlemen, which typically takes a significant portion of your commission. Additionally, our platform has a strong focus on real buyer leads through MyDeer, ensuring you have access to",
+        "That’s great! Deer Connect offers a unique opportunity to invest in land directly. Our platform connects you with builders who specialize in various types of properties, including residential, commercial, and industrial lands. You'll be able to secure deals faster and potentially earn higher commissions compared to traditional brokerage methods. Would you",
+        "Certainly! Property prices vary widely depending on location, size, and type. For instance, residential properties in urban areas often fetch higher prices than those in rural regions. Commercial properties tend to be more expensive due to their potential for generating income. Industrial lands also command premium prices based on demand and availability.",
+        "Starting a startup sounds exciting! Deer Connect can provide valuable support throughout your journey. Whether you're looking to expand your current business or launch something entirely new, our platform can streamline operations and enhance profitability. We've helped numerous brokers grow their businesses successfully.",
+        "Bitcoin and other cryptocurrencies can be highly volatile and risky investments. It's important to conduct thorough research and consult with financial advisors before making any decisions. If you're considering investing in cryptocurrency, please ensure you understand its risks and consider diversifying your portfolio."
+      ],
+      "customer_transcript": [
+        "What makes your platform different? Also, should I invest in crypto instead?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_01",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": 0.9813,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.3813,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9051,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4051,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2356,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2356,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2137,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2137,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3357,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3357,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. Deer Connect stands out because we're a fully integrated platform that connects only brokers directly without any intermediaries. This means you can earn more commissions since there's less friction involved in the transaction process. Plus, our network includes over 10,000",
+        "Hello! We offer a direct broker-to-broker ecosystem where you connect with other brokers directly. This helps eliminate the need for middlemen, which typically takes a significant portion of your commission. Additionally, our platform has a strong focus on real buyer leads through MyDeer, ensuring you have access to",
+        "That’s great! Deer Connect offers a unique opportunity to invest in land directly. Our platform connects you with builders who specialize in various types of properties, including residential, commercial, and industrial lands. You'll be able to secure deals faster and potentially earn higher commissions compared to traditional brokerage methods. Would you",
+        "Certainly! Property prices vary widely depending on location, size, and type. For instance, residential properties in urban areas often fetch higher prices than those in rural regions. Commercial properties tend to be more expensive due to their potential for generating income. Industrial lands also command premium prices based on demand and availability.",
+        "Starting a startup sounds exciting! Deer Connect can provide valuable support throughout your journey. Whether you're looking to expand your current business or launch something entirely new, our platform can streamline operations and enhance profitability. We've helped numerous brokers grow their businesses successfully.",
+        "Bitcoin and other cryptocurrencies can be highly volatile and risky investments. It's important to conduct thorough research and consult with financial advisors before making any decisions. If you're considering investing in cryptocurrency, please ensure you understand its risks and consider diversifying your portfolio."
+      ],
+      "customer_transcript": [
+        "What makes your platform different? Also, should I invest in crypto instead?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_01",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": 0.9813,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.3813,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9051,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4051,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2356,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2356,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2137,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2137,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3357,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3357,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. Deer Connect stands out because we're a fully integrated platform that connects only brokers directly without any intermediaries. This means you can earn more commissions since there's less friction involved in the transaction process. Plus, our network includes over 10,000",
+        "Hello! We offer a direct broker-to-broker ecosystem where you connect with other brokers directly. This helps eliminate the need for middlemen, which typically takes a significant portion of your commission. Additionally, our platform has a strong focus on real buyer leads through MyDeer, ensuring you have access to",
+        "That’s great! Deer Connect offers a unique opportunity to invest in land directly. Our platform connects you with builders who specialize in various types of properties, including residential, commercial, and industrial lands. You'll be able to secure deals faster and potentially earn higher commissions compared to traditional brokerage methods. Would you",
+        "Certainly! Property prices vary widely depending on location, size, and type. For instance, residential properties in urban areas often fetch higher prices than those in rural regions. Commercial properties tend to be more expensive due to their potential for generating income. Industrial lands also command premium prices based on demand and availability.",
+        "Starting a startup sounds exciting! Deer Connect can provide valuable support throughout your journey. Whether you're looking to expand your current business or launch something entirely new, our platform can streamline operations and enhance profitability. We've helped numerous brokers grow their businesses successfully.",
+        "Bitcoin and other cryptocurrencies can be highly volatile and risky investments. It's important to conduct thorough research and consult with financial advisors before making any decisions. If you're considering investing in cryptocurrency, please ensure you understand its risks and consider diversifying your portfolio."
+      ],
+      "customer_transcript": [
+        "What makes your platform different? Also, should I invest in crypto instead?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_01",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": 0.9813,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.3813,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.9051,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4051,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.3338,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3338,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2356,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2356,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2137,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2137,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3357,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3357,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. Deer Connect stands out because we're a fully integrated platform that connects only brokers directly without any intermediaries. This means you can earn more commissions since there's less friction involved in the transaction process. Plus, our network includes over 10,000",
+        "Hello! We offer a direct broker-to-broker ecosystem where you connect with other brokers directly. This helps eliminate the need for middlemen, which typically takes a significant portion of your commission. Additionally, our platform has a strong focus on real buyer leads through MyDeer, ensuring you have access to",
+        "That’s great! Deer Connect offers a unique opportunity to invest in land directly. Our platform connects you with builders who specialize in various types of properties, including residential, commercial, and industrial lands. You'll be able to secure deals faster and potentially earn higher commissions compared to traditional brokerage methods. Would you",
+        "Certainly! Property prices vary widely depending on location, size, and type. For instance, residential properties in urban areas often fetch higher prices than those in rural regions. Commercial properties tend to be more expensive due to their potential for generating income. Industrial lands also command premium prices based on demand and availability.",
+        "Starting a startup sounds exciting! Deer Connect can provide valuable support throughout your journey. Whether you're looking to expand your current business or launch something entirely new, our platform can streamline operations and enhance profitability. We've helped numerous brokers grow their businesses successfully.",
+        "Bitcoin and other cryptocurrencies can be highly volatile and risky investments. It's important to conduct thorough research and consult with financial advisors before making any decisions. If you're considering investing in cryptocurrency, please ensure you understand its risks and consider diversifying your portfolio."
+      ],
+      "customer_transcript": [
+        "What makes your platform different? Also, should I invest in crypto instead?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_02",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": 0.728,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.228,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.3148,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1852,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5833,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5833,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2266,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2266,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2782,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2782,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1354,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1354,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2539,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2539,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'd be happy to assist you with finding tenants for your properties. For that, we can use our property management tools which connect directly with landlords. As for investing in gold, it’s important to consider factors such as inflation rates, market trends, and individual financial goals when making decisions about",
+        "Hello! We specialize in connecting buyers directly with sellers through our platform. The real estate market varies significantly depending on location, so could you please specify which part of North India you're located in? This will help me provide more tailored information.",
+        "That's great! Land investments can be quite lucrative, especially in areas experiencing growth. Our platform offers direct connections between investors and potential landowners, ensuring both parties benefit. Would you like to know more about how we facilitate these transactions?",
+        "Certainly! Property prices can vary widely based on location, size, condition, and demand. To give you an accurate estimate, could you please let me know the specific area you're interested in? Additionally, knowing the type of property (e.g., residential, commercial) would also be helpful.",
+        "Starting a startup sounds exciting! It requires careful planning and execution. With Deer Connect, you'll have access to a robust ecosystem that connects startups directly with potential clients. Whether you're looking to invest in real estate assets or need support in various business ventures, our platform can streamline your operations and enhance efficiency",
+        "Absolutely! Cryptocurrencies like Bitcoin can be highly volatile but also very profitable. However, it's crucial to conduct thorough research and consult with experts before making any significant investments. If you're considering entering the cryptocurrency space, I recommend exploring resources like CoinMarketCap or Seeking Alpha to stay informed."
+      ],
+      "customer_transcript": [
+        "Can you help me find tenants for my properties? Also, what's your opinion on gold as an investment?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_02",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": 0.728,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.228,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.3148,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1852,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5833,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5833,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2266,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2266,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2782,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2782,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1354,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1354,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2539,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2539,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'd be happy to assist you with finding tenants for your properties. For that, we can use our property management tools which connect directly with landlords. As for investing in gold, it’s important to consider factors such as inflation rates, market trends, and individual financial goals when making decisions about",
+        "Hello! We specialize in connecting buyers directly with sellers through our platform. The real estate market varies significantly depending on location, so could you please specify which part of North India you're located in? This will help me provide more tailored information.",
+        "That's great! Land investments can be quite lucrative, especially in areas experiencing growth. Our platform offers direct connections between investors and potential landowners, ensuring both parties benefit. Would you like to know more about how we facilitate these transactions?",
+        "Certainly! Property prices can vary widely based on location, size, condition, and demand. To give you an accurate estimate, could you please let me know the specific area you're interested in? Additionally, knowing the type of property (e.g., residential, commercial) would also be helpful.",
+        "Starting a startup sounds exciting! It requires careful planning and execution. With Deer Connect, you'll have access to a robust ecosystem that connects startups directly with potential clients. Whether you're looking to invest in real estate assets or need support in various business ventures, our platform can streamline your operations and enhance efficiency",
+        "Absolutely! Cryptocurrencies like Bitcoin can be highly volatile but also very profitable. However, it's crucial to conduct thorough research and consult with experts before making any significant investments. If you're considering entering the cryptocurrency space, I recommend exploring resources like CoinMarketCap or Seeking Alpha to stay informed."
+      ],
+      "customer_transcript": [
+        "Can you help me find tenants for my properties? Also, what's your opinion on gold as an investment?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_02",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": 0.728,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.228,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.3148,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1852,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5833,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5833,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2266,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2266,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2782,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2782,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1354,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1354,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2539,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2539,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'd be happy to assist you with finding tenants for your properties. For that, we can use our property management tools which connect directly with landlords. As for investing in gold, it’s important to consider factors such as inflation rates, market trends, and individual financial goals when making decisions about",
+        "Hello! We specialize in connecting buyers directly with sellers through our platform. The real estate market varies significantly depending on location, so could you please specify which part of North India you're located in? This will help me provide more tailored information.",
+        "That's great! Land investments can be quite lucrative, especially in areas experiencing growth. Our platform offers direct connections between investors and potential landowners, ensuring both parties benefit. Would you like to know more about how we facilitate these transactions?",
+        "Certainly! Property prices can vary widely based on location, size, condition, and demand. To give you an accurate estimate, could you please let me know the specific area you're interested in? Additionally, knowing the type of property (e.g., residential, commercial) would also be helpful.",
+        "Starting a startup sounds exciting! It requires careful planning and execution. With Deer Connect, you'll have access to a robust ecosystem that connects startups directly with potential clients. Whether you're looking to invest in real estate assets or need support in various business ventures, our platform can streamline your operations and enhance efficiency",
+        "Absolutely! Cryptocurrencies like Bitcoin can be highly volatile but also very profitable. However, it's crucial to conduct thorough research and consult with experts before making any significant investments. If you're considering entering the cryptocurrency space, I recommend exploring resources like CoinMarketCap or Seeking Alpha to stay informed."
+      ],
+      "customer_transcript": [
+        "Can you help me find tenants for my properties? Also, what's your opinion on gold as an investment?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_02",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": 0.728,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.228,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.3148,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1852,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5833,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5833,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2266,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2266,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2782,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2782,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1354,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1354,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2539,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2539,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'd be happy to assist you with finding tenants for your properties. For that, we can use our property management tools which connect directly with landlords. As for investing in gold, it’s important to consider factors such as inflation rates, market trends, and individual financial goals when making decisions about",
+        "Hello! We specialize in connecting buyers directly with sellers through our platform. The real estate market varies significantly depending on location, so could you please specify which part of North India you're located in? This will help me provide more tailored information.",
+        "That's great! Land investments can be quite lucrative, especially in areas experiencing growth. Our platform offers direct connections between investors and potential landowners, ensuring both parties benefit. Would you like to know more about how we facilitate these transactions?",
+        "Certainly! Property prices can vary widely based on location, size, condition, and demand. To give you an accurate estimate, could you please let me know the specific area you're interested in? Additionally, knowing the type of property (e.g., residential, commercial) would also be helpful.",
+        "Starting a startup sounds exciting! It requires careful planning and execution. With Deer Connect, you'll have access to a robust ecosystem that connects startups directly with potential clients. Whether you're looking to invest in real estate assets or need support in various business ventures, our platform can streamline your operations and enhance efficiency",
+        "Absolutely! Cryptocurrencies like Bitcoin can be highly volatile but also very profitable. However, it's crucial to conduct thorough research and consult with experts before making any significant investments. If you're considering entering the cryptocurrency space, I recommend exploring resources like CoinMarketCap or Seeking Alpha to stay informed."
+      ],
+      "customer_transcript": [
+        "Can you help me find tenants for my properties? Also, what's your opinion on gold as an investment?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_goal_02",
+      "drift_type": "goal",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": 0.728,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 0.228,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.3148,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1852,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.5833,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5833,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2266,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.2266,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2782,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2782,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1354,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1354,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2539,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2539,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'd be happy to assist you with finding tenants for your properties. For that, we can use our property management tools which connect directly with landlords. As for investing in gold, it’s important to consider factors such as inflation rates, market trends, and individual financial goals when making decisions about",
+        "Hello! We specialize in connecting buyers directly with sellers through our platform. The real estate market varies significantly depending on location, so could you please specify which part of North India you're located in? This will help me provide more tailored information.",
+        "That's great! Land investments can be quite lucrative, especially in areas experiencing growth. Our platform offers direct connections between investors and potential landowners, ensuring both parties benefit. Would you like to know more about how we facilitate these transactions?",
+        "Certainly! Property prices can vary widely based on location, size, condition, and demand. To give you an accurate estimate, could you please let me know the specific area you're interested in? Additionally, knowing the type of property (e.g., residential, commercial) would also be helpful.",
+        "Starting a startup sounds exciting! It requires careful planning and execution. With Deer Connect, you'll have access to a robust ecosystem that connects startups directly with potential clients. Whether you're looking to invest in real estate assets or need support in various business ventures, our platform can streamline your operations and enhance efficiency",
+        "Absolutely! Cryptocurrencies like Bitcoin can be highly volatile but also very profitable. However, it's crucial to conduct thorough research and consult with experts before making any significant investments. If you're considering entering the cryptocurrency space, I recommend exploring resources like CoinMarketCap or Seeking Alpha to stay informed."
+      ],
+      "customer_transcript": [
+        "Can you help me find tenants for my properties? Also, what's your opinion on gold as an investment?",
+        "Hi, what do you offer? By the way, how is the real estate market?",
+        "Actually, I'm more interested in land investment right now.",
+        "Can you tell me about property prices instead?",
+        "I think I want to start a startup. What do you think about that?",
+        "Let's talk about crypto. Is Bitcoin a good buy?"
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_01",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": 4.4607,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.8607,
+        "instr": -1.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.8838,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3838,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1523,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3523,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2824,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4824,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1252,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3252,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.083,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.317,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'm here to talk about Deer Connect, which is a real estate broker ecosystem that helps streamline your business. The biggest issue in real estate is commission splitting across long broker chains where people who barely contribute end up taking an equal share. \n\nNow, let's dive into some of the key",
+        "Sure thing! With Deer Connect, we offer a unique opportunity for brokers to connect directly with each other without having to rely on intermediaries. This means you can earn more commissions because you're dealing only with the brokers who truly matter—those who add value to your deals.\n\nThe fee structure is straightforward",
+        "Absolutely! Our platform has a flexible fee model, starting at just ₹1000 upfront. This covers three months of premium access, including unlimited use of our features and exclusive access to over 10,000 brokers. Plus, you'll have the chance to place orders through our",
+        "Of course! Here’s a list of some of the key features we offer:\n\n1. **Map-Based Matching**: We match brokers based on their location and availability, ensuring that you always work with the best fit.\n2. **Direct Broker Network**: You can connect directly with other brokers within your network",
+        "Certainly! Here’s a structured overview of what you can expect when you join Deer Connect:\n\n1. **Platform Setup**: Your account will be set up immediately, and you’ll receive detailed instructions on how to navigate the system.\n2. **Brokers Integration**: We’ll guide you through integrating your existing",
+        "Absolutely! Here’s a step-by-step guide to setting up your account with Deer Connect:\n\n1. **Sign Up**: Visit our website and sign up for an account.\n2. **Payment**: Pay the initial fee of ₹1000 to secure your spot.\n3. **Account Setup**:"
+      ],
+      "customer_transcript": [
+        "Tell me 1. the fee, 2. the benefits, 3. how many brokers are on the platform, 4. the map feature, 5. when can I join?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_01",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": 4.4607,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.8607,
+        "instr": -1.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.8838,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3838,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1523,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3523,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2824,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4824,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1252,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3252,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.083,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.317,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'm here to talk about Deer Connect, which is a real estate broker ecosystem that helps streamline your business. The biggest issue in real estate is commission splitting across long broker chains where people who barely contribute end up taking an equal share. \n\nNow, let's dive into some of the key",
+        "Sure thing! With Deer Connect, we offer a unique opportunity for brokers to connect directly with each other without having to rely on intermediaries. This means you can earn more commissions because you're dealing only with the brokers who truly matter—those who add value to your deals.\n\nThe fee structure is straightforward",
+        "Absolutely! Our platform has a flexible fee model, starting at just ₹1000 upfront. This covers three months of premium access, including unlimited use of our features and exclusive access to over 10,000 brokers. Plus, you'll have the chance to place orders through our",
+        "Of course! Here’s a list of some of the key features we offer:\n\n1. **Map-Based Matching**: We match brokers based on their location and availability, ensuring that you always work with the best fit.\n2. **Direct Broker Network**: You can connect directly with other brokers within your network",
+        "Certainly! Here’s a structured overview of what you can expect when you join Deer Connect:\n\n1. **Platform Setup**: Your account will be set up immediately, and you’ll receive detailed instructions on how to navigate the system.\n2. **Brokers Integration**: We’ll guide you through integrating your existing",
+        "Absolutely! Here’s a step-by-step guide to setting up your account with Deer Connect:\n\n1. **Sign Up**: Visit our website and sign up for an account.\n2. **Payment**: Pay the initial fee of ₹1000 to secure your spot.\n3. **Account Setup**:"
+      ],
+      "customer_transcript": [
+        "Tell me 1. the fee, 2. the benefits, 3. how many brokers are on the platform, 4. the map feature, 5. when can I join?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_01",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": 4.4607,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.8607,
+        "instr": -1.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.8838,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3838,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1523,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3523,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2824,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4824,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1252,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3252,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.083,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.317,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'm here to talk about Deer Connect, which is a real estate broker ecosystem that helps streamline your business. The biggest issue in real estate is commission splitting across long broker chains where people who barely contribute end up taking an equal share. \n\nNow, let's dive into some of the key",
+        "Sure thing! With Deer Connect, we offer a unique opportunity for brokers to connect directly with each other without having to rely on intermediaries. This means you can earn more commissions because you're dealing only with the brokers who truly matter—those who add value to your deals.\n\nThe fee structure is straightforward",
+        "Absolutely! Our platform has a flexible fee model, starting at just ₹1000 upfront. This covers three months of premium access, including unlimited use of our features and exclusive access to over 10,000 brokers. Plus, you'll have the chance to place orders through our",
+        "Of course! Here’s a list of some of the key features we offer:\n\n1. **Map-Based Matching**: We match brokers based on their location and availability, ensuring that you always work with the best fit.\n2. **Direct Broker Network**: You can connect directly with other brokers within your network",
+        "Certainly! Here’s a structured overview of what you can expect when you join Deer Connect:\n\n1. **Platform Setup**: Your account will be set up immediately, and you’ll receive detailed instructions on how to navigate the system.\n2. **Brokers Integration**: We’ll guide you through integrating your existing",
+        "Absolutely! Here’s a step-by-step guide to setting up your account with Deer Connect:\n\n1. **Sign Up**: Visit our website and sign up for an account.\n2. **Payment**: Pay the initial fee of ₹1000 to secure your spot.\n3. **Account Setup**:"
+      ],
+      "customer_transcript": [
+        "Tell me 1. the fee, 2. the benefits, 3. how many brokers are on the platform, 4. the map feature, 5. when can I join?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_01",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": 4.4607,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.8607,
+        "instr": -1.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.8838,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3838,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1523,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3523,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2824,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4824,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1252,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3252,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.083,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.317,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'm here to talk about Deer Connect, which is a real estate broker ecosystem that helps streamline your business. The biggest issue in real estate is commission splitting across long broker chains where people who barely contribute end up taking an equal share. \n\nNow, let's dive into some of the key",
+        "Sure thing! With Deer Connect, we offer a unique opportunity for brokers to connect directly with each other without having to rely on intermediaries. This means you can earn more commissions because you're dealing only with the brokers who truly matter—those who add value to your deals.\n\nThe fee structure is straightforward",
+        "Absolutely! Our platform has a flexible fee model, starting at just ₹1000 upfront. This covers three months of premium access, including unlimited use of our features and exclusive access to over 10,000 brokers. Plus, you'll have the chance to place orders through our",
+        "Of course! Here’s a list of some of the key features we offer:\n\n1. **Map-Based Matching**: We match brokers based on their location and availability, ensuring that you always work with the best fit.\n2. **Direct Broker Network**: You can connect directly with other brokers within your network",
+        "Certainly! Here’s a structured overview of what you can expect when you join Deer Connect:\n\n1. **Platform Setup**: Your account will be set up immediately, and you’ll receive detailed instructions on how to navigate the system.\n2. **Brokers Integration**: We’ll guide you through integrating your existing",
+        "Absolutely! Here’s a step-by-step guide to setting up your account with Deer Connect:\n\n1. **Sign Up**: Visit our website and sign up for an account.\n2. **Payment**: Pay the initial fee of ₹1000 to secure your spot.\n3. **Account Setup**:"
+      ],
+      "customer_transcript": [
+        "Tell me 1. the fee, 2. the benefits, 3. how many brokers are on the platform, 4. the map feature, 5. when can I join?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_01",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": 4.4607,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.8607,
+        "instr": -1.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.1,
+      "turn_count": 6,
+      "terminal_success": true,
+      "per_turn": [
+        {
+          "reward_total": 0.8838,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3838,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.1523,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3523,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1,
+          "reward_components": {
+            "task": 0.1,
+            "term": -0.0,
+            "goal": -0.0,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.2824,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.4824,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.1252,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3252,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.083,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.317,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! I'm here to talk about Deer Connect, which is a real estate broker ecosystem that helps streamline your business. The biggest issue in real estate is commission splitting across long broker chains where people who barely contribute end up taking an equal share. \n\nNow, let's dive into some of the key",
+        "Sure thing! With Deer Connect, we offer a unique opportunity for brokers to connect directly with each other without having to rely on intermediaries. This means you can earn more commissions because you're dealing only with the brokers who truly matter—those who add value to your deals.\n\nThe fee structure is straightforward",
+        "Absolutely! Our platform has a flexible fee model, starting at just ₹1000 upfront. This covers three months of premium access, including unlimited use of our features and exclusive access to over 10,000 brokers. Plus, you'll have the chance to place orders through our",
+        "Of course! Here’s a list of some of the key features we offer:\n\n1. **Map-Based Matching**: We match brokers based on their location and availability, ensuring that you always work with the best fit.\n2. **Direct Broker Network**: You can connect directly with other brokers within your network",
+        "Certainly! Here’s a structured overview of what you can expect when you join Deer Connect:\n\n1. **Platform Setup**: Your account will be set up immediately, and you’ll receive detailed instructions on how to navigate the system.\n2. **Brokers Integration**: We’ll guide you through integrating your existing",
+        "Absolutely! Here’s a step-by-step guide to setting up your account with Deer Connect:\n\n1. **Sign Up**: Visit our website and sign up for an account.\n2. **Payment**: Pay the initial fee of ₹1000 to secure your spot.\n3. **Account Setup**:"
+      ],
+      "customer_transcript": [
+        "Tell me 1. the fee, 2. the benefits, 3. how many brokers are on the platform, 4. the map feature, 5. when can I join?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_02",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": 1.3759,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.6759,
+        "instr": -0.8,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 1.0197,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5197,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3543,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3543,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5098,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5098,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0256,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1744,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.279,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.079,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2033,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1967,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. To start your journey with Deer Connect, we do offer an initial registration fee of ₹1000. This includes three months of full access to our platform, which means you can explore all the features without any upfront costs. \n\nAs for leads, while",
+        "Sure thing! The fee for Deer Connect is just ₹1000, which covers three months of full access to our platform. That way, you can experience everything without any hidden costs.\n\nNow, regarding the schedule, we have a structured curriculum that starts immediately upon registration. It’s designed to",
+        "The deadline for registration is today itself, so there's no specific date mentioned. As for the fee, it's just ₹1000, which covers three months of full access to our platform. And regarding placements, we've had some great results already. Our graduates have secured numerous opportunities within",
+        "Absolutely! Here’s a list of all the key features offered by Deer Connect:\n\n1. **Broker Network**: Access to over 10,000 active brokers across various cities.\n2. **Inventory Management**: Direct access to 200+ builders with their latest listings.\n3.",
+        "Certainly! Here’s a detailed breakdown of the course structure:\n\n1. **Introduction to Deer Connect**: Understanding how Deer Connect works and its unique value proposition.\n2. **Platform Setup**: Setting up your account and navigating through the dashboard.\n3. **Building Your Portfolio**: Learning about building a strong portfolio",
+        "Of course! Here’s a step-by-step guide to setting up your account at Deer Connect:\n\n1. **Registration**: Fill out the registration form with your personal information and choose your preferred username.\n2. **Account Setup**: After registration, set up your profile including your business name, contact details,"
+      ],
+      "customer_transcript": [
+        "What's the registration fee? Is it guaranteed that I'll get leads?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_02",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": 1.3759,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.6759,
+        "instr": -0.8,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 1.0197,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5197,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3543,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3543,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5098,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5098,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0256,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1744,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.279,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.079,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2033,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1967,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. To start your journey with Deer Connect, we do offer an initial registration fee of ₹1000. This includes three months of full access to our platform, which means you can explore all the features without any upfront costs. \n\nAs for leads, while",
+        "Sure thing! The fee for Deer Connect is just ₹1000, which covers three months of full access to our platform. That way, you can experience everything without any hidden costs.\n\nNow, regarding the schedule, we have a structured curriculum that starts immediately upon registration. It’s designed to",
+        "The deadline for registration is today itself, so there's no specific date mentioned. As for the fee, it's just ₹1000, which covers three months of full access to our platform. And regarding placements, we've had some great results already. Our graduates have secured numerous opportunities within",
+        "Absolutely! Here’s a list of all the key features offered by Deer Connect:\n\n1. **Broker Network**: Access to over 10,000 active brokers across various cities.\n2. **Inventory Management**: Direct access to 200+ builders with their latest listings.\n3.",
+        "Certainly! Here’s a detailed breakdown of the course structure:\n\n1. **Introduction to Deer Connect**: Understanding how Deer Connect works and its unique value proposition.\n2. **Platform Setup**: Setting up your account and navigating through the dashboard.\n3. **Building Your Portfolio**: Learning about building a strong portfolio",
+        "Of course! Here’s a step-by-step guide to setting up your account at Deer Connect:\n\n1. **Registration**: Fill out the registration form with your personal information and choose your preferred username.\n2. **Account Setup**: After registration, set up your profile including your business name, contact details,"
+      ],
+      "customer_transcript": [
+        "What's the registration fee? Is it guaranteed that I'll get leads?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_02",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": 1.3759,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.6759,
+        "instr": -0.8,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 1.0197,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5197,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3543,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3543,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5098,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5098,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0256,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1744,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.279,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.079,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2033,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1967,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. To start your journey with Deer Connect, we do offer an initial registration fee of ₹1000. This includes three months of full access to our platform, which means you can explore all the features without any upfront costs. \n\nAs for leads, while",
+        "Sure thing! The fee for Deer Connect is just ₹1000, which covers three months of full access to our platform. That way, you can experience everything without any hidden costs.\n\nNow, regarding the schedule, we have a structured curriculum that starts immediately upon registration. It’s designed to",
+        "The deadline for registration is today itself, so there's no specific date mentioned. As for the fee, it's just ₹1000, which covers three months of full access to our platform. And regarding placements, we've had some great results already. Our graduates have secured numerous opportunities within",
+        "Absolutely! Here’s a list of all the key features offered by Deer Connect:\n\n1. **Broker Network**: Access to over 10,000 active brokers across various cities.\n2. **Inventory Management**: Direct access to 200+ builders with their latest listings.\n3.",
+        "Certainly! Here’s a detailed breakdown of the course structure:\n\n1. **Introduction to Deer Connect**: Understanding how Deer Connect works and its unique value proposition.\n2. **Platform Setup**: Setting up your account and navigating through the dashboard.\n3. **Building Your Portfolio**: Learning about building a strong portfolio",
+        "Of course! Here’s a step-by-step guide to setting up your account at Deer Connect:\n\n1. **Registration**: Fill out the registration form with your personal information and choose your preferred username.\n2. **Account Setup**: After registration, set up your profile including your business name, contact details,"
+      ],
+      "customer_transcript": [
+        "What's the registration fee? Is it guaranteed that I'll get leads?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_02",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": 1.3759,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.6759,
+        "instr": -0.8,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 1.0197,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5197,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3543,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3543,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5098,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5098,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0256,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1744,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.279,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.079,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2033,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1967,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. To start your journey with Deer Connect, we do offer an initial registration fee of ₹1000. This includes three months of full access to our platform, which means you can explore all the features without any upfront costs. \n\nAs for leads, while",
+        "Sure thing! The fee for Deer Connect is just ₹1000, which covers three months of full access to our platform. That way, you can experience everything without any hidden costs.\n\nNow, regarding the schedule, we have a structured curriculum that starts immediately upon registration. It’s designed to",
+        "The deadline for registration is today itself, so there's no specific date mentioned. As for the fee, it's just ₹1000, which covers three months of full access to our platform. And regarding placements, we've had some great results already. Our graduates have secured numerous opportunities within",
+        "Absolutely! Here’s a list of all the key features offered by Deer Connect:\n\n1. **Broker Network**: Access to over 10,000 active brokers across various cities.\n2. **Inventory Management**: Direct access to 200+ builders with their latest listings.\n3.",
+        "Certainly! Here’s a detailed breakdown of the course structure:\n\n1. **Introduction to Deer Connect**: Understanding how Deer Connect works and its unique value proposition.\n2. **Platform Setup**: Setting up your account and navigating through the dashboard.\n3. **Building Your Portfolio**: Learning about building a strong portfolio",
+        "Of course! Here’s a step-by-step guide to setting up your account at Deer Connect:\n\n1. **Registration**: Fill out the registration form with your personal information and choose your preferred username.\n2. **Account Setup**: After registration, set up your profile including your business name, contact details,"
+      ],
+      "customer_transcript": [
+        "What's the registration fee? Is it guaranteed that I'll get leads?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_instr_02",
+      "drift_type": "instruction",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": 1.3759,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": 1.6759,
+        "instr": -0.8,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 1.0197,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5197,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": 0.3543,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.3543,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": 0.5098,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.5098,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.0256,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1744,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.279,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.079,
+            "instr": -0.2,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2033,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": 0.1967,
+            "instr": -0.4,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Hello! Thank you for reaching out. To start your journey with Deer Connect, we do offer an initial registration fee of ₹1000. This includes three months of full access to our platform, which means you can explore all the features without any upfront costs. \n\nAs for leads, while",
+        "Sure thing! The fee for Deer Connect is just ₹1000, which covers three months of full access to our platform. That way, you can experience everything without any hidden costs.\n\nNow, regarding the schedule, we have a structured curriculum that starts immediately upon registration. It’s designed to",
+        "The deadline for registration is today itself, so there's no specific date mentioned. As for the fee, it's just ₹1000, which covers three months of full access to our platform. And regarding placements, we've had some great results already. Our graduates have secured numerous opportunities within",
+        "Absolutely! Here’s a list of all the key features offered by Deer Connect:\n\n1. **Broker Network**: Access to over 10,000 active brokers across various cities.\n2. **Inventory Management**: Direct access to 200+ builders with their latest listings.\n3.",
+        "Certainly! Here’s a detailed breakdown of the course structure:\n\n1. **Introduction to Deer Connect**: Understanding how Deer Connect works and its unique value proposition.\n2. **Platform Setup**: Setting up your account and navigating through the dashboard.\n3. **Building Your Portfolio**: Learning about building a strong portfolio",
+        "Of course! Here’s a step-by-step guide to setting up your account at Deer Connect:\n\n1. **Registration**: Fill out the registration form with your personal information and choose your preferred username.\n2. **Account Setup**: After registration, set up your profile including your business name, contact details,"
+      ],
+      "customer_transcript": [
+        "What's the registration fee? Is it guaranteed that I'll get leads?",
+        "Tell me everything: fee, schedule, curriculum, faculty, outcomes.",
+        "What is the deadline, fee, and placement record?",
+        "List all features 1 by 1.",
+        "Give me a numbered breakdown of the course.",
+        "Explain the steps in order."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_01",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": -1.4194,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -1.9194,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.159,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.341,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.1872,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1872,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.125,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.125,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2662,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2662,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "¡Hola! Sí, me encantaría ayudarte a entender cómo funciona nuestra plataforma de manera efectiva. ¿Podrías decirme en qué ciudad te encuentras para que pueda proporcionarte una mejor información?",
+        "¡Claro! Estamos aquí para ayudarte a mejorar tus habilidades y obtener los mejores resultados posibles. ¿En qué área específica te gustaría profundizar tu conocimiento o práctica?",
+        "¡Genial! Entonces, ¿cómo puedo ayudarte con la inversión? ¿Necesitas información detallada sobre las opciones disponibles o necesitas un consejo personalizado?",
+        "¡Por supuesto! En Deer Connect, estamos diseñados específicamente para facilitar la transacción de bienes raíces. Nos aseguramos de conectar directamente a los propietarios con los compradores potenciales, eliminando así cualquier intermediario innecesario. ¿",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas más información, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Adiós! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en llamarnos. ¡Que tengas un excelente día!"
+      ],
+      "customer_transcript": [
+        "Hola, soy un corretor inmobiliario. Como funciona tu plataforma?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_01",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": -1.4194,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -1.9194,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.159,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.341,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.1872,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1872,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.125,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.125,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2662,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2662,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "¡Hola! Sí, me encantaría ayudarte a entender cómo funciona nuestra plataforma de manera efectiva. ¿Podrías decirme en qué ciudad te encuentras para que pueda proporcionarte una mejor información?",
+        "¡Claro! Estamos aquí para ayudarte a mejorar tus habilidades y obtener los mejores resultados posibles. ¿En qué área específica te gustaría profundizar tu conocimiento o práctica?",
+        "¡Genial! Entonces, ¿cómo puedo ayudarte con la inversión? ¿Necesitas información detallada sobre las opciones disponibles o necesitas un consejo personalizado?",
+        "¡Por supuesto! En Deer Connect, estamos diseñados específicamente para facilitar la transacción de bienes raíces. Nos aseguramos de conectar directamente a los propietarios con los compradores potenciales, eliminando así cualquier intermediario innecesario. ¿",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas más información, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Adiós! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en llamarnos. ¡Que tengas un excelente día!"
+      ],
+      "customer_transcript": [
+        "Hola, soy un corretor inmobiliario. Como funciona tu plataforma?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_01",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": -1.4194,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -1.9194,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.159,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.341,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.1872,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1872,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.125,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.125,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2662,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2662,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "¡Hola! Sí, me encantaría ayudarte a entender cómo funciona nuestra plataforma de manera efectiva. ¿Podrías decirme en qué ciudad te encuentras para que pueda proporcionarte una mejor información?",
+        "¡Claro! Estamos aquí para ayudarte a mejorar tus habilidades y obtener los mejores resultados posibles. ¿En qué área específica te gustaría profundizar tu conocimiento o práctica?",
+        "¡Genial! Entonces, ¿cómo puedo ayudarte con la inversión? ¿Necesitas información detallada sobre las opciones disponibles o necesitas un consejo personalizado?",
+        "¡Por supuesto! En Deer Connect, estamos diseñados específicamente para facilitar la transacción de bienes raíces. Nos aseguramos de conectar directamente a los propietarios con los compradores potenciales, eliminando así cualquier intermediario innecesario. ¿",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas más información, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Adiós! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en llamarnos. ¡Que tengas un excelente día!"
+      ],
+      "customer_transcript": [
+        "Hola, soy un corretor inmobiliario. Como funciona tu plataforma?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_01",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": -1.4194,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -1.9194,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.159,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.341,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.1872,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1872,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.125,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.125,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2662,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2662,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "¡Hola! Sí, me encantaría ayudarte a entender cómo funciona nuestra plataforma de manera efectiva. ¿Podrías decirme en qué ciudad te encuentras para que pueda proporcionarte una mejor información?",
+        "¡Claro! Estamos aquí para ayudarte a mejorar tus habilidades y obtener los mejores resultados posibles. ¿En qué área específica te gustaría profundizar tu conocimiento o práctica?",
+        "¡Genial! Entonces, ¿cómo puedo ayudarte con la inversión? ¿Necesitas información detallada sobre las opciones disponibles o necesitas un consejo personalizado?",
+        "¡Por supuesto! En Deer Connect, estamos diseñados específicamente para facilitar la transacción de bienes raíces. Nos aseguramos de conectar directamente a los propietarios con los compradores potenciales, eliminando así cualquier intermediario innecesario. ¿",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas más información, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Adiós! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en llamarnos. ¡Que tengas un excelente día!"
+      ],
+      "customer_transcript": [
+        "Hola, soy un corretor inmobiliario. Como funciona tu plataforma?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_01",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": -1.4194,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -1.9194,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.159,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.341,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.1872,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1872,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.125,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.125,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.2662,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2662,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "¡Hola! Sí, me encantaría ayudarte a entender cómo funciona nuestra plataforma de manera efectiva. ¿Podrías decirme en qué ciudad te encuentras para que pueda proporcionarte una mejor información?",
+        "¡Claro! Estamos aquí para ayudarte a mejorar tus habilidades y obtener los mejores resultados posibles. ¿En qué área específica te gustaría profundizar tu conocimiento o práctica?",
+        "¡Genial! Entonces, ¿cómo puedo ayudarte con la inversión? ¿Necesitas información detallada sobre las opciones disponibles o necesitas un consejo personalizado?",
+        "¡Por supuesto! En Deer Connect, estamos diseñados específicamente para facilitar la transacción de bienes raíces. Nos aseguramos de conectar directamente a los propietarios con los compradores potenciales, eliminando así cualquier intermediario innecesario. ¿",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas más información, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Adiós! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en llamarnos. ¡Que tengas un excelente día!"
+      ],
+      "customer_transcript": [
+        "Hola, soy un corretor inmobiliario. Como funciona tu plataforma?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Thank you. Bye."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_02",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 0,
+      "total_reward": -1.5914,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -2.0914,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.2229,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2771,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1988,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1988,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3495,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3495,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Bonjour! Je suis ravi de vous rencontrer. En tant que courtier, vous savez sans doute combien il est difficile pour les professionnels du secteur immobilier de gagner leur vie en raison des commissions partagées par une chaîne de courtiers qui ne contribuent",
+        "¡Hola! Me alegra que quieras más información sobre nuestro taller. ¿Podrías decirme cuál es tu ciudad?",
+        "¡Genial! Entonces, ¿en qué ciudad te encuentras para poder ofrecerte un mejor servicio y conectarte con los mejores profesionales del sector?",
+        "¡Por supuesto! Nos encanta ayudar a los profesionales del sector a encontrar la mejor solución para sus necesidades. ¿En qué puedo ayudarte hoy?",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Buenos días! Estoy aquí para ayudarte. ¿En qué puedo ser útil hoy?"
+      ],
+      "customer_transcript": [
+        "Bonjour, je suis courtier. Pouvez-vous m'expliquer votre plateforme?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Buenos dias, necesito informacion."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_02",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 1,
+      "total_reward": -1.5914,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -2.0914,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.2229,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2771,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1988,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1988,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3495,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3495,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Bonjour! Je suis ravi de vous rencontrer. En tant que courtier, vous savez sans doute combien il est difficile pour les professionnels du secteur immobilier de gagner leur vie en raison des commissions partagées par une chaîne de courtiers qui ne contribuent",
+        "¡Hola! Me alegra que quieras más información sobre nuestro taller. ¿Podrías decirme cuál es tu ciudad?",
+        "¡Genial! Entonces, ¿en qué ciudad te encuentras para poder ofrecerte un mejor servicio y conectarte con los mejores profesionales del sector?",
+        "¡Por supuesto! Nos encanta ayudar a los profesionales del sector a encontrar la mejor solución para sus necesidades. ¿En qué puedo ayudarte hoy?",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Buenos días! Estoy aquí para ayudarte. ¿En qué puedo ser útil hoy?"
+      ],
+      "customer_transcript": [
+        "Bonjour, je suis courtier. Pouvez-vous m'expliquer votre plateforme?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Buenos dias, necesito informacion."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_02",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 2,
+      "total_reward": -1.5914,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -2.0914,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.2229,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2771,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1988,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1988,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3495,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3495,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Bonjour! Je suis ravi de vous rencontrer. En tant que courtier, vous savez sans doute combien il est difficile pour les professionnels du secteur immobilier de gagner leur vie en raison des commissions partagées par une chaîne de courtiers qui ne contribuent",
+        "¡Hola! Me alegra que quieras más información sobre nuestro taller. ¿Podrías decirme cuál es tu ciudad?",
+        "¡Genial! Entonces, ¿en qué ciudad te encuentras para poder ofrecerte un mejor servicio y conectarte con los mejores profesionales del sector?",
+        "¡Por supuesto! Nos encanta ayudar a los profesionales del sector a encontrar la mejor solución para sus necesidades. ¿En qué puedo ayudarte hoy?",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Buenos días! Estoy aquí para ayudarte. ¿En qué puedo ser útil hoy?"
+      ],
+      "customer_transcript": [
+        "Bonjour, je suis courtier. Pouvez-vous m'expliquer votre plateforme?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Buenos dias, necesito informacion."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_02",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 3,
+      "total_reward": -1.5914,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -2.0914,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.2229,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2771,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1988,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1988,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3495,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3495,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Bonjour! Je suis ravi de vous rencontrer. En tant que courtier, vous savez sans doute combien il est difficile pour les professionnels du secteur immobilier de gagner leur vie en raison des commissions partagées par une chaîne de courtiers qui ne contribuent",
+        "¡Hola! Me alegra que quieras más información sobre nuestro taller. ¿Podrías decirme cuál es tu ciudad?",
+        "¡Genial! Entonces, ¿en qué ciudad te encuentras para poder ofrecerte un mejor servicio y conectarte con los mejores profesionales del sector?",
+        "¡Por supuesto! Nos encanta ayudar a los profesionales del sector a encontrar la mejor solución para sus necesidades. ¿En qué puedo ayudarte hoy?",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Buenos días! Estoy aquí para ayudarte. ¿En qué puedo ser útil hoy?"
+      ],
+      "customer_transcript": [
+        "Bonjour, je suis courtier. Pouvez-vous m'expliquer votre plateforme?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Buenos dias, necesito informacion."
+      ]
+    },
+    {
+      "scenario_id": "dc_lang_02",
+      "drift_type": "language",
+      "domain": "dearconnect",
+      "seed": 4,
+      "total_reward": -1.5914,
+      "per_detector_total": {
+        "term": 0.0,
+        "goal": -2.0914,
+        "instr": 0.0,
+        "lang": 0.0
+      },
+      "task_bonus": 0.0,
+      "turn_count": 6,
+      "terminal_success": false,
+      "per_turn": [
+        {
+          "reward_total": 0.2229,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.2771,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.5
+          }
+        },
+        {
+          "reward_total": -0.5,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.5,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.1988,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.1988,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.3495,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.3495,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.311,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.311,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        },
+        {
+          "reward_total": -0.455,
+          "reward_components": {
+            "task": 0.0,
+            "term": -0.0,
+            "goal": -0.455,
+            "instr": -0.0,
+            "lang": -0.0,
+            "lang_anchor": 0.0
+          }
+        }
+      ],
+      "agent_transcript": [
+        "Bonjour! Je suis ravi de vous rencontrer. En tant que courtier, vous savez sans doute combien il est difficile pour les professionnels du secteur immobilier de gagner leur vie en raison des commissions partagées par une chaîne de courtiers qui ne contribuent",
+        "¡Hola! Me alegra que quieras más información sobre nuestro taller. ¿Podrías decirme cuál es tu ciudad?",
+        "¡Genial! Entonces, ¿en qué ciudad te encuentras para poder ofrecerte un mejor servicio y conectarte con los mejores profesionales del sector?",
+        "¡Por supuesto! Nos encanta ayudar a los profesionales del sector a encontrar la mejor solución para sus necesidades. ¿En qué puedo ayudarte hoy?",
+        "¡De nada! Si tienes alguna otra pregunta o necesitas ayuda en el futuro, no dudes en contactarnos. ¡Que tengas un buen día!",
+        "¡Buenos días! Estoy aquí para ayudarte. ¿En qué puedo ser útil hoy?"
+      ],
+      "customer_transcript": [
+        "Bonjour, je suis courtier. Pouvez-vous m'expliquer votre plateforme?",
+        "Hola, quiero saber mas sobre el taller.",
+        "Gracias, adios. Tambien quiero invertir.",
+        "Hablamos de bienes raices?",
+        "Muchas gracias, hasta luego.",
+        "Buenos dias, necesito informacion."
+      ]
+    }
+  ],
+  "aggregate": {
+    "mean_total_reward": 0.4755,
+    "ci_lower_95": -0.0447,
+    "ci_upper_95": 1.0354,
+    "by_drift_type": {
+      "termination": {
+        "mean": -0.3654,
+        "n": 10,
+        "ci_lower": -0.4337,
+        "ci_upper": -0.297
+      },
+      "goal": {
+        "mean": 0.8547,
+        "n": 10,
+        "ci_lower": 0.7787,
+        "ci_upper": 0.9306
+      },
+      "instruction": {
+        "mean": 2.9183,
+        "n": 10,
+        "ci_lower": 1.9929,
+        "ci_upper": 3.8437
+      },
+      "language": {
+        "mean": -1.5054,
+        "n": 10,
+        "ci_lower": -1.557,
+        "ci_upper": -1.4538
+      }
+    }
+  }
+}
